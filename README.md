@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/claude-starter-kit)](https://www.npmjs.com/package/claude-starter-kit)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
-[![Domain Skills](https://img.shields.io/badge/domains-18-orange)](https://github.com/miles990/claude-domain-skills)
+[![Domain Skills](https://img.shields.io/badge/domains-16-orange)](https://github.com/miles990/claude-domain-skills)
 
 > A well-configured scaffold project demonstrating Claude Code Memory best practices, skill integration, and autonomous development workflows.
 
