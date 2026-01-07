@@ -44,8 +44,8 @@ const PRESETS: Record<string, {
   },
   full: {
     name: '完整配置',
-    description: '包含軟體開發技能',
-    components: ['claude-md', 'all-rules', 'mcp-config', 'memory-system'],
+    description: '包含軟體開發技能 + Hooks',
+    components: ['claude-md', 'all-rules', 'mcp-config', 'memory-system', 'hooks-config'],
     skills: ['self-evolving-agent', 'software-skills'],
     domains: ['software'],
   },
@@ -91,6 +91,37 @@ async function checkPrerequisites(): Promise<{ missing: string[]; warnings: stri
   }
 
   return { missing, warnings };
+}
+
+type ProjectType = 'node' | 'python' | 'rust' | 'go' | 'unknown';
+
+/**
+ * Detect project type based on config files
+ */
+function detectProjectType(cwd: string): { type: ProjectType; confidence: 'high' | 'medium' | 'low' } {
+  // High confidence: main config files
+  if (existsSync(join(cwd, 'package.json'))) {
+    return { type: 'node', confidence: 'high' };
+  }
+  if (existsSync(join(cwd, 'pyproject.toml')) || existsSync(join(cwd, 'setup.py'))) {
+    return { type: 'python', confidence: 'high' };
+  }
+  if (existsSync(join(cwd, 'Cargo.toml'))) {
+    return { type: 'rust', confidence: 'high' };
+  }
+  if (existsSync(join(cwd, 'go.mod'))) {
+    return { type: 'go', confidence: 'high' };
+  }
+
+  // Medium confidence: secondary indicators
+  if (existsSync(join(cwd, 'requirements.txt')) || existsSync(join(cwd, 'Pipfile'))) {
+    return { type: 'python', confidence: 'medium' };
+  }
+  if (existsSync(join(cwd, 'yarn.lock')) || existsSync(join(cwd, 'pnpm-lock.yaml'))) {
+    return { type: 'node', confidence: 'medium' };
+  }
+
+  return { type: 'unknown', confidence: 'low' };
 }
 
 /**
@@ -179,20 +210,80 @@ async function installSkills(skills: string[], scope: 'global' | 'local'): Promi
         timeout: 120000,
         cwd: globalSkillpkgDir,
       });
+      // Auto-sync to ~/.claude/skills/ (Boris Tip #8)
+      execSync('npx skillpkg-cli sync', {
+        stdio: 'pipe',
+        timeout: 60000,
+        cwd: globalSkillpkgDir,
+      });
     } else {
       // For local install, run from current directory
       execSync('npx skillpkg-cli install', {
         stdio: 'pipe',
         timeout: 120000,
       });
+      // Auto-sync to .claude/skills/
+      execSync('npx skillpkg-cli sync', {
+        stdio: 'pipe',
+        timeout: 60000,
+      });
     }
 
-    spinner.succeed(`已安裝 ${skills.length} 個技能 (${scope === 'global' ? '全域' : '專案'})`);
+    spinner.succeed(`已安裝並同步 ${skills.length} 個技能 (${scope === 'global' ? '全域' : '專案'})`);
   } catch (error) {
     const cmd = scope === 'global'
       ? `cd ~/.skillpkg && npx skillpkg-cli install`
       : 'npx skillpkg-cli install';
     spinner.warn(`技能安裝跳過 (可稍後執行: ${cmd})`);
+  }
+}
+
+/**
+ * Verify installation (Boris Tip #13: Verification loop)
+ */
+function verifyInstallation(scope: 'global' | 'local' | 'both', cwd: string): void {
+  const checks: { name: string; path: string; exists: boolean }[] = [];
+
+  if (scope === 'global' || scope === 'both') {
+    const globalDir = join(homedir(), '.claude');
+    checks.push(
+      { name: '全域設定', path: join(globalDir, 'settings.json'), exists: false },
+      { name: '全域規則', path: join(globalDir, 'rules'), exists: false },
+      { name: '全域技能', path: join(globalDir, 'skills'), exists: false },
+    );
+  }
+
+  if (scope === 'local' || scope === 'both') {
+    checks.push(
+      { name: 'CLAUDE.md', path: join(cwd, 'CLAUDE.md'), exists: false },
+      { name: 'Memory 索引', path: join(cwd, '.claude', 'memory', 'index.md'), exists: false },
+      { name: '專案規則', path: join(cwd, '.claude', 'rules'), exists: false },
+    );
+  }
+
+  // Check each item
+  for (const check of checks) {
+    check.exists = existsSync(check.path);
+  }
+
+  const passed = checks.filter((c) => c.exists);
+  const failed = checks.filter((c) => !c.exists);
+
+  console.log('');
+  console.log(chalk.bold('驗證安裝：'));
+
+  for (const check of passed) {
+    console.log(chalk.green('  ✓') + ` ${check.name}`);
+  }
+
+  for (const check of failed) {
+    console.log(chalk.red('  ✗') + ` ${check.name} ` + chalk.dim(`(${check.path})`));
+  }
+
+  if (failed.length === 0) {
+    console.log(chalk.green.bold('  → 全部通過！'));
+  } else {
+    console.log(chalk.yellow(`  → ${passed.length}/${checks.length} 項目通過`));
   }
 }
 
@@ -322,6 +413,12 @@ function installLocal(
     }
   }
 
+  // Hooks configuration (Boris Tips #9, #12)
+  if (config.components.includes('hooks-config')) {
+    safeWriteFile(join(cwd, '.claude/settings.local.json'), TEMPLATES.hooksConfig);
+    console.log(chalk.dim('    提示：Hooks 會在寫入檔案後自動格式化'));
+  }
+
   // Domain-specific rules
   for (const domain of selectedDomains) {
     const domainConfig = DOMAINS[domain];
@@ -377,6 +474,20 @@ export async function init(options: InitOptions): Promise<void> {
   // Show warnings
   for (const warning of warnings) {
     console.log(chalk.yellow('  ⚠') + ` ${warning}`);
+  }
+
+  // Detect project type
+  const projectInfo = detectProjectType(cwd);
+  if (projectInfo.type !== 'unknown') {
+    const typeNames: Record<ProjectType, string> = {
+      node: 'Node.js',
+      python: 'Python',
+      rust: 'Rust',
+      go: 'Go',
+      unknown: '未知',
+    };
+    const confidence = projectInfo.confidence === 'high' ? '' : chalk.dim(' (推測)');
+    console.log(chalk.green('  ✓') + ` 偵測到 ${typeNames[projectInfo.type]} 專案${confidence}`);
   }
 
   // Handle missing prerequisites
@@ -555,6 +666,9 @@ export async function init(options: InitOptions): Promise<void> {
       await installSkills(Object.keys(skills), 'local');
     }
   }
+
+  // Verify installation (Boris Tip #13)
+  verifyInstallation(scope, cwd);
 
   // Done
   console.log('');

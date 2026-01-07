@@ -122,5 +122,45 @@ paths: **/*.test.{ts,tsx,js,jsx}, **/*.spec.{ts,tsx,js,jsx}
 ## Patterns
 <!-- PATTERNS_START -->
 <!-- PATTERNS_END -->
+
+## Strategies
+<!-- STRATEGIES_START -->
+<!-- STRATEGIES_END -->
+
+## Tags
+<!-- TAGS_START -->
+<!-- TAGS_END -->
 `,
+
+  // Hooks configuration (Boris Tips #9, #12)
+  hooksConfig: JSON.stringify(
+    {
+      hooks: {
+        PostToolUse: [
+          {
+            matcher: 'Write|Edit',
+            hooks: [
+              {
+                type: 'command',
+                command: 'npx prettier --write "$CLAUDE_FILE_PATH" 2>/dev/null || true',
+              },
+            ],
+          },
+        ],
+        Stop: [
+          {
+            matcher: '',
+            hooks: [
+              {
+                type: 'command',
+                command: 'echo "Task completed at $(date)"',
+              },
+            ],
+          },
+        ],
+      },
+    },
+    null,
+    2
+  ),
 };
