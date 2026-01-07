@@ -1,5 +1,9 @@
 # Claude Starter Kit
 
+[![npm](https://img.shields.io/npm/v/claude-starter-kit)](https://www.npmjs.com/package/claude-starter-kit)
+[![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
+[![Domain Skills](https://img.shields.io/badge/domains-18-orange)](https://github.com/miles990/claude-domain-skills)
+
 > A well-configured scaffold project demonstrating Claude Code Memory best practices, skill integration, and autonomous development workflows.
 
 ## Why This Project?
@@ -54,14 +58,17 @@ npx skillpkg-cli init
 -y, --yes                # Skip prompts, use defaults
 ```
 
-**Domain Skills (v2.0+):**
+**Domain Skills (18 available):**
 
-When selecting business domains, the CLI automatically includes matching domain skills:
+When selecting domains, the CLI automatically includes matching domain skills:
 
-| Domain | Auto-installed Skill |
-|--------|---------------------|
-| `quant-trading` | `quant-trading` from claude-domain-skills |
-| `finance` | `investment-analysis` from claude-domain-skills |
+| Category | Available Domains |
+|----------|-------------------|
+| 💼 Business | marketing, sales, product, project-management, strategy |
+| 💰 Finance | quant-trading, finance |
+| 🎨 Creative | game-design, ui-ux, content, brand, brainstorming, storytelling, visual-media |
+| 🔬 Professional | research, knowledge-management |
+| 🌱 Lifestyle | personal-growth, side-income |
 
 These skills have `triggers` for auto-detection with `/evolve`.
 
@@ -369,11 +376,12 @@ Edit `.mcp.json`:
 
 ## Related Projects
 
-- [self-evolving-agent](https://github.com/miles990/self-evolving-agent) - The autonomous goal achievement skill
-- [claude-software-skills](https://github.com/miles990/claude-software-skills) - 47 software development skills
-- [claude-domain-skills](https://github.com/miles990/claude-domain-skills) - Non-technical domain skills (finance, business, creative)
-- [skillpkg](https://github.com/miles990/skillpkg) - Skill package manager for Claude Code
-- [Claude Code Documentation](https://code.claude.com/docs)
+| Project | Description |
+|---------|-------------|
+| [self-evolving-agent](https://github.com/miles990/self-evolving-agent) | Autonomous goal achievement skill with PDCA loop |
+| [claude-domain-skills](https://github.com/miles990/claude-domain-skills) | 16 non-technical domain skills |
+| [claude-software-skills](https://github.com/miles990/claude-software-skills) | 47 software development skills |
+| [skillpkg](https://github.com/miles990/skillpkg) | Skill package manager for Claude Code |
 
 ## License
 
