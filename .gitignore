@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+build/
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Claude Code local settings (not shared)
+.claude/CLAUDE.local.md
+
+# Skills (installed via script, not committed)
+.claude/skills/self-evolving-agent/
+.claude/skills/software-skills/
+
+# But keep the skills directory structure
+!.claude/skills/.gitkeep

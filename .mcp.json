@@ -1,0 +1,16 @@
+{
+  "$schema": "https://code.claude.com/schemas/mcp.json",
+  "mcpServers": {
+    "skillpkg": {
+      "command": "npx",
+      "args": ["-y", "skillpkg-mcp-server"],
+      "description": "AI-native skill management - search, install, load skills autonomously",
+      "repository": "https://github.com/miles990/skillpkg"
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/claude-code-mcp-context7"],
+      "description": "Up-to-date documentation lookup for any library"
+    }
+  }
+}

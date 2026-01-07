@@ -1,0 +1,113 @@
+{
+  "$schema": "https://github.com/miles990/skillpkg/schemas/presets.json",
+  "version": "1.0.0",
+  "description": "Claude Starter Kit configuration presets",
+
+  "presets": {
+    "minimal": {
+      "name": "Minimal",
+      "description": "Just the essentials - CLAUDE.md + basic rules",
+      "components": ["claude-md", "basic-rules"],
+      "skills": [],
+      "memory": false
+    },
+    "standard": {
+      "name": "Standard (Recommended)",
+      "description": "Memory system + self-evolving agent",
+      "components": ["claude-md", "basic-rules", "mcp-config", "memory-system"],
+      "skills": ["self-evolving-agent"],
+      "memory": true
+    },
+    "full": {
+      "name": "Full",
+      "description": "Everything including 47 software skills",
+      "components": ["claude-md", "all-rules", "mcp-config", "memory-system"],
+      "skills": ["self-evolving-agent", "software-skills"],
+      "memory": true
+    },
+    "custom": {
+      "name": "Custom",
+      "description": "Choose exactly what you need",
+      "interactive": true
+    }
+  },
+
+  "components": {
+    "claude-md": {
+      "name": "CLAUDE.md",
+      "description": "Project entry point (auto-loaded by Claude Code)",
+      "files": ["CLAUDE.md"],
+      "required": false
+    },
+    "basic-rules": {
+      "name": "Basic Rules",
+      "description": "Code quality + testing rules",
+      "files": [
+        ".claude/rules/code-quality.md",
+        ".claude/rules/testing.md"
+      ]
+    },
+    "all-rules": {
+      "name": "All Rules",
+      "description": "Complete rule set including memory and workflow",
+      "files": [
+        ".claude/rules/code-quality.md",
+        ".claude/rules/testing.md",
+        ".claude/rules/memory-management.md",
+        ".claude/rules/evolve-workflow.md",
+        ".claude/rules/skillpkg-usage.md"
+      ]
+    },
+    "mcp-config": {
+      "name": "MCP Configuration",
+      "description": "skillpkg + context7 MCP servers",
+      "files": [".mcp.json", ".claude/settings.json"]
+    },
+    "memory-system": {
+      "name": "Memory System",
+      "description": "Git-based experience memory (.github/memory/)",
+      "files": [
+        ".github/memory/index.md",
+        ".github/memory/learnings/.gitkeep",
+        ".github/memory/decisions/.gitkeep",
+        ".github/memory/failures/.gitkeep",
+        ".github/memory/patterns/.gitkeep",
+        ".github/memory/strategies/.gitkeep"
+      ]
+    }
+  },
+
+  "skills": {
+    "self-evolving-agent": {
+      "source": "github:miles990/self-evolving-agent",
+      "description": "Autonomous goal achievement through iterative learning"
+    },
+    "software-skills": {
+      "source": "github:miles990/claude-software-skills",
+      "description": "47 software development skills"
+    }
+  },
+
+  "domainPacks": {
+    "frontend": {
+      "name": "Frontend Development",
+      "skills": ["software-skills#frontend"],
+      "rules": ["react-rules.md", "css-rules.md"]
+    },
+    "backend": {
+      "name": "Backend Development",
+      "skills": ["software-skills#backend"],
+      "rules": ["api-rules.md", "database-rules.md"]
+    },
+    "fullstack": {
+      "name": "Full-Stack Development",
+      "skills": ["software-skills#frontend", "software-skills#backend"],
+      "rules": ["react-rules.md", "api-rules.md"]
+    },
+    "devops": {
+      "name": "DevOps & Infrastructure",
+      "skills": ["software-skills#devops"],
+      "rules": ["docker-rules.md", "ci-cd-rules.md"]
+    }
+  }
+}

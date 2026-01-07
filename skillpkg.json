@@ -1,0 +1,31 @@
+{
+  "$schema": "https://github.com/miles990/skillpkg/schemas/skillpkg.json",
+  "name": "claude-starter-kit",
+  "version": "1.0.0",
+  "description": "A well-configured starter project for Claude Code with Memory and Skills",
+
+  "skills": {
+    "self-evolving-agent": {
+      "source": "github:miles990/self-evolving-agent",
+      "version": "^3.3.0",
+      "required": true,
+      "description": "Autonomous goal achievement through iterative learning"
+    },
+    "software-skills": {
+      "source": "github:miles990/claude-software-skills",
+      "version": "latest",
+      "optional": true,
+      "description": "47 software development skills"
+    }
+  },
+
+  "sync": {
+    "targets": ["claude-code"],
+    "autoSync": true
+  },
+
+  "settings": {
+    "scope": "local",
+    "cacheDir": ".skillpkg"
+  }
+}

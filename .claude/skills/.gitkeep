@@ -1,0 +1,14 @@
+# Skills Directory
+
+Install skills here using:
+
+```bash
+# Option 1: Git clone
+git clone https://github.com/miles990/self-evolving-agent.git .claude/skills/self-evolving-agent
+git clone https://github.com/miles990/claude-software-skills.git .claude/skills/software-skills
+
+# Option 2: Via skillpkg MCP (if available)
+# Use install_skill tool in Claude Code
+```
+
+See README.md for detailed installation instructions.
