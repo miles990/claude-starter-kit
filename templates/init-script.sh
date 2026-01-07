@@ -209,7 +209,7 @@ main() {
             "CLAUDE.md (project entry point)"
             "Basic Rules (code quality, testing)"
             "MCP Configuration (skillpkg, context7)"
-            "Memory System (.github/memory/)"
+            "Memory System (.claude/memory/)"
             "Self-Evolving Agent skill"
             "Software Skills (47 modules)"
         )
@@ -320,7 +320,7 @@ install_claude_md() {
 ## Project Structure
 
 See @.claude/rules/ for coding standards.
-See @.github/memory/index.md for project knowledge.
+See @.claude/memory/index.md for project knowledge.
 "
 }
 
@@ -363,7 +363,7 @@ install_all_rules() {
 
 ## Memory Workflow
 
-1. Search before starting: `Grep pattern="keyword" path=".github/memory/"`
+1. Search before starting: `Grep pattern="keyword" path=".claude/memory/"`
 2. Create memory after learning
 3. Update index.md
 '
@@ -407,9 +407,9 @@ install_mcp_config() {
 }
 
 install_memory_system() {
-    safe_write ".github/memory/index.md" '# Project Memory Index
+    safe_write ".claude/memory/index.md" '# Project Memory Index
 
-> Search with: `Grep pattern="keyword" path=".github/memory/"`
+> Search with: `Grep pattern="keyword" path=".claude/memory/"`
 
 ## Learnings
 <!-- LEARNINGS_START -->
@@ -429,11 +429,11 @@ install_memory_system() {
 '
 
     for dir in learnings decisions failures patterns strategies; do
-        mkdir -p ".github/memory/$dir"
-        touch ".github/memory/$dir/.gitkeep"
+        mkdir -p ".claude/memory/$dir"
+        touch ".claude/memory/$dir/.gitkeep"
     done
 
-    print_success ".github/memory/ structure"
+    print_success ".claude/memory/ structure"
 }
 
 install_skillpkg_json() {

@@ -65,14 +65,14 @@
     },
     "memory-system": {
       "name": "Memory System",
-      "description": "Git-based experience memory (.github/memory/)",
+      "description": "Git-based experience memory (.claude/memory/)",
       "files": [
-        ".github/memory/index.md",
-        ".github/memory/learnings/.gitkeep",
-        ".github/memory/decisions/.gitkeep",
-        ".github/memory/failures/.gitkeep",
-        ".github/memory/patterns/.gitkeep",
-        ".github/memory/strategies/.gitkeep"
+        ".claude/memory/index.md",
+        ".claude/memory/learnings/.gitkeep",
+        ".claude/memory/decisions/.gitkeep",
+        ".claude/memory/failures/.gitkeep",
+        ".claude/memory/patterns/.gitkeep",
+        ".claude/memory/strategies/.gitkeep"
       ]
     }
   },

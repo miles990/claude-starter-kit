@@ -12,7 +12,7 @@ Use `/evolve [goal]` when:
 ### Before Starting Any Task
 ```bash
 # Search existing knowledge
-Grep pattern="relevant_keyword" path=".github/memory/"
+Grep pattern="relevant_keyword" path=".claude/memory/"
 ```
 If related memory exists, read and apply it.
 

@@ -20,7 +20,7 @@ This starter kit provides a **ready-to-use template** with all these configured.
 
 | Feature | Description |
 |---------|-------------|
-| **Dual-Layer Memory** | Native `.claude/` + Custom `.github/memory/` |
+| **Dual-Layer Memory** | Native `.claude/` + Custom `.claude/memory/` |
 | **Modular Rules** | Path-specific rules in `.claude/rules/` |
 | **Skill Integration** | Self-evolving agent + Software skills |
 | **MCP Pre-configured** | skillpkg + context7 ready |
@@ -99,7 +99,7 @@ Try these commands:
 /memory
 
 # Search past experiences
-Grep pattern="authentication" path=".github/memory/"
+Grep pattern="authentication" path=".claude/memory/"
 ```
 
 ## Project Structure
@@ -148,7 +148,7 @@ claude-starter-kit/
 | `.claude/rules/*.md` | Path-specific rules |
 | `.claude/settings.json` | Permissions, environment |
 
-### Layer 2: Experience Memory (`.github/memory/`)
+### Layer 2: Experience Memory (`.claude/memory/`)
 
 **On-demand** - search when needed:
 
@@ -169,7 +169,7 @@ Before Starting Task
 ┌───────────────────┐
 │ Search Memory     │
 │ Grep "keyword"    │
-│ .github/memory/   │
+│ .claude/memory/   │
 └───────────────────┘
         │
         ▼
@@ -207,7 +207,7 @@ The agent will:
 2. **Assess** - Check what skills are needed
 3. **Acquire** - Learn missing skills (via WebSearch, skillpkg)
 4. **Execute** - PDCA loop (Plan-Do-Check-Act)
-5. **Remember** - Store experiences in `.github/memory/`
+5. **Remember** - Store experiences in `.claude/memory/`
 
 ### Stop Conditions
 
@@ -328,7 +328,7 @@ status: resolved
 
 ## Solution
 ...
-" > .github/memory/learnings/$(date +%Y-%m-%d)-slug.md
+" > .claude/memory/learnings/$(date +%Y-%m-%d)-slug.md
 
 # Update index.md
 ```

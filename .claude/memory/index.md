@@ -1,6 +1,6 @@
 # Project Memory Index
 
-> Auto-maintained index. Search with: `Grep pattern="keyword" path=".github/memory/"`
+> Auto-maintained index. Search with: `Grep pattern="keyword" path=".claude/memory/"`
 
 ## Metadata
 
@@ -62,11 +62,11 @@
 
 ```bash
 # Find all memories about testing
-Grep pattern="test" path=".github/memory/"
+Grep pattern="test" path=".claude/memory/"
 
 # Find failed attempts
-Grep pattern="status: failed" path=".github/memory/failures/"
+Grep pattern="status: failed" path=".claude/memory/failures/"
 
 # Find all TypeScript related
-Grep pattern="typescript|ts" path=".github/memory/"
+Grep pattern="typescript|ts" path=".claude/memory/"
 ```

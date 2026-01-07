@@ -35,7 +35,7 @@ skillpkg init --preset=standard --domain=frontend
 ☑ CLAUDE.md           - 專案入口
 ☑ Basic Rules         - 程式碼品質 + 測試
 ☑ MCP Configuration   - skillpkg + context7
-☑ Memory System       - .github/memory/
+☑ Memory System       - .claude/memory/
 ☐ Self-Evolving Agent - 自動進化技能
 ☐ Software Skills     - 47 個領域技能
 ```
@@ -67,7 +67,7 @@ my-project/                 my-project/
                             ├── .claude/       ← 新增
                             │   ├── rules/
                             │   └── skills/
-                            └── .github/memory/ ← 新增
+                            └── .claude/memory/ ← 新增
 ```
 
 如果檔案已存在：
@@ -216,7 +216,7 @@ $ skillpkg init
   ✓ .claude/rules/testing.md
   ○ .claude/rules/custom.md (already exists, skipped)
 [3/4] Setting up memory system...
-  ✓ .github/memory/ structure
+  ✓ .claude/memory/ structure
 [4/4] Installing skills...
   ✓ self-evolving-agent installed
 

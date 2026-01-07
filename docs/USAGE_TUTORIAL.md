@@ -81,7 +81,7 @@ paths: src/api/**/*.ts
 # 建立目錄
 mkdir -p my-project/.claude/rules
 mkdir -p my-project/.claude/skills
-mkdir -p my-project/.github/memory/{learnings,decisions,failures,patterns,strategies}
+mkdir -p my-project/.claude/memory/{learnings,decisions,failures,patterns,strategies}
 mkdir -p my-project/src
 
 cd my-project
@@ -164,7 +164,7 @@ EOF
      ▼
 ┌─────────────────────────────────────────┐
 │  Phase 0: 初始化                        │
-│  - 檢查 .github/memory/ 是否存在       │
+│  - 檢查 .claude/memory/ 是否存在       │
 │  - 建立記憶目錄結構                     │
 └─────────────────────────────────────────┘
      │
@@ -179,7 +179,7 @@ EOF
 ┌─────────────────────────────────────────┐
 │  Phase 1.5: 能力評估                    │
 │  - 評估需要哪些技能                     │
-│  - 搜尋 .github/memory/ 查找經驗        │
+│  - 搜尋 .claude/memory/ 查找經驗        │
 │  - 若缺少技能，使用 skillpkg 安裝       │
 └─────────────────────────────────────────┘
      │
@@ -219,7 +219,7 @@ EOF
 - coverage report 顯示 ≥80%
 
 🔍 搜尋過去經驗...
-Grep pattern="jest|testing|coverage" path=".github/memory/"
+Grep pattern="jest|testing|coverage" path=".claude/memory/"
 → 找到：learnings/2025-01-05-jest-setup.md
 
 📚 應用過去經驗：Jest 配置最佳實踐
@@ -243,7 +243,7 @@ Check：✅ 安裝成功
 - API 端點測試
 
 💾 記錄經驗
-Write(.github/memory/learnings/2025-01-07-testing-setup.md)
+Write(.claude/memory/learnings/2025-01-07-testing-setup.md)
 ```
 
 ---
@@ -254,19 +254,19 @@ Write(.github/memory/learnings/2025-01-07-testing-setup.md)
 
 ```bash
 # 搜尋所有記憶
-Grep pattern="關鍵字" path=".github/memory/"
+Grep pattern="關鍵字" path=".claude/memory/"
 
 # 只搜尋學習記錄
-Grep pattern="react" path=".github/memory/learnings/"
+Grep pattern="react" path=".claude/memory/learnings/"
 
 # 搜尋失敗經驗
-Grep pattern="memory leak" path=".github/memory/failures/"
+Grep pattern="memory leak" path=".claude/memory/failures/"
 ```
 
 ### 4.2 創建學習記錄
 
 ```markdown
-# .github/memory/learnings/2025-01-07-example.md
+# .claude/memory/learnings/2025-01-07-example.md
 
 ---
 date: 2025-01-07

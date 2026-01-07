@@ -8,7 +8,7 @@ This is a scaffold project demonstrating how to set up:
 - **Claude Code Memory System** - Multi-layered memory architecture
 - **Modular Rules** - Path-specific rules in `.claude/rules/`
 - **Skill Integration** - Self-evolving agent + Software skills via [skillpkg](https://github.com/miles990/skillpkg)
-- **Git-based Experience Memory** - Structured learning in `.github/memory/`
+- **Git-based Experience Memory** - Structured learning in `.claude/memory/`
 
 ## Quick Reference
 
@@ -26,7 +26,7 @@ skillpkg sync                # Sync to Claude Code
 - `@.claude/skills/software-skills/` - 47 software development skills
 
 ### Memory System
-- `@.github/memory/index.md` - Quick index of all memories
+- `@.claude/memory/index.md` - Quick index of all memories
 - Use `/evolve [goal]` to trigger self-evolving loop
 - Use `/memory` to edit memory files
 
@@ -62,7 +62,7 @@ git add . && git commit -m "message"  # Commit changes
 1. Fork this repository
 2. Run `/init` if you want to customize CLAUDE.md
 3. Use `/evolve [your goal]` to start autonomous development
-4. Check `.github/memory/` for accumulated learnings
+4. Check `.claude/memory/` for accumulated learnings
 
 ## Project Structure
 
@@ -71,8 +71,7 @@ git add . && git commit -m "message"  # Commit changes
 ├── CLAUDE.md              # This file - project entry point
 ├── .claude/
 │   ├── rules/             # Modular rules (auto-loaded)
-│   └── skills/            # Installed skills
-├── .github/
+│   ├── skills/            # Installed skills
 │   └── memory/            # Git-based experience memory
 │       ├── index.md       # Quick index
 │       ├── learnings/     # Successful solutions

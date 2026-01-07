@@ -14,7 +14,7 @@ Accepted
 
 ## Context
 
-Claude Code provides a native memory system via `.claude/` directory. However, the self-evolving-agent skill uses `.github/memory/` for structured experience storage. We need to decide how to combine these.
+Claude Code provides a native memory system via `.claude/` directory. However, the self-evolving-agent skill uses `.claude/memory/` for structured experience storage. We need to decide how to combine these.
 
 ## Decision
 
@@ -23,13 +23,13 @@ Adopt a **dual-layer architecture**:
 | Layer | Location | Purpose | Auto-loaded |
 |-------|----------|---------|-------------|
 | Native Config | `.claude/` | Rules, skills, preferences | Yes |
-| Experience Memory | `.github/memory/` | Learnings, failures, decisions | No (manual search) |
+| Experience Memory | `.claude/memory/` | Learnings, failures, decisions | No (manual search) |
 
 ## Rationale
 
 1. **Separation of Concerns**
    - `.claude/` = How Claude should behave (prescriptive)
-   - `.github/memory/` = What Claude has learned (descriptive)
+   - `.claude/memory/` = What Claude has learned (descriptive)
 
 2. **Auto-loading vs. On-demand**
    - Rules should always apply (auto-load)
@@ -41,7 +41,7 @@ Adopt a **dual-layer architecture**:
 
 4. **Cross-tool Compatibility**
    - `.claude/` is Claude Code specific
-   - `.github/memory/` works with any tool (Copilot, Cursor)
+   - `.claude/memory/` works with any tool (Copilot, Cursor)
 
 ## Consequences
 

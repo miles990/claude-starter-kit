@@ -20,7 +20,7 @@ Setting up a scaffold project demonstrating Claude Code best practices with inte
 ├── rules/         <- Path-specific rules
 └── skills/        <- Installed skills
 
-.github/memory/    <- Custom experience memory
+.claude/memory/    <- Custom experience memory
 ├── learnings/     <- What worked
 ├── failures/      <- What didn't work
 ├── decisions/     <- Why we chose this
@@ -58,4 +58,4 @@ Import rules from @.claude/rules/testing.md
 
 - `/CLAUDE.md`
 - `/.claude/rules/*.md`
-- `/.github/memory/index.md`
+- `/.claude/memory/index.md`

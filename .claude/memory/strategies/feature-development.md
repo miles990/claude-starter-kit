@@ -84,7 +84,7 @@ New Feature Request
 ### Phase Gates
 - Each phase needs explicit approval before proceeding
 - Can pivot or cancel between phases
-- Document decisions in `.github/memory/decisions/`
+- Document decisions in `.claude/memory/decisions/`
 
 ---
 
