@@ -24,7 +24,8 @@ export type DomainKey =
   | 'game-design'
   | 'ui-ux'
   | 'content'
-  | 'brand';
+  | 'brand'
+  | 'brainstorming';
 
 interface DomainConfig {
   name: string;
@@ -382,6 +383,35 @@ paths: src/api/**/*.ts, src/services/**/*.ts
 - Include real-world examples
 `,
     },
+  },
+
+  brainstorming: {
+    name: 'Brainstorming & Ideation',
+    category: 'creative',
+    description: 'Creative thinking, idea generation, innovation',
+    rules: {
+      'brainstorming.md': `# Brainstorming Rules
+
+## Divergent Thinking
+- Quantity over quality first
+- Defer judgment
+- Welcome wild ideas
+- Build on others' ideas
+
+## Techniques
+- SCAMPER: Substitute, Combine, Adapt, Modify, Put to other uses, Eliminate, Reverse
+- Six Thinking Hats
+- Random stimulus
+- Reverse brainstorming
+
+## Convergent Thinking
+- Evaluate feasibility vs impact
+- Prioritize ruthlessly
+- Create action plan
+`,
+    },
+    skill: 'github:miles990/claude-domain-skills#creative/brainstorming',
+    skillName: 'brainstorming',
   },
 };
 

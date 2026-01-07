@@ -606,6 +606,7 @@ export async function init(options: InitOptions): Promise<void> {
             { name: 'UI/UX 設計 (原型、可用性)', value: 'ui-ux' },
             { name: '內容創作 (文案、SEO)', value: 'content' },
             { name: '品牌設計 (識別、策略)', value: 'brand' },
+            { name: '創意發想 (頭腦風暴、靈感)', value: 'brainstorming' },
           ],
         },
       ]);
