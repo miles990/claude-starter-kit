@@ -28,6 +28,8 @@ export type DomainKey =
   | 'content'
   | 'brand'
   | 'brainstorming'
+  | 'storytelling'
+  | 'visual-media'
   // Lifestyle
   | 'personal-growth'
   | 'side-income'
@@ -472,6 +474,75 @@ paths: src/api/**/*.ts, src/services/**/*.ts
     },
     skill: 'github:miles990/claude-domain-skills#creative/brainstorming',
     skillName: 'brainstorming',
+  },
+
+  storytelling: {
+    name: 'Storytelling & Writing',
+    category: 'creative',
+    description: 'Novel, manga, screenplay, character development, narrative',
+    rules: {
+      'storytelling.md': `# Storytelling Rules
+
+## Story Structure
+- Three-act structure: Setup, Confrontation, Resolution
+- Hero's Journey for epic narratives
+- Story Spine for quick outlines
+
+## Character Development
+- Define Want (external goal) vs Need (internal need)
+- Create fatal flaw and backstory
+- Character arc: transformation through conflict
+
+## Dialogue
+- Use subtext (what's not said)
+- Each character has unique voice
+- Less is more - action over explanation
+
+## Manga/Comic
+- Panel pacing: small=fast, large=slow
+- Page-turn reveals for impact
+- Visual storytelling first
+`,
+    },
+    skill: 'github:miles990/claude-domain-skills#creative/storytelling',
+    skillName: 'storytelling',
+  },
+
+  'visual-media': {
+    name: 'Visual Media Production',
+    category: 'creative',
+    description: 'Photography, video, animation, film, post-production',
+    rules: {
+      'visual-media.md': `# Visual Media Rules
+
+## Photography
+- Exposure triangle: Aperture, Shutter, ISO
+- Composition: Rule of thirds, leading lines, framing
+- Golden hour for best natural light
+
+## Video Production
+- Pre-production (30%): Script, storyboard, planning
+- Production (20%): Shooting, lighting, audio
+- Post-production (50%): Edit, color, sound design
+
+## Camera Movement
+- Push in: emphasize, reveal
+- Pull out: reveal context
+- Track: follow action
+- Handheld: documentary feel
+
+## Short-form Video
+- Hook in first 3 seconds
+- Fast pacing, visual variety
+- Clear CTA at end
+
+## Animation
+- 12 principles: squash/stretch, anticipation, follow-through
+- Ease in/out for natural motion
+`,
+    },
+    skill: 'github:miles990/claude-domain-skills#creative/visual-media',
+    skillName: 'visual-media',
   },
 
   // Lifestyle Domains

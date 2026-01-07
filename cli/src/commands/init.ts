@@ -609,6 +609,8 @@ export async function init(options: InitOptions): Promise<void> {
             { name: '內容創作 (文案、SEO)', value: 'content' },
             { name: '品牌設計 (識別、策略)', value: 'brand' },
             { name: '創意發想 (頭腦風暴、靈感)', value: 'brainstorming' },
+            { name: '故事創作 (小說、漫畫、劇本)', value: 'storytelling' },
+            { name: '影像創作 (攝影、影片、動畫)', value: 'visual-media' },
             new inquirer.Separator('─── 生活領域 ───'),
             { name: '個人成長 (人生規劃、個人品牌)', value: 'personal-growth' },
             { name: '副業投資 (被動收入、加密貨幣)', value: 'side-income' },
