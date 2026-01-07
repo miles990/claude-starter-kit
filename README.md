@@ -24,31 +24,48 @@ This starter kit provides a **ready-to-use template** with all these configured.
 
 ## Quick Start
 
-### 1. Fork & Clone
+### Option A: Initialize Any Project (Recommended)
+
+Use `skillpkg init` to add Claude Code configuration to **any existing project**:
+
+```bash
+# Navigate to your project
+cd your-project
+
+# One-liner setup with auto-install
+npx skillpkg-cli init --preset=standard --install
+
+# Or interactive mode (prompts for options)
+npx skillpkg-cli init
+```
+
+**Presets:**
+| Preset | Includes |
+|--------|----------|
+| `minimal` | CLAUDE.md + basic rules |
+| `standard` | + Memory system + self-evolving agent |
+| `full` | + Software skills (47 modules) |
+
+**Options:**
+```bash
+-p, --preset <preset>    # minimal, standard, full, custom
+-d, --domain <domain>    # frontend, backend, fullstack, devops
+-i, --install            # Auto-install skills after init
+-y, --yes                # Skip prompts, use defaults
+```
+
+### Option B: Fork This Template
 
 ```bash
 # Fork this repo on GitHub, then:
 git clone https://github.com/YOUR_USERNAME/claude-starter-kit.git
 cd claude-starter-kit
+
+# Install skills
+npx skillpkg-cli install
 ```
 
-### 2. Setup with skillpkg
-
-```bash
-# One-command setup (installs skillpkg + skills + syncs)
-./scripts/setup.sh
-
-# Or manually with skillpkg
-npm install -g skillpkg-cli
-skillpkg install
-skillpkg sync
-```
-
-This installs:
-- **self-evolving-agent** - Autonomous goal achievement
-- **claude-software-skills** - 47 software development skills (optional)
-
-### 3. Start Using
+### Start Using
 
 Open the project in Claude Code:
 ```bash
