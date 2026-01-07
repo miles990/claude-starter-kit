@@ -599,6 +599,7 @@ export async function init(options: InitOptions): Promise<void> {
             { name: '行銷企劃 (4P, Growth)', value: 'marketing' },
             { name: '產品管理 (PRD, OKR)', value: 'product' },
             { name: '專案管理 (Scrum, 甘特圖)', value: 'project-management' },
+            { name: '商業策略 (藍海、差異化)', value: 'strategy' },
             new inquirer.Separator('─── 專業服務 ───'),
             { name: '研究分析 (競品、調研)', value: 'research' },
             new inquirer.Separator('─── 創意領域 ───'),

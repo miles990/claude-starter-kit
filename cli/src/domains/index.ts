@@ -18,6 +18,7 @@ export type DomainKey =
   | 'marketing'
   | 'product'
   | 'project-management'
+  | 'strategy'
   // Professional
   | 'research'
   // Creative
@@ -244,6 +245,33 @@ paths: src/api/**/*.ts, src/services/**/*.ts
     },
     skill: 'github:miles990/claude-domain-skills#business/project-management',
     skillName: 'project-management',
+  },
+
+  strategy: {
+    name: 'Business Strategy',
+    category: 'business',
+    description: 'Blue Ocean, differentiation, competitive advantage, business models',
+    rules: {
+      'strategy.md': `# Business Strategy Rules
+
+## Blue Ocean Strategy
+- Use ERRC framework (Eliminate, Reduce, Raise, Create)
+- Create strategy canvas to visualize differentiation
+- Focus on non-customers
+
+## Competitive Strategy
+- Choose: cost leadership, differentiation, or focus
+- Identify sustainable competitive advantages
+- Build moats (network effects, switching costs, brand)
+
+## Business Model
+- Use Business Model Canvas for design
+- Define clear value proposition
+- Validate product-market fit
+`,
+    },
+    skill: 'github:miles990/claude-domain-skills#business/strategy',
+    skillName: 'business-strategy',
   },
 
   // Professional Domains
