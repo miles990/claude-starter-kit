@@ -49,10 +49,21 @@ npx skillpkg-cli init
 **Options:**
 ```bash
 -p, --preset <preset>    # minimal, standard, full, custom
--d, --domain <domain>    # frontend, backend, fullstack, devops
+-d, --domain <domain>    # frontend, backend, fullstack, devops, quant-trading, finance...
 -i, --install            # Auto-install skills after init
 -y, --yes                # Skip prompts, use defaults
 ```
+
+**Domain Skills (v2.0+):**
+
+When selecting business domains, the CLI automatically includes matching domain skills:
+
+| Domain | Auto-installed Skill |
+|--------|---------------------|
+| `quant-trading` | `quant-trading` from claude-domain-skills |
+| `finance` | `investment-analysis` from claude-domain-skills |
+
+These skills have `triggers` for auto-detection with `/evolve`.
 
 ### Option B: Fork This Template
 
@@ -360,6 +371,8 @@ Edit `.mcp.json`:
 
 - [self-evolving-agent](https://github.com/miles990/self-evolving-agent) - The autonomous goal achievement skill
 - [claude-software-skills](https://github.com/miles990/claude-software-skills) - 47 software development skills
+- [claude-domain-skills](https://github.com/miles990/claude-domain-skills) - Non-technical domain skills (finance, business, creative)
+- [skillpkg](https://github.com/miles990/skillpkg) - Skill package manager for Claude Code
 - [Claude Code Documentation](https://code.claude.com/docs)
 
 ## License
