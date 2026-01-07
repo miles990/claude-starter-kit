@@ -18,7 +18,7 @@ export const TEMPLATES = {
 ## Project Structure
 
 See @.claude/rules/ for coding standards.
-See @.github/memory/index.md for project knowledge.
+See @.claude/memory/index.md for project knowledge.
 `,
 
   codeQuality: `---
@@ -55,7 +55,7 @@ paths: **/*.test.{ts,tsx,js,jsx}, **/*.spec.{ts,tsx,js,jsx}
 
 ## Memory Workflow
 
-1. Search before starting: \`Grep pattern="keyword" path=".github/memory/"\`
+1. Search before starting: \`Grep pattern="keyword" path=".claude/memory/"\`
 2. Create memory after learning
 3. Update index.md
 `,
@@ -105,7 +105,7 @@ paths: **/*.test.{ts,tsx,js,jsx}, **/*.spec.{ts,tsx,js,jsx}
 
   memoryIndex: `# Project Memory Index
 
-> Search with: \`Grep pattern="keyword" path=".github/memory/"\`
+> Search with: \`Grep pattern="keyword" path=".claude/memory/"\`
 
 ## Learnings
 <!-- LEARNINGS_START -->

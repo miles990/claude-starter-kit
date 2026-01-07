@@ -3,16 +3,21 @@
  */
 import { existsSync, mkdirSync, writeFileSync, readFileSync } from 'fs';
 import { join, basename } from 'path';
+import { homedir } from 'os';
 import inquirer from 'inquirer';
 import chalk from 'chalk';
 import ora from 'ora';
 import { TEMPLATES } from '../templates/index.js';
 import { DOMAINS, type DomainKey } from '../domains/index.js';
 
+type InstallScope = 'global' | 'local' | 'both';
+
 interface InitOptions {
   yes?: boolean;
   preset?: 'minimal' | 'standard' | 'full';
   install?: boolean;
+  global?: boolean;
+  local?: boolean;
 }
 
 // Preset configurations
@@ -66,7 +71,7 @@ async function checkPrerequisites(): Promise<{ missing: string[]; warnings: stri
   const missing: string[] = [];
   const warnings: string[] = [];
 
-  // Check Node.js (if we're here, it exists, but check version)
+  // Check Node.js version
   const nodeVersion = process.version;
   const majorVersion = parseInt(nodeVersion.slice(1).split('.')[0], 10);
   if (majorVersion < 18) {
@@ -102,8 +107,8 @@ function printBanner() {
 /**
  * Safely write file (skip if exists)
  */
-function safeWriteFile(filePath: string, content: string): boolean {
-  if (existsSync(filePath)) {
+function safeWriteFile(filePath: string, content: string, forceOverwrite = false): boolean {
+  if (existsSync(filePath) && !forceOverwrite) {
     console.log(chalk.yellow('  ○') + ` ${filePath} ` + chalk.dim('(已存在，跳過)'));
     return false;
   }
@@ -129,7 +134,7 @@ function getProjectName(): string {
 }
 
 /**
- * Update .gitignore
+ * Update .gitignore (only for local install)
  */
 function updateGitignore(cwd: string): void {
   const gitignorePath = join(cwd, '.gitignore');
@@ -158,24 +163,165 @@ function updateGitignore(cwd: string): void {
 /**
  * Install skills using skillpkg
  */
-async function installSkills(skills: string[]): Promise<void> {
+async function installSkills(skills: string[], scope: 'global' | 'local'): Promise<void> {
   if (skills.length === 0) return;
 
   const spinner = ora('安裝技能中...').start();
 
   try {
     const { execSync } = await import('child_process');
+    const scopeFlag = scope === 'global' ? '--scope global' : '--scope local';
 
-    // Try to run skillpkg install
-    execSync('npx skillpkg-cli install', {
+    execSync(`npx skillpkg-cli install ${scopeFlag}`, {
       stdio: 'pipe',
       timeout: 120000,
     });
 
-    spinner.succeed(`已安裝 ${skills.length} 個技能`);
+    spinner.succeed(`已安裝 ${skills.length} 個技能 (${scope === 'global' ? '全域' : '專案'})`);
   } catch (error) {
     spinner.warn('技能安裝跳過 (可稍後執行 skillpkg install)');
   }
+}
+
+/**
+ * Install global configuration
+ */
+function installGlobal(config: typeof PRESETS['standard'], selectedDomains: DomainKey[]): void {
+  const globalDir = join(homedir(), '.claude');
+  const globalMcpPath = join(homedir(), '.mcp.json');
+
+  console.log(chalk.dim('  [全域配置 ~/.claude/]'));
+
+  // Create global .claude directory
+  if (!existsSync(globalDir)) {
+    mkdirSync(globalDir, { recursive: true });
+  }
+
+  // Settings
+  if (config.components.includes('mcp-config')) {
+    safeWriteFile(join(globalDir, 'settings.json'), TEMPLATES.settingsJson);
+    safeWriteFile(globalMcpPath, TEMPLATES.mcpJson);
+  }
+
+  // Basic rules
+  if (config.components.includes('basic-rules') || config.components.includes('all-rules')) {
+    safeWriteFile(join(globalDir, 'rules/code-quality.md'), TEMPLATES.codeQuality);
+    safeWriteFile(join(globalDir, 'rules/testing.md'), TEMPLATES.testing);
+  }
+
+  // All rules
+  if (config.components.includes('all-rules')) {
+    safeWriteFile(join(globalDir, 'rules/memory-management.md'), TEMPLATES.memoryManagement);
+    safeWriteFile(join(globalDir, 'rules/evolve-workflow.md'), TEMPLATES.evolveWorkflow);
+  }
+
+  // Domain-specific rules
+  for (const domain of selectedDomains) {
+    const domainConfig = DOMAINS[domain];
+    if (domainConfig?.rules) {
+      for (const [fileName, content] of Object.entries(domainConfig.rules)) {
+        safeWriteFile(join(globalDir, 'rules', fileName), content);
+      }
+    }
+  }
+
+  // Create skills directory
+  const skillsDir = join(globalDir, 'skills');
+  if (!existsSync(skillsDir)) {
+    mkdirSync(skillsDir, { recursive: true });
+  }
+}
+
+/**
+ * Install local (project) configuration
+ */
+function installLocal(
+  cwd: string,
+  projectName: string,
+  config: typeof PRESETS['standard'],
+  selectedDomains: DomainKey[]
+): Record<string, string> {
+  const claudeDir = join(cwd, '.claude');
+
+  console.log(chalk.dim('  [專案配置 ./.claude/]'));
+
+  // Create .claude directory
+  if (!existsSync(claudeDir)) {
+    mkdirSync(claudeDir, { recursive: true });
+  }
+
+  // CLAUDE.md (project only)
+  if (config.components.includes('claude-md')) {
+    safeWriteFile(join(cwd, 'CLAUDE.md'), TEMPLATES.claudeMd(projectName));
+  }
+
+  // Rules
+  if (config.components.includes('basic-rules') || config.components.includes('all-rules')) {
+    safeWriteFile(join(cwd, '.claude/rules/code-quality.md'), TEMPLATES.codeQuality);
+    safeWriteFile(join(cwd, '.claude/rules/testing.md'), TEMPLATES.testing);
+  }
+
+  if (config.components.includes('all-rules')) {
+    safeWriteFile(join(cwd, '.claude/rules/memory-management.md'), TEMPLATES.memoryManagement);
+    safeWriteFile(join(cwd, '.claude/rules/evolve-workflow.md'), TEMPLATES.evolveWorkflow);
+  }
+
+  // MCP config (project level)
+  if (config.components.includes('mcp-config')) {
+    safeWriteFile(join(cwd, '.mcp.json'), TEMPLATES.mcpJson);
+    safeWriteFile(join(cwd, '.claude/settings.json'), TEMPLATES.settingsJson);
+  }
+
+  // Memory system (project only, now under .claude/memory)
+  if (config.components.includes('memory-system')) {
+    safeWriteFile(join(cwd, '.claude/memory/index.md'), TEMPLATES.memoryIndex);
+    for (const dir of ['learnings', 'decisions', 'failures', 'patterns', 'strategies']) {
+      const dirPath = join(cwd, '.claude/memory', dir);
+      if (!existsSync(dirPath)) {
+        mkdirSync(dirPath, { recursive: true });
+      }
+      safeWriteFile(join(dirPath, '.gitkeep'), '');
+    }
+  }
+
+  // Domain-specific rules
+  for (const domain of selectedDomains) {
+    const domainConfig = DOMAINS[domain];
+    if (domainConfig?.rules) {
+      for (const [fileName, content] of Object.entries(domainConfig.rules)) {
+        safeWriteFile(join(cwd, '.claude/rules', fileName), content);
+      }
+    }
+  }
+
+  // Build skills object
+  const skills: Record<string, string> = {};
+  if (config.skills.includes('self-evolving-agent')) {
+    skills['self-evolving-agent'] = 'github:miles990/self-evolving-agent';
+  }
+  if (config.skills.includes('software-skills')) {
+    skills['software-skills'] = 'github:miles990/claude-software-skills';
+  }
+
+  // Create skillpkg.json
+  const skillpkgJson = {
+    name: projectName,
+    skills,
+    sync_targets: { 'claude-code': true },
+  };
+  safeWriteFile(join(cwd, 'skillpkg.json'), JSON.stringify(skillpkgJson, null, 2));
+
+  // Create .claude/skills/.gitkeep
+  const skillsDir = join(cwd, '.claude/skills');
+  if (!existsSync(skillsDir)) {
+    mkdirSync(skillsDir, { recursive: true });
+  }
+  safeWriteFile(join(skillsDir, '.gitkeep'), '');
+
+  // Update .gitignore
+  updateGitignore(cwd);
+
+  return skills;
 }
 
 /**
@@ -226,13 +372,51 @@ export async function init(options: InitOptions): Promise<void> {
   let preset: 'minimal' | 'standard' | 'full' = 'standard';
   let selectedDomains: DomainKey[] = [];
   let shouldInstall = options.install !== false;
+  let scope: InstallScope = 'local';
+
+  // Determine scope from options
+  if (options.global && options.local) {
+    scope = 'both';
+  } else if (options.global) {
+    scope = 'global';
+  } else if (options.local) {
+    scope = 'local';
+  }
 
   // Quick mode
   if (options.yes) {
     preset = options.preset || 'standard';
     console.log(chalk.cyan(`使用預設配置: ${PRESETS[preset].name}`));
+    if (scope !== 'local') {
+      console.log(chalk.cyan(`安裝範圍: ${scope === 'global' ? '全域' : '全域 + 專案'}`));
+    }
     console.log('');
   } else {
+    // Interactive scope selection
+    const scopeAnswer = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'scope',
+        message: '選擇安裝範圍:',
+        choices: [
+          {
+            name: '專案 (local) - 只在當前目錄',
+            value: 'local',
+          },
+          {
+            name: '全域 (global) - ~/.claude/ 所有專案共用',
+            value: 'global',
+          },
+          {
+            name: '兩者都裝 - 全域 + 專案',
+            value: 'both',
+          },
+        ],
+        default: scope,
+      },
+    ]);
+    scope = scopeAnswer.scope;
+
     // Interactive preset selection
     const presetAnswer = await inquirer.prompt([
       {
@@ -287,8 +471,9 @@ export async function init(options: InitOptions): Promise<void> {
       selectedDomains = domainAnswer.domains;
     }
 
-    // Confirm install
-    if (PRESETS[preset].skills.length > 0 || selectedDomains.length > 0) {
+    // Confirm install (only for local/both with skills)
+    if ((scope === 'local' || scope === 'both') &&
+        (PRESETS[preset].skills.length > 0 || selectedDomains.length > 0)) {
       const installAnswer = await inquirer.prompt([
         {
           type: 'confirm',
@@ -306,95 +491,22 @@ export async function init(options: InitOptions): Promise<void> {
   console.log('');
 
   const config = PRESETS[preset];
+  let skills: Record<string, string> = {};
 
-  // Create .claude directory
-  const claudeDir = join(cwd, '.claude');
-  if (!existsSync(claudeDir)) {
-    mkdirSync(claudeDir, { recursive: true });
-  }
-
-  // Install components
-  if (config.components.includes('claude-md')) {
-    safeWriteFile(join(cwd, 'CLAUDE.md'), TEMPLATES.claudeMd(projectName));
-  }
-
-  if (config.components.includes('basic-rules') || config.components.includes('all-rules')) {
-    safeWriteFile(join(cwd, '.claude/rules/code-quality.md'), TEMPLATES.codeQuality);
-    safeWriteFile(join(cwd, '.claude/rules/testing.md'), TEMPLATES.testing);
-  }
-
-  if (config.components.includes('all-rules')) {
-    safeWriteFile(join(cwd, '.claude/rules/memory-management.md'), TEMPLATES.memoryManagement);
-    safeWriteFile(join(cwd, '.claude/rules/evolve-workflow.md'), TEMPLATES.evolveWorkflow);
-  }
-
-  if (config.components.includes('mcp-config')) {
-    safeWriteFile(join(cwd, '.mcp.json'), TEMPLATES.mcpJson);
-    safeWriteFile(join(cwd, '.claude/settings.json'), TEMPLATES.settingsJson);
-  }
-
-  if (config.components.includes('memory-system')) {
-    safeWriteFile(join(cwd, '.github/memory/index.md'), TEMPLATES.memoryIndex);
-    for (const dir of ['learnings', 'decisions', 'failures', 'patterns', 'strategies']) {
-      const dirPath = join(cwd, '.github/memory', dir);
-      if (!existsSync(dirPath)) {
-        mkdirSync(dirPath, { recursive: true });
-      }
-      safeWriteFile(join(dirPath, '.gitkeep'), '');
-    }
-  }
-
-  // Install domain-specific rules
-  for (const domain of selectedDomains) {
-    const domainConfig = DOMAINS[domain];
-    if (domainConfig?.rules) {
-      for (const [fileName, content] of Object.entries(domainConfig.rules)) {
-        safeWriteFile(join(cwd, '.claude/rules', fileName), content);
-      }
-    }
-  }
-
-  // Create skillpkg.json
-  const skills: Record<string, string> = {};
-
-  // Add preset skills
-  if (config.skills.includes('self-evolving-agent')) {
-    skills['self-evolving-agent'] = 'github:miles990/self-evolving-agent';
-  }
-  if (config.skills.includes('software-skills')) {
-    skills['software-skills'] = 'github:miles990/claude-software-skills';
-  }
-
-  // Add domain skills (future)
-  // for (const domain of selectedDomains) {
-  //   const domainConfig = DOMAINS[domain];
-  //   if (domainConfig?.skill) {
-  //     skills[domainConfig.skillName] = domainConfig.skill;
-  //   }
-  // }
-
-  const skillpkgJson = {
-    name: projectName,
-    skills,
-    sync_targets: { 'claude-code': true },
-  };
-
-  safeWriteFile(join(cwd, 'skillpkg.json'), JSON.stringify(skillpkgJson, null, 2));
-
-  // Create .claude/skills/.gitkeep
-  const skillsDir = join(cwd, '.claude/skills');
-  if (!existsSync(skillsDir)) {
-    mkdirSync(skillsDir, { recursive: true });
-  }
-  safeWriteFile(join(skillsDir, '.gitkeep'), '');
-
-  // Update .gitignore
-  updateGitignore(cwd);
-
-  // Install skills
-  if (shouldInstall && Object.keys(skills).length > 0) {
+  // Install based on scope
+  if (scope === 'global' || scope === 'both') {
+    installGlobal(config, selectedDomains);
     console.log('');
-    await installSkills(Object.keys(skills));
+  }
+
+  if (scope === 'local' || scope === 'both') {
+    skills = installLocal(cwd, projectName, config, selectedDomains);
+  }
+
+  // Install skills (only for local/both)
+  if ((scope === 'local' || scope === 'both') && shouldInstall && Object.keys(skills).length > 0) {
+    console.log('');
+    await installSkills(Object.keys(skills), 'local');
   }
 
   // Done
@@ -402,17 +514,32 @@ export async function init(options: InitOptions): Promise<void> {
   console.log(chalk.green.bold('✓ 設置完成！'));
   console.log('');
 
+  // Show next steps based on scope
   console.log('下一步：');
   console.log('');
-  console.log(chalk.cyan('  claude') + '                    # 啟動 Claude Code');
-  if (config.skills.includes('self-evolving-agent')) {
-    console.log(chalk.cyan('  /evolve [目標]') + '            # 觸發自進化 Agent');
+
+  if (scope === 'global') {
+    console.log(chalk.cyan('  cd your-project'));
+    console.log(chalk.cyan('  npx claude-starter-kit --local') + '  # 設置專案配置');
+  } else {
+    console.log(chalk.cyan('  claude') + '                    # 啟動 Claude Code');
+    if (config.skills.includes('self-evolving-agent')) {
+      console.log(chalk.cyan('  /evolve [目標]') + '            # 觸發自進化 Agent');
+    }
   }
   console.log('');
 
   if (selectedDomains.length > 0) {
     console.log(chalk.dim(`已選擇領域: ${selectedDomains.join(', ')}`));
     console.log(chalk.dim('(領域技能包開發中，敬請期待)'));
+    console.log('');
+  }
+
+  // Show summary
+  if (scope === 'both') {
+    console.log(chalk.dim('已安裝：'));
+    console.log(chalk.dim(`  全域: ~/.claude/ (rules, settings)`));
+    console.log(chalk.dim(`  專案: ./.claude/ (rules, memory, skills)`));
     console.log('');
   }
 }
