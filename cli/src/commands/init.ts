@@ -166,29 +166,43 @@ function updateGitignore(cwd: string): void {
 async function installSkills(skills: string[], scope: 'global' | 'local'): Promise<void> {
   if (skills.length === 0) return;
 
-  const spinner = ora('安裝技能中...').start();
+  const spinner = ora(`安裝技能中... (${scope === 'global' ? '全域' : '專案'})`).start();
 
   try {
     const { execSync } = await import('child_process');
-    const scopeFlag = scope === 'global' ? '--scope global' : '--scope local';
 
-    execSync(`npx skillpkg-cli install ${scopeFlag}`, {
-      stdio: 'pipe',
-      timeout: 120000,
-    });
+    if (scope === 'global') {
+      // For global install, run from ~/.skillpkg directory
+      const globalSkillpkgDir = join(homedir(), '.skillpkg');
+      execSync('npx skillpkg-cli install', {
+        stdio: 'pipe',
+        timeout: 120000,
+        cwd: globalSkillpkgDir,
+      });
+    } else {
+      // For local install, run from current directory
+      execSync('npx skillpkg-cli install', {
+        stdio: 'pipe',
+        timeout: 120000,
+      });
+    }
 
     spinner.succeed(`已安裝 ${skills.length} 個技能 (${scope === 'global' ? '全域' : '專案'})`);
   } catch (error) {
-    spinner.warn('技能安裝跳過 (可稍後執行 skillpkg install)');
+    const cmd = scope === 'global'
+      ? `cd ~/.skillpkg && npx skillpkg-cli install`
+      : 'npx skillpkg-cli install';
+    spinner.warn(`技能安裝跳過 (可稍後執行: ${cmd})`);
   }
 }
 
 /**
  * Install global configuration
  */
-function installGlobal(config: typeof PRESETS['standard'], selectedDomains: DomainKey[]): void {
+function installGlobal(config: typeof PRESETS['standard'], selectedDomains: DomainKey[]): Record<string, string> {
   const globalDir = join(homedir(), '.claude');
   const globalMcpPath = join(homedir(), '.mcp.json');
+  const globalSkillpkgDir = join(homedir(), '.skillpkg');
 
   console.log(chalk.dim('  [全域配置 ~/.claude/]'));
 
@@ -230,6 +244,30 @@ function installGlobal(config: typeof PRESETS['standard'], selectedDomains: Doma
   if (!existsSync(skillsDir)) {
     mkdirSync(skillsDir, { recursive: true });
   }
+
+  // Build global skills object
+  const skills: Record<string, string> = {};
+  if (config.skills.includes('self-evolving-agent')) {
+    skills['self-evolving-agent'] = 'github:miles990/self-evolving-agent';
+  }
+  if (config.skills.includes('software-skills')) {
+    skills['software-skills'] = 'github:miles990/claude-software-skills';
+  }
+
+  // Create global skillpkg.json if skills are needed
+  if (Object.keys(skills).length > 0) {
+    if (!existsSync(globalSkillpkgDir)) {
+      mkdirSync(globalSkillpkgDir, { recursive: true });
+    }
+    const globalSkillpkgJson = {
+      name: 'global',
+      skills,
+      sync_targets: { 'claude-code': true },
+    };
+    safeWriteFile(join(globalSkillpkgDir, 'skillpkg.json'), JSON.stringify(globalSkillpkgJson, null, 2));
+  }
+
+  return skills;
 }
 
 /**
@@ -471,14 +509,13 @@ export async function init(options: InitOptions): Promise<void> {
       selectedDomains = domainAnswer.domains;
     }
 
-    // Confirm install (only for local/both with skills)
-    if ((scope === 'local' || scope === 'both') &&
-        (PRESETS[preset].skills.length > 0 || selectedDomains.length > 0)) {
+    // Confirm install (if there are skills to install)
+    if (PRESETS[preset].skills.length > 0 || selectedDomains.length > 0) {
       const installAnswer = await inquirer.prompt([
         {
           type: 'confirm',
           name: 'install',
-          message: '是否立即安裝技能？',
+          message: `是否立即安裝技能？${scope === 'global' ? '(全域)' : scope === 'both' ? '(全域+專案)' : '(專案)'}`,
           default: true,
         },
       ]);
@@ -492,10 +529,11 @@ export async function init(options: InitOptions): Promise<void> {
 
   const config = PRESETS[preset];
   let skills: Record<string, string> = {};
+  let globalSkills: Record<string, string> = {};
 
   // Install based on scope
   if (scope === 'global' || scope === 'both') {
-    installGlobal(config, selectedDomains);
+    globalSkills = installGlobal(config, selectedDomains);
     console.log('');
   }
 
@@ -503,10 +541,19 @@ export async function init(options: InitOptions): Promise<void> {
     skills = installLocal(cwd, projectName, config, selectedDomains);
   }
 
-  // Install skills (only for local/both)
-  if ((scope === 'local' || scope === 'both') && shouldInstall && Object.keys(skills).length > 0) {
-    console.log('');
-    await installSkills(Object.keys(skills), 'local');
+  // Install skills
+  if (shouldInstall) {
+    // Install global skills
+    if ((scope === 'global' || scope === 'both') && Object.keys(globalSkills).length > 0) {
+      console.log('');
+      await installSkills(Object.keys(globalSkills), 'global');
+    }
+
+    // Install local skills
+    if ((scope === 'local' || scope === 'both') && Object.keys(skills).length > 0) {
+      console.log('');
+      await installSkills(Object.keys(skills), 'local');
+    }
   }
 
   // Done
