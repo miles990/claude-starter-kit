@@ -289,8 +289,9 @@ function verifyInstallation(scope: 'global' | 'local' | 'both', cwd: string): vo
 
 /**
  * Install global configuration
+ * Global only includes: MCP config + Skills (no rules, no memory)
  */
-function installGlobal(config: typeof PRESETS['standard'], selectedDomains: DomainKey[]): Record<string, string> {
+function installGlobal(config: typeof PRESETS['standard']): Record<string, string> {
   const globalDir = join(homedir(), '.claude');
   const globalMcpPath = join(homedir(), '.mcp.json');
   const globalSkillpkgDir = join(homedir(), '.skillpkg');
@@ -302,33 +303,13 @@ function installGlobal(config: typeof PRESETS['standard'], selectedDomains: Doma
     mkdirSync(globalDir, { recursive: true });
   }
 
-  // Settings
+  // MCP config (global)
   if (config.components.includes('mcp-config')) {
     safeWriteFile(join(globalDir, 'settings.json'), TEMPLATES.settingsJson);
     safeWriteFile(globalMcpPath, TEMPLATES.mcpJson);
   }
 
-  // Basic rules
-  if (config.components.includes('basic-rules') || config.components.includes('all-rules')) {
-    safeWriteFile(join(globalDir, 'rules/code-quality.md'), TEMPLATES.codeQuality);
-    safeWriteFile(join(globalDir, 'rules/testing.md'), TEMPLATES.testing);
-  }
-
-  // All rules
-  if (config.components.includes('all-rules')) {
-    safeWriteFile(join(globalDir, 'rules/memory-management.md'), TEMPLATES.memoryManagement);
-    safeWriteFile(join(globalDir, 'rules/evolve-workflow.md'), TEMPLATES.evolveWorkflow);
-  }
-
-  // Domain-specific rules
-  for (const domain of selectedDomains) {
-    const domainConfig = DOMAINS[domain];
-    if (domainConfig?.rules) {
-      for (const [fileName, content] of Object.entries(domainConfig.rules)) {
-        safeWriteFile(join(globalDir, 'rules', fileName), content);
-      }
-    }
-  }
+  // Note: Rules are project-specific, not created in global installation
 
   // Create skills directory
   const skillsDir = join(globalDir, 'skills');
@@ -644,7 +625,7 @@ export async function init(options: InitOptions): Promise<void> {
 
   // Install based on scope
   if (scope === 'global' || scope === 'both') {
-    globalSkills = installGlobal(config, selectedDomains);
+    globalSkills = installGlobal(config);
     console.log('');
   }
 
