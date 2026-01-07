@@ -211,6 +211,8 @@ paths: src/api/**/*.ts, src/services/**/*.ts
 - Keep stakeholders informed
 `,
     },
+    skill: 'github:miles990/claude-domain-skills#business/product-management',
+    skillName: 'product-management',
   },
 
   // Creative Domains
@@ -270,6 +272,8 @@ paths: src/api/**/*.ts, src/services/**/*.ts
 - Test with screen readers
 `,
     },
+    skill: 'github:miles990/claude-domain-skills#creative/ui-ux-design',
+    skillName: 'ui-ux-design',
   },
 
   content: {
