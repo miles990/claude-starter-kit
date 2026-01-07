@@ -419,6 +419,14 @@ function installLocal(
     skills['software-skills'] = 'github:miles990/claude-software-skills';
   }
 
+  // Add domain skills
+  for (const domain of selectedDomains) {
+    const domainConfig = DOMAINS[domain];
+    if (domainConfig?.skill && domainConfig?.skillName) {
+      skills[domainConfig.skillName] = domainConfig.skill;
+    }
+  }
+
   // Create skillpkg.json
   const skillpkgJson = {
     name: projectName,
@@ -672,8 +680,11 @@ export async function init(options: InitOptions): Promise<void> {
   console.log('');
 
   if (selectedDomains.length > 0) {
+    const domainSkillCount = selectedDomains.filter(d => DOMAINS[d]?.skill).length;
     console.log(chalk.dim(`已選擇領域: ${selectedDomains.join(', ')}`));
-    console.log(chalk.dim('(領域技能包開發中，敬請期待)'));
+    if (domainSkillCount > 0) {
+      console.log(chalk.dim(`(${domainSkillCount} 個領域技能已加入 skillpkg.json)`));
+    }
     console.log('');
   }
 

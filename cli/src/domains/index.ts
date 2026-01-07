@@ -132,8 +132,8 @@ paths: src/api/**/*.ts, src/services/**/*.ts
 - Implement stop-loss rules
 `,
     },
-    // skill: 'github:miles990/claude-business-skills#quant-trading',
-    // skillName: 'quant-trading',
+    skill: 'github:miles990/claude-domain-skills#finance/quant-trading',
+    skillName: 'quant-trading',
   },
 
   finance: {
@@ -159,6 +159,8 @@ paths: src/api/**/*.ts, src/services/**/*.ts
 - Include sensitivity analysis
 `,
     },
+    skill: 'github:miles990/claude-domain-skills#finance/investment-analysis',
+    skillName: 'investment-analysis',
   },
 
   marketing: {
