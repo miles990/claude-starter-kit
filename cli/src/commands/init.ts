@@ -47,6 +47,48 @@ const PRESETS: Record<string, {
 };
 
 /**
+ * Check if a command exists
+ */
+async function commandExists(cmd: string): Promise<boolean> {
+  try {
+    const { execSync } = await import('child_process');
+    execSync(`which ${cmd}`, { stdio: 'pipe' });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Check prerequisites
+ */
+async function checkPrerequisites(): Promise<{ missing: string[]; warnings: string[] }> {
+  const missing: string[] = [];
+  const warnings: string[] = [];
+
+  // Check Node.js (if we're here, it exists, but check version)
+  const nodeVersion = process.version;
+  const majorVersion = parseInt(nodeVersion.slice(1).split('.')[0], 10);
+  if (majorVersion < 18) {
+    warnings.push(`Node.js ${nodeVersion} 偏舊，建議升級到 v18+`);
+  }
+
+  // Check Claude Code
+  const hasClaude = await commandExists('claude');
+  if (!hasClaude) {
+    missing.push('claude');
+  }
+
+  // Check Git (optional but recommended)
+  const hasGit = await commandExists('git');
+  if (!hasGit) {
+    warnings.push('Git 未安裝，部分功能可能受限');
+  }
+
+  return { missing, warnings };
+}
+
+/**
  * Print banner
  */
 function printBanner() {
@@ -144,6 +186,42 @@ export async function init(options: InitOptions): Promise<void> {
   const projectName = getProjectName();
 
   printBanner();
+
+  // Check prerequisites
+  const { missing, warnings } = await checkPrerequisites();
+
+  // Show warnings
+  for (const warning of warnings) {
+    console.log(chalk.yellow('  ⚠') + ` ${warning}`);
+  }
+
+  // Handle missing prerequisites
+  if (missing.includes('claude')) {
+    console.log('');
+    console.log(chalk.red('  ✗ Claude Code 未安裝'));
+    console.log('');
+    console.log(chalk.dim('  安裝方式：'));
+    console.log(chalk.cyan('    npm install -g @anthropic-ai/claude-code'));
+    console.log('');
+
+    if (!options.yes) {
+      const { continueAnyway } = await inquirer.prompt([
+        {
+          type: 'confirm',
+          name: 'continueAnyway',
+          message: '是否仍要繼續設置？（之後需手動安裝 Claude Code）',
+          default: true,
+        },
+      ]);
+      if (!continueAnyway) {
+        console.log(chalk.dim('  已取消'));
+        return;
+      }
+    } else {
+      console.log(chalk.dim('  繼續設置...（之後需手動安裝 Claude Code）'));
+    }
+    console.log('');
+  }
 
   let preset: 'minimal' | 'standard' | 'full' = 'standard';
   let selectedDomains: DomainKey[] = [];
