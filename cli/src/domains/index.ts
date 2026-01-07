@@ -29,7 +29,9 @@ export type DomainKey =
   | 'brand'
   | 'brainstorming'
   // Lifestyle
-  | 'personal-growth';
+  | 'personal-growth'
+  | 'side-income'
+  | 'knowledge-management';
 
 interface DomainConfig {
   name: string;
@@ -502,6 +504,65 @@ paths: src/api/**/*.ts, src/services/**/*.ts
     },
     skill: 'github:miles990/claude-domain-skills#lifestyle/personal-growth',
     skillName: 'personal-growth',
+  },
+
+  'side-income': {
+    name: 'Side Income & Investment',
+    category: 'lifestyle',
+    description: 'Passive income, freelancing, investing, crypto',
+    rules: {
+      'side-income.md': `# Side Income Rules
+
+## Income Streams
+- Active: trading time for money (freelance, consulting)
+- Leveraged: content, products, team
+- Passive: investments, royalties, courses
+
+## Investment Principles
+- Emergency fund first (6 months)
+- Diversify across asset classes
+- Only invest what you can afford to lose
+- DCA (Dollar Cost Average) for long-term
+
+## Side Hustle Evaluation
+- Passion: Do you enjoy it?
+- Skill: Can you do it well?
+- Market: Will people pay?
+- Scalability: Can it grow?
+`,
+    },
+    skill: 'github:miles990/claude-domain-skills#lifestyle/side-income',
+    skillName: 'side-income',
+  },
+
+  'knowledge-management': {
+    name: 'Knowledge Management',
+    category: 'professional',
+    description: 'PKM, note-taking, second brain, digital tools',
+    rules: {
+      'knowledge-management.md': `# Knowledge Management Rules
+
+## PARA System
+- Projects: tasks with deadlines
+- Areas: ongoing responsibilities
+- Resources: topics of interest
+- Archives: completed items
+
+## Note-Taking
+- Atomic notes: one idea per note
+- Link notes together
+- Write in your own words
+- Progressive summarization
+
+## Workflow
+- Capture: collect valuable information
+- Organize: use PARA system
+- Distill: extract key insights
+- Express: create and share
+`,
+    },
+    skill: 'github:miles990/claude-domain-skills#professional/knowledge-management',
+    skillName: 'knowledge-management',
   },
 };
 

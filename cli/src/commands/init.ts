@@ -611,6 +611,8 @@ export async function init(options: InitOptions): Promise<void> {
             { name: '創意發想 (頭腦風暴、靈感)', value: 'brainstorming' },
             new inquirer.Separator('─── 生活領域 ───'),
             { name: '個人成長 (人生規劃、個人品牌)', value: 'personal-growth' },
+            { name: '副業投資 (被動收入、加密貨幣)', value: 'side-income' },
+            { name: '知識管理 (第二大腦、PKM)', value: 'knowledge-management' },
           ],
         },
       ]);
