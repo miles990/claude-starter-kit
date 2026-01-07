@@ -16,6 +16,7 @@ export type DomainKey =
   | 'quant-trading'
   | 'finance'
   | 'marketing'
+  | 'sales'
   | 'product'
   | 'project-management'
   | 'strategy'
@@ -26,11 +27,13 @@ export type DomainKey =
   | 'ui-ux'
   | 'content'
   | 'brand'
-  | 'brainstorming';
+  | 'brainstorming'
+  // Lifestyle
+  | 'personal-growth';
 
 interface DomainConfig {
   name: string;
-  category: 'technical' | 'business' | 'creative' | 'professional';
+  category: 'technical' | 'business' | 'creative' | 'professional' | 'lifestyle';
   description: string;
   rules?: Record<string, string>;
   skill?: string; // skillpkg source (future)
@@ -191,6 +194,33 @@ paths: src/api/**/*.ts, src/services/**/*.ts
 - Include clear CTAs
 `,
     },
+  },
+
+  sales: {
+    name: 'Sales & E-Commerce',
+    category: 'business',
+    description: 'B2B sales, e-commerce, CRM, negotiation',
+    rules: {
+      'sales.md': `# Sales & E-Commerce Rules
+
+## B2B Sales
+- Use SPIN selling (Situation, Problem, Implication, Need-payoff)
+- Handle objections with LAER (Listen, Acknowledge, Explore, Respond)
+- Always have a BATNA in negotiations
+
+## E-Commerce
+- Track AOV, conversion rate, cart abandonment
+- Optimize checkout flow (minimize steps)
+- Use RFM for customer segmentation
+
+## CRM
+- Keep customer data up to date
+- Track all interactions
+- Set follow-up reminders
+`,
+    },
+    skill: 'github:miles990/claude-domain-skills#business/sales',
+    skillName: 'sales',
   },
 
   product: {
@@ -441,12 +471,44 @@ paths: src/api/**/*.ts, src/services/**/*.ts
     skill: 'github:miles990/claude-domain-skills#creative/brainstorming',
     skillName: 'brainstorming',
   },
+
+  // Lifestyle Domains
+  'personal-growth': {
+    name: 'Personal Growth',
+    category: 'lifestyle',
+    description: 'Life planning, personal brand, time management, career',
+    rules: {
+      'personal-growth.md': `# Personal Growth Rules
+
+## Goal Setting
+- Use SMART goals (Specific, Measurable, Achievable, Relevant, Time-bound)
+- Create personal OKRs for quarterly planning
+- Regular review and adjustment
+
+## Time Management
+- Use Eisenhower Matrix (urgent/important)
+- Focus on "important but not urgent" quadrant
+- Pomodoro Technique for deep work
+
+## Personal Brand
+- Define your unique positioning
+- Consistent presence across platforms
+- Content strategy with 2-3 focus topics
+
+## Habits
+- Atomic habits: make it obvious, attractive, easy, satisfying
+- Track habits, aim for consistency not perfection
+`,
+    },
+    skill: 'github:miles990/claude-domain-skills#lifestyle/personal-growth',
+    skillName: 'personal-growth',
+  },
 };
 
 /**
  * Get domains by category
  */
-export function getDomainsByCategory(category: 'technical' | 'business' | 'creative' | 'professional'): DomainKey[] {
+export function getDomainsByCategory(category: 'technical' | 'business' | 'creative' | 'professional' | 'lifestyle'): DomainKey[] {
   return (Object.entries(DOMAINS) as [DomainKey, DomainConfig][])
     .filter(([_, config]) => config.category === category)
     .map(([key]) => key);

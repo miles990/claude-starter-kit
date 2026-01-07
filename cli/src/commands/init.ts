@@ -597,6 +597,7 @@ export async function init(options: InitOptions): Promise<void> {
             { name: '量化交易 (策略、回測)', value: 'quant-trading' },
             { name: '金融分析 (財報、估值)', value: 'finance' },
             { name: '行銷企劃 (4P, Growth)', value: 'marketing' },
+            { name: '銷售電商 (B2B, CRM)', value: 'sales' },
             { name: '產品管理 (PRD, OKR)', value: 'product' },
             { name: '專案管理 (Scrum, 甘特圖)', value: 'project-management' },
             { name: '商業策略 (藍海、差異化)', value: 'strategy' },
@@ -608,6 +609,8 @@ export async function init(options: InitOptions): Promise<void> {
             { name: '內容創作 (文案、SEO)', value: 'content' },
             { name: '品牌設計 (識別、策略)', value: 'brand' },
             { name: '創意發想 (頭腦風暴、靈感)', value: 'brainstorming' },
+            new inquirer.Separator('─── 生活領域 ───'),
+            { name: '個人成長 (人生規劃、個人品牌)', value: 'personal-growth' },
           ],
         },
       ]);
