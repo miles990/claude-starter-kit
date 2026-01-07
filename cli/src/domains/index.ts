@@ -17,6 +17,9 @@ export type DomainKey =
   | 'finance'
   | 'marketing'
   | 'product'
+  | 'project-management'
+  // Professional
+  | 'research'
   // Creative
   | 'game-design'
   | 'ui-ux'
@@ -25,7 +28,7 @@ export type DomainKey =
 
 interface DomainConfig {
   name: string;
-  category: 'technical' | 'business' | 'creative';
+  category: 'technical' | 'business' | 'creative' | 'professional';
   description: string;
   rules?: Record<string, string>;
   skill?: string; // skillpkg source (future)
@@ -215,6 +218,60 @@ paths: src/api/**/*.ts, src/services/**/*.ts
     skillName: 'product-management',
   },
 
+  'project-management': {
+    name: 'Project Management',
+    category: 'business',
+    description: 'Agile, Scrum, sprint planning, risk management',
+    rules: {
+      'project-management.md': `# Project Management Rules
+
+## Agile/Scrum
+- Use user stories with acceptance criteria
+- Sprint planning and retrospectives
+- Daily standups (15 min max)
+
+## Planning
+- Break work into estimable tasks
+- Identify dependencies and risks
+- Track velocity and burndown
+
+## Communication
+- Clear status updates
+- Document decisions (ADRs)
+- Manage stakeholders expectations
+`,
+    },
+    skill: 'github:miles990/claude-domain-skills#business/project-management',
+    skillName: 'project-management',
+  },
+
+  // Professional Domains
+  research: {
+    name: 'Research & Analysis',
+    category: 'professional',
+    description: 'Market research, competitive analysis, user research',
+    rules: {
+      'research.md': `# Research & Analysis Rules
+
+## Research Process
+- Define clear research questions
+- Choose appropriate methodology
+- Document assumptions and limitations
+
+## Data Collection
+- Primary: interviews, surveys, observation
+- Secondary: literature, reports, databases
+
+## Analysis & Synthesis
+- Use frameworks (SWOT, PEST, Porter's 5)
+- Triangulate findings
+- Present actionable insights
+`,
+    },
+    skill: 'github:miles990/claude-domain-skills#professional/research-analysis',
+    skillName: 'research-analysis',
+  },
+
   // Creative Domains
   'game-design': {
     name: 'Game Design',
@@ -331,7 +388,7 @@ paths: src/api/**/*.ts, src/services/**/*.ts
 /**
  * Get domains by category
  */
-export function getDomainsByCategory(category: 'technical' | 'business' | 'creative'): DomainKey[] {
+export function getDomainsByCategory(category: 'technical' | 'business' | 'creative' | 'professional'): DomainKey[] {
   return (Object.entries(DOMAINS) as [DomainKey, DomainConfig][])
     .filter(([_, config]) => config.category === category)
     .map(([key]) => key);
