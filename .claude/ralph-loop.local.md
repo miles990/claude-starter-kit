@@ -1,6 +1,6 @@
 ---
 active: true
-iteration: 4
+iteration: 5
 max_iterations: 15
 completion_promise: done
 started_at: "2026-01-08T06:36:44Z"
@@ -12,3 +12,7 @@ started_at: "2026-01-08T06:36:44Z"
 - docs/README.md 文檔導覽
 - 驗證 triggers 100% 覆蓋率
 - 記錄 iteration4-documentation-completeness.md
+
+## Iteration 5 成果
+- 修正 ecosystem.json skill_count (47 → 50)
+- 更新 skill-combination-recipes.md (69 → 66 skills)
