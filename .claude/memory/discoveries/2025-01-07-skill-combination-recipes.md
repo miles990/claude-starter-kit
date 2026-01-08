@@ -7,7 +7,7 @@ status: active
 
 # Skill 組合食譜：15 個黃金組合
 
-> 基於 69 個 skills (20 domain + 49 software) 的組合分析
+> 基於 66 個 skills (16 domain + 50 software) 的組合分析
 
 ## 一、跨領域黃金組合
 

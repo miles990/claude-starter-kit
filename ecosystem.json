@@ -49,10 +49,10 @@
       "min_version": "1.0.0",
       "recommended": "1.1.0",
       "features_added": {
-        "1.0.0": ["47-software-skills", "domain-interfaces", "structured-triggers"],
+        "1.0.0": ["50-software-skills", "domain-interfaces", "structured-triggers"],
         "1.1.0": ["sharp-edges-5-skills", "validations-5-skills", "collaboration-5-skills"]
       },
-      "skill_count": 47,
+      "skill_count": 50,
       "enhanced_skills": {
         "with_sharp_edges": 5,
         "with_validations": 5,
