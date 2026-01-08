@@ -8,6 +8,7 @@
 | Document | Description |
 |----------|-------------|
 | [QUICKSTART.md](QUICKSTART.md) | 5 分鐘快速開始 |
+| [ECOSYSTEM_TUTORIAL.md](ECOSYSTEM_TUTORIAL.md) | 生態系統完整教學 ⭐ |
 | [CHEATSHEET.md](CHEATSHEET.md) | 常用指令速查表 |
 | [USAGE_TUTORIAL.md](USAGE_TUTORIAL.md) | 使用教學與快速開始 |
 | [SKILLPKG_INTEGRATION.md](SKILLPKG_INTEGRATION.md) | skillpkg 整合指南 |
@@ -40,6 +41,7 @@
 docs/
 ├── Getting Started
 │   ├── QUICKSTART.md             # 5 分鐘快速開始
+│   ├── ECOSYSTEM_TUTORIAL.md     # 生態系統完整教學 ⭐
 │   ├── CHEATSHEET.md             # 常用指令速查
 │   ├── USAGE_TUTORIAL.md         # 使用教學
 │   └── SKILLPKG_INTEGRATION.md   # skillpkg 整合

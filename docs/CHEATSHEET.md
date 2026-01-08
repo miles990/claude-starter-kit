@@ -187,9 +187,31 @@ cp -r personas/startup-mvp/skillpkg.json ./
 | 產生文檔 | `幫這個模組產生文檔` |
 | Code Review | `幫我 review 這次的變更` |
 
+## Starter Kit CLI
+
+```bash
+# 初始化專案
+npx claude-starter-kit
+
+# 使用 Persona 快速設定
+npx claude-starter-kit --persona startup-mvp
+npx claude-starter-kit --persona enterprise
+npx claude-starter-kit --persona fullstack
+npx claude-starter-kit --persona research
+
+# 快速模式（使用預設值）
+npx claude-starter-kit -y
+
+# 健康檢查（診斷設定問題）
+npx claude-starter-kit doctor
+```
+
 ## 快速診斷
 
 ```bash
+# 一鍵健康檢查（推薦）
+npx claude-starter-kit doctor
+
 # Claude Code 版本
 claude --version
 

@@ -10,6 +10,7 @@
  */
 import { Command } from 'commander';
 import { init } from './commands/init.js';
+import { doctor } from './commands/doctor.js';
 
 const program = new Command();
 
@@ -28,5 +29,10 @@ program
   .option('-l, --local', 'Install to ./.claude/ (project, default)')
   .option('--no-install', 'Skip skill installation')
   .action(init);
+
+program
+  .command('doctor')
+  .description('Diagnose and validate ecosystem setup')
+  .action(doctor);
 
 program.parse();
