@@ -201,16 +201,45 @@ npx claude-starter-kit --persona research
 
 # 快速模式（使用預設值）
 npx claude-starter-kit -y
+```
 
+## Doctor 指令（智能診斷）
+
+```bash
 # 健康檢查（診斷設定問題）
 npx claude-starter-kit doctor
+
+# 自動修復模式（修復可修復的問題）
+npx claude-starter-kit doctor --fix
+
+# 專案分析模式（分析技術棧並推薦技能）
+npx claude-starter-kit doctor --discover
 ```
+
+### Doctor 功能說明
+
+| 模式 | 說明 |
+|------|------|
+| `doctor` | 檢查 8 項生態系統配置，顯示 pass/warn/fail |
+| `doctor --fix` | 自動修復可修復的問題（Git、Memory、Skills 等） |
+| `doctor --discover` | 分析 package.json 和檔案類型，推薦對應技能 |
+
+### --discover 偵測的技術棧
+
+- **Frontend**: React, Vue, Svelte, Next.js, Nuxt
+- **Backend**: Express, Fastify, NestJS, Hono
+- **Database**: Prisma, MongoDB, PostgreSQL, MySQL, Redis
+- **Testing**: Jest, Vitest, Playwright, Cypress
+- **Languages**: TypeScript, Python, Go, Rust, Java, Ruby, PHP
 
 ## 快速診斷
 
 ```bash
-# 一鍵健康檢查（推薦）
-npx claude-starter-kit doctor
+# 一鍵健康檢查 + 自動修復
+npx claude-starter-kit doctor --fix
+
+# 分析專案並推薦技能
+npx claude-starter-kit doctor --discover
 
 # Claude Code 版本
 claude --version

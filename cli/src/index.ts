@@ -33,6 +33,8 @@ program
 program
   .command('doctor')
   .description('Diagnose and validate ecosystem setup')
+  .option('--fix', 'Automatically fix issues that can be repaired')
+  .option('--discover', 'Analyze project and recommend skills based on tech stack')
   .action(doctor);
 
 program.parse();
