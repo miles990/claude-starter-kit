@@ -1,6 +1,6 @@
 ---
 active: true
-iteration: 5
+iteration: 6
 max_iterations: 15
 completion_promise: done
 started_at: "2026-01-08T06:36:44Z"
@@ -16,3 +16,7 @@ started_at: "2026-01-08T06:36:44Z"
 ## Iteration 5 成果
 - 修正 ecosystem.json skill_count (47 → 50)
 - 更新 skill-combination-recipes.md (69 → 66 skills)
+
+## Iteration 6 成果
+- 添加 .spec-workflow/README.md 說明規格文檔用途
+- 更新主 README 添加文檔導覽連結
