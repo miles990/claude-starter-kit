@@ -7,7 +7,7 @@
   "skills": {
     "self-evolving-agent": {
       "source": "github:miles990/self-evolving-agent",
-      "version": "^3.5.0",
+      "version": "^3.7.0",
       "required": true,
       "description": "Autonomous goal achievement through iterative learning"
     },
@@ -15,7 +15,7 @@
       "source": "github:miles990/claude-software-skills",
       "version": "latest",
       "optional": true,
-      "description": "47 software development skills"
+      "description": "50 software development skills"
     }
   },
 
