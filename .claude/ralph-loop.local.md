@@ -1,6 +1,6 @@
 ---
 active: true
-iteration: 6
+iteration: 8
 max_iterations: 15
 completion_promise: done
 started_at: "2026-01-08T06:36:44Z"
@@ -25,3 +25,7 @@ started_at: "2026-01-08T06:36:44Z"
 - 創建 evolve-session-summary.md 總結文檔
 - 確認所有 6 個預期行為已完成
 - 識別未來需代碼實作的項目 (recipe, lint, shared-index)
+
+## Iteration 8 成果
+- 創建 templates/README.md 模板導覽
+- 更新 docs/README.md 添加模板連結

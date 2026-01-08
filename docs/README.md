@@ -60,6 +60,7 @@ docs/
 - [../CLAUDE.md](../CLAUDE.md) - 專案入口與規則
 - [../.claude/memory/index.md](../.claude/memory/index.md) - Memory 索引
 - [../.github/README.md](../.github/README.md) - GitHub Actions 說明
+- [../templates/README.md](../templates/README.md) - 模板與範例索引
 
 ## Contributing
 
