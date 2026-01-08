@@ -7,7 +7,7 @@
 ## Milestone 1: Sharp Edges 整合
 
 ### Task 1.1: Sharp Edges 格式定義
-- [ ] 在 claude-starter-kit 建立 Sharp Edges 格式範例
+- [x] 在 claude-starter-kit 建立 Sharp Edges 格式範例
 
 **Files**:
 - `claude-starter-kit/docs/SHARP_EDGES_FORMAT.md`
@@ -261,13 +261,13 @@ Instructions: 發現即記錄，每個發現單獨 commit
 
 | Milestone | Tasks | Status |
 |-----------|-------|--------|
-| 1. Sharp Edges | 3 | Pending |
+| 1. Sharp Edges | 3 | 1/3 |
 | 2. Validations | 2 | Pending |
 | 3. Collaboration | 2 | Pending |
 | 4. Agent Integration | 2 | Pending |
 | 5. Documentation | 2 | Pending |
 | 6. Emergence | 1 | Ongoing |
-| **Total** | **12** | **0/12** |
+| **Total** | **12** | **1/12** |
 
 ---
 
