@@ -197,10 +197,10 @@ ecosystem.json 需要更新：
 ## 後續行動
 
 - [x] 記錄發現
-- [ ] 更新 ecosystem.json
+- [x] 更新 ecosystem.json
+- [x] collaboration 網絡視覺化（docs/COLLABORATION_NETWORK.md）
 - [ ] 未來：實作 skillpkg recipe
 - [ ] 未來：實作 skillpkg lint
-- [ ] 未來：collaboration 網絡視覺化
 - [ ] 未來：共享發現索引
 
 ## 影響評估

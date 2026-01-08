@@ -94,5 +94,5 @@ frontend ←── API endpoints list, Auth flow ←── backend
 - [x] 完成 5 個 core skills 的 Collaboration
 - [x] 更新 self-evolving-agent PDCA
 - [x] 更新所有 README
+- [x] 視覺化 Collaboration 網絡（docs/COLLABORATION_NETWORK.md）
 - [ ] 未來：建立自動化 Skill Linter
-- [ ] 未來：視覺化 Collaboration 網絡
