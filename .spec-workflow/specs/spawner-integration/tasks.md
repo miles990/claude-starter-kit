@@ -75,7 +75,7 @@ Instructions: 每完成一個 skill 就 commit，完成後標記 [x]
 ## Milestone 2: Validations 整合
 
 ### Task 2.1: Validations 格式定義
-- [ ] 建立 Validations 格式規範和範例
+- [x] 建立 Validations 格式規範和範例
 
 **Files**:
 - `claude-starter-kit/docs/VALIDATIONS_FORMAT.md`
@@ -120,7 +120,7 @@ Instructions: 每完成一個 skill 就 commit，完成後標記 [x]
 ## Milestone 3: Collaboration 網絡
 
 ### Task 3.1: Collaboration 格式定義
-- [ ] 建立 Collaboration 格式規範
+- [x] 建立 Collaboration 格式規範
 
 **Files**:
 - `claude-starter-kit/docs/COLLABORATION_FORMAT.md`
@@ -262,12 +262,12 @@ Instructions: 發現即記錄，每個發現單獨 commit
 | Milestone | Tasks | Status |
 |-----------|-------|--------|
 | 1. Sharp Edges | 3 | 1/3 |
-| 2. Validations | 2 | Pending |
-| 3. Collaboration | 2 | Pending |
+| 2. Validations | 2 | 1/2 |
+| 3. Collaboration | 2 | 1/2 |
 | 4. Agent Integration | 2 | Pending |
 | 5. Documentation | 2 | Pending |
 | 6. Emergence | 1 | Ongoing |
-| **Total** | **12** | **1/12** |
+| **Total** | **12** | **3/12** |
 
 ---
 
