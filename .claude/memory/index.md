@@ -7,7 +7,7 @@
 | Field | Value |
 |-------|-------|
 | Last curated | 2026-01-08 |
-| Total entries | 17 |
+| Total entries | 18 |
 | Next review | 2026-02-08 |
 
 ---
@@ -68,6 +68,7 @@
 ## Discoveries
 
 <!-- DISCOVERIES_START -->
+- [Automation Gap Analysis](discoveries/2026-01-08-automation-gap-analysis.md) ⭐⭐ - automation, github-actions, hooks, scheduled-maintenance, claude-code-showcase
 - [Ecosystem Synergy v2](discoveries/2026-01-08-ecosystem-synergy-v2.md) ⭐⭐⭐ - ecosystem, synergy, collaboration-network, skill-recipes, skill-tiers, skill-linter
 - [Skill Enhancement Implementation](discoveries/2026-01-08-skill-enhancement-implementation.md) ⭐⭐ - sharp-edges, validations, collaboration, implementation-pattern, PDCA-integration
 - [Spawner Skills Analysis](discoveries/2025-01-08-spawner-skills-analysis.md) ⭐⭐ - spawner-skills, 4-file-system, sharp-edges, validations, collaboration, external-analysis

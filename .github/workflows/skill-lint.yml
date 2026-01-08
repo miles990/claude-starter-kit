@@ -1,0 +1,120 @@
+# ============================================================================
+# Skill Quality Lint
+# ============================================================================
+# 每週檢查 skills 品質，驗證 Sharp Edges、Validations、Collaboration 覆蓋率
+#
+# 觸發方式：
+#   1. 每週一 UTC 00:00 自動執行
+#   2. 手動觸發 (workflow_dispatch)
+#   3. PR 修改 skills 時
+# ============================================================================
+
+name: Skill Quality Lint
+
+on:
+  schedule:
+    # 每週一 UTC 00:00 (台灣時間 08:00)
+    - cron: '0 0 * * 1'
+
+  workflow_dispatch:
+    inputs:
+      strict:
+        description: 'Fail on warnings'
+        required: false
+        type: boolean
+        default: false
+
+  pull_request:
+    paths:
+      - '.claude/skills/**'
+      - '.skillpkg/skills/**'
+
+jobs:
+  lint-skills:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Lint Skills
+        id: lint
+        run: |
+          echo "## Skill Quality Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          warnings=0
+          errors=0
+
+          # 函數：檢查單一 skill
+          check_skill() {
+            local skill_file=$1
+            local skill_name=$(dirname "$skill_file" | xargs basename)
+            local has_sharp_edges=false
+            local has_validations=false
+            local has_collaboration=false
+            local has_triggers=false
+            local issues=""
+
+            # 檢查各項功能
+            if grep -q "sharp_edges:\|## Sharp Edges" "$skill_file"; then
+              has_sharp_edges=true
+            fi
+
+            if grep -q "validations:\|## Validations" "$skill_file"; then
+              has_validations=true
+            fi
+
+            if grep -q "collaboration:\|## Collaboration" "$skill_file"; then
+              has_collaboration=true
+            fi
+
+            if grep -q "^triggers:" "$skill_file"; then
+              has_triggers=true
+            fi
+
+            # 計算 Tier
+            local tier=1
+            if [ "$has_sharp_edges" = true ]; then
+              tier=2
+              if [ "$has_validations" = true ]; then
+                tier=3
+                if [ "$has_collaboration" = true ]; then
+                  tier=4
+                fi
+              fi
+            fi
+
+            # 報告
+            echo "| $skill_name | $tier | $has_sharp_edges | $has_validations | $has_collaboration |"
+          }
+
+          echo "### Skill Tiers" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Skill | Tier | Sharp Edges | Validations | Collaboration |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|------|-------------|-------------|---------------|" >> $GITHUB_STEP_SUMMARY
+
+          # 檢查所有 skills
+          for skill_file in $(find .claude/skills .skillpkg/skills -name "SKILL.md" 2>/dev/null); do
+            check_skill "$skill_file" >> $GITHUB_STEP_SUMMARY
+          done
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Tier 分布統計
+          echo "### Tier Distribution" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- Tier 1 (Basic): Skills with only basic structure" >> $GITHUB_STEP_SUMMARY
+          echo "- Tier 2 (Enhanced): Has Sharp Edges" >> $GITHUB_STEP_SUMMARY
+          echo "- Tier 3 (Validated): Has Sharp Edges + Validations" >> $GITHUB_STEP_SUMMARY
+          echo "- Tier 4 (Connected): Full quality stack" >> $GITHUB_STEP_SUMMARY
+
+          # 設定結果
+          echo "warnings=$warnings" >> $GITHUB_OUTPUT
+          echo "errors=$errors" >> $GITHUB_OUTPUT
+
+      - name: Check Result
+        if: inputs.strict && steps.lint.outputs.warnings > 0
+        run: |
+          echo "Strict mode: failing due to warnings"
+          exit 1
