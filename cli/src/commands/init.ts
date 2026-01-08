@@ -12,9 +12,12 @@ import { DOMAINS, type DomainKey } from '../domains/index.js';
 
 type InstallScope = 'global' | 'local' | 'both';
 
+type PersonaKey = 'startup-mvp' | 'enterprise' | 'fullstack' | 'research';
+
 interface InitOptions {
   yes?: boolean;
   preset?: 'minimal' | 'standard' | 'full';
+  persona?: PersonaKey;
   install?: boolean;
   global?: boolean;
   local?: boolean;
@@ -48,6 +51,44 @@ const PRESETS: Record<string, {
     components: ['claude-md', 'all-rules', 'mcp-config', 'memory-system', 'hooks-config'],
     skills: ['self-evolving-agent', 'software-skills'],
     domains: ['software'],
+  },
+};
+
+// Persona configurations (pre-configured project types)
+const PERSONAS: Record<PersonaKey, {
+  name: string;
+  description: string;
+  philosophy: string;
+  skills: string[];
+  rulesOverride: Record<string, string>;
+}> = {
+  'startup-mvp': {
+    name: 'Startup MVP',
+    description: '快速原型、MVP 開發 - 快速迭代、最小配置',
+    philosophy: 'Ship fast, iterate faster',
+    skills: ['self-evolving-agent', 'frontend', 'backend', 'database', 'git-workflows'],
+    rulesOverride: { testing: 'optional', documentation: 'minimal', code_review: 'self' },
+  },
+  'enterprise': {
+    name: 'Enterprise',
+    description: '企業專案 - 穩定可靠、完整審計',
+    philosophy: 'Stability and security first',
+    skills: ['self-evolving-agent', 'frontend', 'backend', 'database', 'testing-strategies', 'security', 'documentation', 'devops-ci-cd', 'git-workflows'],
+    rulesOverride: { testing: 'required', documentation: 'comprehensive', code_review: 'mandatory', security_scan: 'required' },
+  },
+  'fullstack': {
+    name: 'Full-Stack',
+    description: '全端 Web 開發 - API-first、前後端整合',
+    philosophy: 'API-first, end-to-end integration',
+    skills: ['self-evolving-agent', 'frontend', 'backend', 'database', 'api-design', 'testing-strategies', 'devops-ci-cd', 'git-workflows'],
+    rulesOverride: { testing: 'integration-first', documentation: 'api-focused', code_review: 'cross-layer' },
+  },
+  'research': {
+    name: 'Research',
+    description: '研究探索 - 深度文檔、實驗追蹤',
+    philosophy: 'Deep exploration, thorough documentation',
+    skills: ['self-evolving-agent', 'python', 'data-analysis', 'ai-ml-integration', 'documentation', 'git-workflows'],
+    rulesOverride: { testing: 'experimental', documentation: 'exhaustive', memory_entries: 'detailed' },
   },
 };
 
@@ -349,7 +390,8 @@ function installLocal(
   cwd: string,
   projectName: string,
   config: typeof PRESETS['standard'],
-  selectedDomains: DomainKey[]
+  selectedDomains: DomainKey[],
+  selectedPersona: PersonaKey | null = null
 ): Record<string, string> {
   const claudeDir = join(cwd, '.claude');
 
@@ -412,10 +454,25 @@ function installLocal(
 
   // Build skills object
   const skills: Record<string, string> = {};
-  if (config.skills.includes('self-evolving-agent')) {
-    skills['self-evolving-agent'] = 'github:miles990/self-evolving-agent';
+
+  // If persona is selected, use persona's skill set
+  if (selectedPersona) {
+    const persona = PERSONAS[selectedPersona];
+    for (const skillName of persona.skills) {
+      if (skillName === 'self-evolving-agent') {
+        skills['self-evolving-agent'] = 'github:miles990/self-evolving-agent';
+      } else {
+        // Software skills from claude-software-skills
+        skills[skillName] = `github:miles990/claude-software-skills#skills/${skillName}`;
+      }
+    }
+  } else {
+    // Use preset-based skills
+    if (config.skills.includes('self-evolving-agent')) {
+      skills['self-evolving-agent'] = 'github:miles990/self-evolving-agent';
+    }
   }
-  if (config.skills.includes('software-skills')) {
+  if (config.skills.includes('software-skills') && !selectedPersona) {
     skills['software-skills'] = 'github:miles990/claude-software-skills';
   }
 
@@ -509,6 +566,7 @@ export async function init(options: InitOptions): Promise<void> {
 
   let preset: 'minimal' | 'standard' | 'full' = 'standard';
   let selectedDomains: DomainKey[] = [];
+  let selectedPersona: PersonaKey | null = options.persona || null;
   let shouldInstall = options.install !== false;
   let scope: InstallScope = 'local';
 
@@ -523,8 +581,14 @@ export async function init(options: InitOptions): Promise<void> {
 
   // Quick mode
   if (options.yes) {
-    preset = options.preset || 'standard';
-    console.log(chalk.cyan(`使用預設配置: ${PRESETS[preset].name}`));
+    if (selectedPersona) {
+      console.log(chalk.cyan(`使用 Persona: ${PERSONAS[selectedPersona].name}`));
+      console.log(chalk.dim(`  "${PERSONAS[selectedPersona].philosophy}"`));
+      preset = 'standard'; // Personas use standard as base
+    } else {
+      preset = options.preset || 'standard';
+      console.log(chalk.cyan(`使用預設配置: ${PRESETS[preset].name}`));
+    }
     if (scope !== 'local') {
       console.log(chalk.cyan(`安裝範圍: ${scope === 'global' ? '全域' : '全域 + 專案'}`));
     }
@@ -555,33 +619,68 @@ export async function init(options: InitOptions): Promise<void> {
     ]);
     scope = scopeAnswer.scope;
 
-    // Interactive preset selection
-    const presetAnswer = await inquirer.prompt([
+    // Interactive: Ask if user wants to use a Persona
+    const usePersonaAnswer = await inquirer.prompt([
       {
         type: 'list',
-        name: 'preset',
-        message: '選擇配置模式:',
+        name: 'usePersona',
+        message: '選擇配置方式:',
         choices: [
-          {
-            name: `${PRESETS.standard.name} - ${PRESETS.standard.description}`,
-            value: 'standard',
-          },
-          {
-            name: `${PRESETS.minimal.name} - ${PRESETS.minimal.description}`,
-            value: 'minimal',
-          },
-          {
-            name: `${PRESETS.full.name} - ${PRESETS.full.description}`,
-            value: 'full',
-          },
+          { name: '使用 Persona（預配置的專案類型）', value: true },
+          { name: '自定義配置', value: false },
         ],
-        default: 'standard',
+        default: true,
       },
     ]);
-    preset = presetAnswer.preset;
 
-    // Multi-select domains (if not minimal)
-    if (preset !== 'minimal') {
+    if (usePersonaAnswer.usePersona) {
+      // Persona selection
+      const personaAnswer = await inquirer.prompt([
+        {
+          type: 'list',
+          name: 'persona',
+          message: '選擇 Persona:',
+          choices: [
+            { name: `${PERSONAS['startup-mvp'].name} - ${PERSONAS['startup-mvp'].description}`, value: 'startup-mvp' },
+            { name: `${PERSONAS['fullstack'].name} - ${PERSONAS['fullstack'].description}`, value: 'fullstack' },
+            { name: `${PERSONAS['enterprise'].name} - ${PERSONAS['enterprise'].description}`, value: 'enterprise' },
+            { name: `${PERSONAS['research'].name} - ${PERSONAS['research'].description}`, value: 'research' },
+          ],
+          default: 'startup-mvp',
+        },
+      ]);
+      selectedPersona = personaAnswer.persona;
+      preset = 'standard'; // Personas use standard as base
+      console.log(chalk.dim(`  "${PERSONAS[selectedPersona!].philosophy}"`));
+    } else {
+      // Interactive preset selection
+      const presetAnswer = await inquirer.prompt([
+        {
+          type: 'list',
+          name: 'preset',
+          message: '選擇配置模式:',
+          choices: [
+            {
+              name: `${PRESETS.standard.name} - ${PRESETS.standard.description}`,
+              value: 'standard',
+            },
+            {
+              name: `${PRESETS.minimal.name} - ${PRESETS.minimal.description}`,
+              value: 'minimal',
+            },
+            {
+              name: `${PRESETS.full.name} - ${PRESETS.full.description}`,
+              value: 'full',
+            },
+          ],
+          default: 'standard',
+        },
+      ]);
+      preset = presetAnswer.preset;
+    }
+
+    // Multi-select domains (if not minimal and not using persona)
+    if (preset !== 'minimal' && !selectedPersona) {
       const domainAnswer = await inquirer.prompt([
         {
           type: 'checkbox',
@@ -650,7 +749,7 @@ export async function init(options: InitOptions): Promise<void> {
   }
 
   if (scope === 'local' || scope === 'both') {
-    skills = installLocal(cwd, projectName, config, selectedDomains);
+    skills = installLocal(cwd, projectName, config, selectedDomains, selectedPersona);
   }
 
   // Install skills
@@ -691,7 +790,13 @@ export async function init(options: InitOptions): Promise<void> {
   }
   console.log('');
 
-  if (selectedDomains.length > 0) {
+  if (selectedPersona) {
+    const persona = PERSONAS[selectedPersona];
+    console.log(chalk.dim(`Persona: ${persona.name}`));
+    console.log(chalk.dim(`  哲學: "${persona.philosophy}"`));
+    console.log(chalk.dim(`  技能: ${persona.skills.join(', ')}`));
+    console.log('');
+  } else if (selectedDomains.length > 0) {
     const domainSkillCount = selectedDomains.filter(d => DOMAINS[d]?.skill).length;
     console.log(chalk.dim(`已選擇領域: ${selectedDomains.join(', ')}`));
     if (domainSkillCount > 0) {

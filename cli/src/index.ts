@@ -23,6 +23,7 @@ program
   .description('Initialize Claude Code configuration')
   .option('-y, --yes', 'Use recommended defaults without prompts')
   .option('-p, --preset <preset>', 'Use preset (minimal, standard, full)')
+  .option('--persona <persona>', 'Use persona (startup-mvp, enterprise, fullstack, research)')
   .option('-g, --global', 'Install to ~/.claude/ (global)')
   .option('-l, --local', 'Install to ./.claude/ (project, default)')
   .option('--no-install', 'Skip skill installation')

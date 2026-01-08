@@ -9,6 +9,54 @@
 | `/help` | 顯示幫助 |
 | `/clear` | 清空對話 |
 | `/compact` | 壓縮上下文 |
+| `/config` | 開啟設定 |
+| `/permissions` | 管理權限 |
+
+## Claude Code 2.1.0+ 新功能
+
+### Skill Hot-Reload
+`.claude/skills/` 內的變更會即時生效，不需重啟。
+
+### Hooks in Skill Frontmatter
+```yaml
+---
+name: my-skill
+hooks:
+  PostToolUse:
+    - matcher: "Edit|Write"
+      command: "npx prettier --write $FILE"
+      once: true  # 只執行一次
+---
+```
+
+### Context Fork（隔離執行）
+```yaml
+---
+context: fork  # 子代理獨立上下文，不影響主對話
+agent: general-purpose
+---
+```
+
+### YAML-style Allowed Tools
+```yaml
+---
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash(npm *)      # 萬用字元
+  - Bash(git *)
+  - Grep
+---
+```
+
+### 新 Hook 類型
+| Hook | 觸發時機 |
+|------|----------|
+| `SubagentStart` | 子代理啟動時 |
+| `PostToolUse` | 工具執行後 |
+| `PreToolUse` | 工具執行前 |
+| `Stop` | Agent 停止時 |
 
 ## Self-Evolving Agent
 
