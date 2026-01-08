@@ -61,6 +61,7 @@ docs/
 - [../.claude/memory/index.md](../.claude/memory/index.md) - Memory 索引
 - [../.github/README.md](../.github/README.md) - GitHub Actions 說明
 - [../templates/README.md](../templates/README.md) - 模板與範例索引
+- [../cli/README.md](../cli/README.md) - CLI (npm 包) 開發文檔
 
 ## Contributing
 
