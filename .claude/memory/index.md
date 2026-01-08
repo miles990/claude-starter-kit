@@ -7,7 +7,7 @@
 | Field | Value |
 |-------|-------|
 | Last curated | 2025-01-08 |
-| Total entries | 13 |
+| Total entries | 14 |
 | Next review | 2025-02-08 |
 
 ---
@@ -68,6 +68,7 @@
 ## Discoveries
 
 <!-- DISCOVERIES_START -->
+- [Ecosystem Intelligence v2](discoveries/2025-01-08-ecosystem-intelligence-v2.md) ⭐⭐ - phase5, research-mode, meta-patterns, heartbeat, knowledge-bridging, 5 new discoveries
 - [Ecosystem Synergy Analysis](discoveries/2025-01-07-ecosystem-synergy-analysis.md) ⭐ - ecosystem, synergy, emergence, 7 discoveries
 - [Skill Combination Recipes](discoveries/2025-01-07-skill-combination-recipes.md) ⭐ - recipes, combinations, 15 golden recipes
 - [Non-obvious Improvements](discoveries/2025-01-07-non-obvious-improvements.md) ⭐ - insights, innovation, 10 improvements
