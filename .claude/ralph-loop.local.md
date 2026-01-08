@@ -29,3 +29,7 @@ started_at: "2026-01-08T06:36:44Z"
 ## Iteration 8 成果
 - 創建 templates/README.md 模板導覽
 - 更新 docs/README.md 添加模板連結
+
+## Iteration 9 成果
+- 創建 .claude/rules/README.md 規則說明
+- 創建 .claude/skills/README.md 技能說明
