@@ -46,6 +46,12 @@ Git-based 記憶系統，所有經驗都版本控制：
 
 詳見：[memory/index.md](memory/index.md)
 
+**特色功能：Skill Metrics 涌現追蹤**
+
+追蹤 skill 組合使用情況，發現成功模式，自動優化推薦。
+
+詳見：[memory/skill-metrics/README.md](memory/skill-metrics/README.md)
+
 ### Rules (`rules/`)
 
 自動載入的專案規則，Claude Code 在每次對話時讀取：
