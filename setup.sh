@@ -83,6 +83,17 @@ else
 fi
 echo "✅ .gitignore updated"
 
+# Create skillpkg.json
+cat > skillpkg.json << 'SKILLPKG'
+{
+  "name": "my-project",
+  "skills": {
+    "self-evolving-agent": "github:miles990/self-evolving-agent"
+  }
+}
+SKILLPKG
+echo "✅ skillpkg.json created"
+
 # Install skillpkg and skills if npm available
 if command -v npm &> /dev/null; then
     if ! command -v skillpkg &> /dev/null; then
@@ -90,11 +101,16 @@ if command -v npm &> /dev/null; then
         npm install -g skillpkg 2>/dev/null || echo "⚠️ Run 'npm install -g skillpkg' manually"
     fi
 
-    if command -v skillpkg &> /dev/null; then
-        echo "📦 Installing core skills..."
-        skillpkg install miles990/self-evolving-agent 2>/dev/null || true
-        skillpkg sync 2>/dev/null || true
-        echo "✅ Skills installed"
+    # Install evolve skill directly from GitHub
+    echo "📦 Installing evolve skill..."
+    mkdir -p .claude/skills/evolve
+    curl -fsSL "https://raw.githubusercontent.com/miles990/self-evolving-agent/main/SKILL.md" \
+        -o .claude/skills/evolve/SKILL.md 2>/dev/null || true
+
+    if [ -f ".claude/skills/evolve/SKILL.md" ]; then
+        echo "✅ Evolve skill installed"
+    else
+        echo "⚠️ Could not download skill. Run: skillpkg install miles990/self-evolving-agent"
     fi
 fi
 
