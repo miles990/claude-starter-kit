@@ -90,6 +90,7 @@ skillpkg list
 
 ## 📚 進階
 
+- [文檔導覽](docs/README.md) - 所有文檔的索引
 - [完整教學指南](docs/INTELLIGENT_ECOSYSTEM_GUIDE.md)
 - [Self-Evolving Agent](https://github.com/miles990/self-evolving-agent)
 - [skillpkg](https://github.com/miles990/skillpkg)
