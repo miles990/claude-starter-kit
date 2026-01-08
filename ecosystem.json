@@ -21,36 +21,65 @@
     "self-evolving-agent": {
       "repository": "github:miles990/self-evolving-agent",
       "min_version": "3.4.0",
-      "recommended": "3.6.0",
+      "recommended": "3.7.1",
       "features_added": {
         "3.4.0": ["mandatory-checkpoints", "memory-lifecycle", "boris-tips"],
         "3.5.0": ["skill-metrics", "emergence-tracking", "success-patterns"],
-        "3.6.0": ["knowledge-distillation", "progressive-disclosure", "relevance-tracking", "failure-immunity"]
+        "3.6.0": ["knowledge-distillation", "progressive-disclosure", "relevance-tracking", "failure-immunity"],
+        "3.7.1": ["memory-sync-checkpoint", "sharp-edges-integration", "collaboration-awareness"]
       },
       "breaking_changes": {}
     },
     "claude-domain-skills": {
       "repository": "github:miles990/claude-domain-skills",
       "min_version": "1.0.0",
-      "recommended": "1.1.0",
+      "recommended": "1.2.0",
       "features_added": {
         "1.0.0": ["16-domain-skills", "structured-triggers"],
-        "1.1.0": ["dependencies-field", "software-skill-links"]
+        "1.1.0": ["dependencies-field", "software-skill-links"],
+        "1.2.0": ["sharp-edges-5-skills"]
       },
-      "skill_count": 16
+      "skill_count": 16,
+      "enhanced_skills": {
+        "with_sharp_edges": 5
+      }
     },
     "claude-software-skills": {
       "repository": "github:miles990/claude-software-skills",
       "min_version": "1.0.0",
-      "recommended": "1.0.0",
+      "recommended": "1.1.0",
       "features_added": {
-        "1.0.0": ["49-software-skills", "domain-interfaces", "structured-triggers"]
+        "1.0.0": ["47-software-skills", "domain-interfaces", "structured-triggers"],
+        "1.1.0": ["sharp-edges-5-skills", "validations-5-skills", "collaboration-5-skills"]
       },
-      "skill_count": 49
+      "skill_count": 47,
+      "enhanced_skills": {
+        "with_sharp_edges": 5,
+        "with_validations": 5,
+        "with_collaboration": 5
+      }
     }
   },
 
   "tested_combinations": [
+    {
+      "date": "2026-01-08",
+      "versions": {
+        "skillpkg": "0.5.5",
+        "self-evolving-agent": "3.7.1",
+        "claude-domain-skills": "1.2.0",
+        "claude-software-skills": "1.1.0"
+      },
+      "status": "stable",
+      "notes": "Spawner Integration 完成，三層品質保證架構",
+      "features_tested": [
+        "sharp-edges",
+        "validations",
+        "collaboration-network",
+        "skill-quality-tiers",
+        "ecosystem-version-coordination"
+      ]
+    },
     {
       "date": "2025-01-08",
       "versions": {
