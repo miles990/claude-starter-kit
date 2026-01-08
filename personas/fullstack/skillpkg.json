@@ -1,0 +1,67 @@
+{
+  "$schema": "https://github.com/miles990/skillpkg/schemas/skillpkg.json",
+  "name": "fullstack",
+  "version": "1.0.0",
+  "description": "Full-stack web development - API-first, end-to-end integration",
+
+  "skills": {
+    "self-evolving-agent": {
+      "source": "github:miles990/self-evolving-agent",
+      "version": "^3.7.0",
+      "required": true
+    },
+    "frontend": {
+      "source": "github:miles990/claude-software-skills#skills/frontend",
+      "version": "latest"
+    },
+    "backend": {
+      "source": "github:miles990/claude-software-skills#skills/backend",
+      "version": "latest"
+    },
+    "database": {
+      "source": "github:miles990/claude-software-skills#skills/database",
+      "version": "latest"
+    },
+    "api-design": {
+      "source": "github:miles990/claude-software-skills#skills/api-design",
+      "version": "latest"
+    },
+    "testing-strategies": {
+      "source": "github:miles990/claude-software-skills#skills/testing-strategies",
+      "version": "latest"
+    },
+    "devops-ci-cd": {
+      "source": "github:miles990/claude-software-skills#skills/devops-ci-cd",
+      "version": "latest"
+    },
+    "git-workflows": {
+      "source": "github:miles990/claude-software-skills#skills/git-workflows",
+      "version": "latest"
+    }
+  },
+
+  "sync": {
+    "targets": ["claude-code"],
+    "autoSync": true
+  },
+
+  "settings": {
+    "scope": "local"
+  },
+
+  "persona": {
+    "name": "fullstack",
+    "philosophy": "API-first, end-to-end integration",
+    "priorities": [
+      "API design before implementation",
+      "Frontend-backend consistency",
+      "Integration testing across layers",
+      "DevOps automation from day one"
+    ],
+    "rules_override": {
+      "testing": "integration-first",
+      "documentation": "api-focused",
+      "code_review": "cross-layer"
+    }
+  }
+}

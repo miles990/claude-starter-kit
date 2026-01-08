@@ -7,8 +7,11 @@
 ### Getting Started
 | Document | Description |
 |----------|-------------|
+| [QUICKSTART.md](QUICKSTART.md) | 5 分鐘快速開始 |
+| [CHEATSHEET.md](CHEATSHEET.md) | 常用指令速查表 |
 | [USAGE_TUTORIAL.md](USAGE_TUTORIAL.md) | 使用教學與快速開始 |
 | [SKILLPKG_INTEGRATION.md](SKILLPKG_INTEGRATION.md) | skillpkg 整合指南 |
+| [Personas](../personas/README.md) | 專案類型預配置 |
 
 ### Ecosystem Intelligence (Phase 4)
 | Document | Description |
@@ -36,6 +39,8 @@
 ```
 docs/
 ├── Getting Started
+│   ├── QUICKSTART.md             # 5 分鐘快速開始
+│   ├── CHEATSHEET.md             # 常用指令速查
 │   ├── USAGE_TUTORIAL.md         # 使用教學
 │   └── SKILLPKG_INTEGRATION.md   # skillpkg 整合
 │
@@ -62,6 +67,7 @@ docs/
 - [../.github/README.md](../.github/README.md) - GitHub Actions 說明
 - [../templates/README.md](../templates/README.md) - 模板與範例索引
 - [../cli/README.md](../cli/README.md) - CLI (npm 包) 開發文檔
+- [../personas/README.md](../personas/README.md) - 專案 Persona 預配置
 
 ## Contributing
 

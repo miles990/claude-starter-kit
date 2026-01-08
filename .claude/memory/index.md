@@ -7,7 +7,7 @@
 | Field | Value |
 |-------|-------|
 | Last curated | 2026-01-08 |
-| Total entries | 21 |
+| Total entries | 22 |
 | Next review | 2026-02-08 |
 
 ---
@@ -68,6 +68,7 @@
 ## Discoveries
 
 <!-- DISCOVERIES_START -->
+- [UX Improvement Session](discoveries/2026-01-08-ux-improvement-session.md) ⭐⭐ - ux, personas, quickstart, cheatsheet, user-friendly
 - [Claude Code 2.1.0 Impact](discoveries/2026-01-08-claude-code-2.1.0-impact.md) ⭐⭐⭐ - claude-code, 2.1.0, hooks, hot-reload, context-fork, BREAKING
 - [Evolve Session Summary](discoveries/2026-01-08-evolve-session-summary.md) ⭐⭐⭐ - evolve, emergence, 6-iterations, comprehensive-improvement
 - [Iteration 4 Documentation](discoveries/2026-01-08-iteration4-documentation-completeness.md) ⭐ - documentation, triggers, discoverability, navigation
@@ -88,6 +89,11 @@
 <!-- TAGS_START -->
 | Tag | Entries |
 |-----|---------|
+| ux | 1 |
+| personas | 1 |
+| quickstart | 1 |
+| cheatsheet | 1 |
+| user-friendly | 1 |
 | claude-code | 2 |
 | 2.1.0 | 1 |
 | ecosystem | 3 |

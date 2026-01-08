@@ -2,44 +2,56 @@
 
 > 一行指令，開始自我進化開發
 
-## 🚀 快速開始
-
-**在任何專案目錄執行：**
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/miles990/claude-starter-kit/main/setup.sh | bash
-```
-
-**或者使用 npx：**
-
-```bash
-npx skillpkg-cli init --preset=standard --install
-```
-
-完成後，打開 Claude Code 輸入：
-
-```
-/evolve 你想做的事情
-```
+**快速連結**: [QUICKSTART](docs/QUICKSTART.md) | [CHEATSHEET](docs/CHEATSHEET.md) | [Personas](personas/README.md) | [文檔](docs/README.md)
 
 ---
 
-## 📖 這是什麼？
+## 30 秒快速開始
+
+```bash
+# 1. 安裝
+curl -fsSL https://raw.githubusercontent.com/miles990/claude-starter-kit/main/setup.sh | bash
+
+# 2. 打開 Claude Code
+claude
+
+# 3. 開始自我進化開發
+/evolve 你想做的事情
+```
+
+就這樣！Claude 會自動學習需要的技能並完成任務。
+
+---
+
+## 這是什麼？
 
 Claude Starter Kit 自動幫你設置：
 
 | 功能 | 說明 |
 |------|------|
 | **記憶系統** | Claude 會記住學到的東西 |
-| **自我進化** | 自動分析→學習→執行→改進 |
+| **自我進化** | 自動分析 → 學習 → 執行 → 改進 |
 | **技能管理** | 按需安裝專業技能 |
-| **陷阱警告** | Sharp Edges - 主動警告常見錯誤 |
-| **代碼驗證** | Validations - 自動檢查程式碼問題 |
-| **技能協作** | Collaboration - 智能委派和上下文傳遞 |
+| **Skill Metrics** | 追蹤 skill 組合使用情況，發現成功模式 |
 
 ---
 
-## 🎯 使用範例
+## 選擇你的 Persona
+
+根據專案類型選擇預配置：
+
+| Persona | 適用場景 | 一鍵安裝 |
+|---------|---------|---------|
+| [startup-mvp](personas/startup-mvp/) | 快速原型、MVP | `cp personas/startup-mvp/skillpkg.json ./` |
+| [enterprise](personas/enterprise/) | 企業專案、合規需求 | `cp personas/enterprise/skillpkg.json ./` |
+| [fullstack](personas/fullstack/) | 全端 Web 開發 | `cp personas/fullstack/skillpkg.json ./` |
+| [research](personas/research/) | 研究探索、數據分析 | `cp personas/research/skillpkg.json ./` |
+
+詳見 [Personas 完整說明](personas/README.md)
+
+---
+
+## 使用範例
 
 ```bash
 # 建立 API
@@ -48,52 +60,73 @@ Claude Starter Kit 自動幫你設置：
 # 優化效能
 /evolve 分析這個專案的效能瓶頸並優化
 
-# 學習新技術
-/evolve 用 ComfyUI 建立圖片生成工作流程
+# 探索模式（允許發現意外改進）
+/evolve 重構這個模組 --explore
 ```
 
 Claude 會自動：
 1. 分析目標並拆解任務
-2. 搜尋過去經驗（如果有）
+2. 搜尋過去經驗
 3. 學習需要的技能
 4. 迭代執行直到完成
 5. 記錄學到的經驗
 
 ---
 
-## 📁 產生的檔案
+## 產生的檔案
 
 ```
 your-project/
 ├── CLAUDE.md              # 專案說明（Claude 會讀）
+├── skillpkg.json          # 技能配置
 └── .claude/
     ├── memory/            # 經驗記憶
+    │   ├── index.md       # 快速索引
+    │   ├── learnings/     # 成功經驗
+    │   └── failures/      # 失敗教訓
+    ├── rules/             # 自動載入規則
     └── skills/            # 已安裝技能
 ```
 
 ---
 
-## 🛠 其他命令
+## 技能管理
 
+**在 Claude Code 中（推薦）：**
+```
+幫我安裝 backend 技能
+搜尋 frontend 相關的技能
+```
+
+**或使用 CLI：**
 ```bash
-# 搜尋技能
-skillpkg search "你要的功能"
-
-# 安裝技能
-skillpkg install user/repo
-
-# 查看已安裝
-skillpkg list
+npx skillpkg-cli search "你要的功能"
+npx skillpkg-cli install user/repo
+npx skillpkg-cli list
 ```
 
 ---
 
-## 📚 進階
+## 快速連結
 
-- [文檔導覽](docs/README.md) - 所有文檔的索引
-- [完整教學指南](docs/INTELLIGENT_ECOSYSTEM_GUIDE.md)
-- [Self-Evolving Agent](https://github.com/miles990/self-evolving-agent)
-- [skillpkg](https://github.com/miles990/skillpkg)
+| 文檔 | 說明 |
+|------|------|
+| [QUICKSTART.md](docs/QUICKSTART.md) | 5 分鐘快速開始 |
+| [CHEATSHEET.md](docs/CHEATSHEET.md) | 常用指令速查 |
+| [Personas](personas/README.md) | 專案類型預配置 |
+| [文檔導覽](docs/README.md) | 所有文檔索引 |
+| [生態系統指南](docs/INTELLIGENT_ECOSYSTEM_GUIDE.md) | 完整功能說明 |
+
+---
+
+## 生態系統
+
+| 專案 | 說明 |
+|------|------|
+| [skillpkg](https://github.com/miles990/skillpkg) | AI 技能包管理器 |
+| [self-evolving-agent](https://github.com/miles990/self-evolving-agent) | 自我進化 Agent Skill |
+| [claude-software-skills](https://github.com/miles990/claude-software-skills) | 50+ 軟體開發技能 |
+| [claude-domain-skills](https://github.com/miles990/claude-domain-skills) | 16 領域專業技能 |
 
 ---
 

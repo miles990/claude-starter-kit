@@ -1,0 +1,54 @@
+{
+  "$schema": "https://github.com/miles990/skillpkg/schemas/skillpkg.json",
+  "name": "startup-mvp",
+  "version": "1.0.0",
+  "description": "Fast MVP development - ship fast, iterate faster",
+
+  "skills": {
+    "self-evolving-agent": {
+      "source": "github:miles990/self-evolving-agent",
+      "version": "^3.7.0",
+      "required": true
+    },
+    "frontend": {
+      "source": "github:miles990/claude-software-skills#skills/frontend",
+      "version": "latest"
+    },
+    "backend": {
+      "source": "github:miles990/claude-software-skills#skills/backend",
+      "version": "latest"
+    },
+    "database": {
+      "source": "github:miles990/claude-software-skills#skills/database",
+      "version": "latest"
+    },
+    "git-workflows": {
+      "source": "github:miles990/claude-software-skills#skills/git-workflows",
+      "version": "latest"
+    }
+  },
+
+  "sync": {
+    "targets": ["claude-code"],
+    "autoSync": true
+  },
+
+  "settings": {
+    "scope": "local"
+  },
+
+  "persona": {
+    "name": "startup-mvp",
+    "philosophy": "Ship fast, iterate faster",
+    "priorities": [
+      "Speed over perfection",
+      "Working code over documentation",
+      "User feedback over speculation"
+    ],
+    "rules_override": {
+      "testing": "optional",
+      "documentation": "minimal",
+      "code_review": "self"
+    }
+  }
+}

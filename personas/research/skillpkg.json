@@ -1,0 +1,60 @@
+{
+  "$schema": "https://github.com/miles990/skillpkg/schemas/skillpkg.json",
+  "name": "research",
+  "version": "1.0.0",
+  "description": "Research & exploration - deep documentation, experiment tracking",
+
+  "skills": {
+    "self-evolving-agent": {
+      "source": "github:miles990/self-evolving-agent",
+      "version": "^3.7.0",
+      "required": true
+    },
+    "python": {
+      "source": "github:miles990/claude-software-skills#skills/python",
+      "version": "latest"
+    },
+    "data-analysis": {
+      "source": "github:miles990/claude-software-skills#skills/data-analysis",
+      "version": "latest"
+    },
+    "ai-ml-integration": {
+      "source": "github:miles990/claude-software-skills#skills/ai-ml-integration",
+      "version": "latest"
+    },
+    "documentation": {
+      "source": "github:miles990/claude-software-skills#skills/documentation",
+      "version": "latest",
+      "required": true
+    },
+    "git-workflows": {
+      "source": "github:miles990/claude-software-skills#skills/git-workflows",
+      "version": "latest"
+    }
+  },
+
+  "sync": {
+    "targets": ["claude-code"],
+    "autoSync": true
+  },
+
+  "settings": {
+    "scope": "local"
+  },
+
+  "persona": {
+    "name": "research",
+    "philosophy": "Deep exploration, thorough documentation",
+    "priorities": [
+      "Document all experiments and findings",
+      "Track hypotheses and results",
+      "Reproducibility over speed",
+      "Detailed memory entries for learnings"
+    ],
+    "rules_override": {
+      "testing": "experimental",
+      "documentation": "exhaustive",
+      "memory_entries": "detailed"
+    }
+  }
+}
