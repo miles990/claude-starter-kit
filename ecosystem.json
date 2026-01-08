@@ -1,0 +1,128 @@
+{
+  "$schema": "https://schemas.skillpkg.dev/ecosystem.json",
+  "ecosystem_version": "1.0.0",
+  "last_verified": "2025-01-08",
+  "description": "Claude Starter Kit 生態系統版本協調配置",
+
+  "components": {
+    "skillpkg": {
+      "repository": "github:miles990/skillpkg",
+      "min_version": "0.5.0",
+      "recommended": "0.5.5",
+      "features_added": {
+        "0.5.0": ["dependency-resolution", "multi-platform-sync", "mcp-server"],
+        "0.5.3": ["software-skills-deps", "recommend-skill"],
+        "0.5.5": ["layer-loading", "create-skill", "search-github"]
+      },
+      "breaking_changes": {
+        "0.5.0": "skillpkg.json 格式變更，需要遷移"
+      }
+    },
+    "self-evolving-agent": {
+      "repository": "github:miles990/self-evolving-agent",
+      "min_version": "3.4.0",
+      "recommended": "3.6.0",
+      "features_added": {
+        "3.4.0": ["mandatory-checkpoints", "memory-lifecycle", "boris-tips"],
+        "3.5.0": ["skill-metrics", "emergence-tracking", "success-patterns"],
+        "3.6.0": ["knowledge-distillation", "progressive-disclosure", "relevance-tracking", "failure-immunity"]
+      },
+      "breaking_changes": {}
+    },
+    "claude-domain-skills": {
+      "repository": "github:miles990/claude-domain-skills",
+      "min_version": "1.0.0",
+      "recommended": "1.1.0",
+      "features_added": {
+        "1.0.0": ["16-domain-skills", "structured-triggers"],
+        "1.1.0": ["dependencies-field", "software-skill-links"]
+      },
+      "skill_count": 16
+    },
+    "claude-software-skills": {
+      "repository": "github:miles990/claude-software-skills",
+      "min_version": "1.0.0",
+      "recommended": "1.0.0",
+      "features_added": {
+        "1.0.0": ["49-software-skills", "domain-interfaces", "structured-triggers"]
+      },
+      "skill_count": 49
+    }
+  },
+
+  "tested_combinations": [
+    {
+      "date": "2025-01-08",
+      "versions": {
+        "skillpkg": "0.5.5",
+        "self-evolving-agent": "3.6.0",
+        "claude-domain-skills": "1.1.0",
+        "claude-software-skills": "1.0.0"
+      },
+      "status": "stable",
+      "notes": "Phase 3 完成，所有功能測試通過",
+      "features_tested": [
+        "skill-matching",
+        "dependency-resolution",
+        "emergence-tracking",
+        "knowledge-distillation",
+        "failure-immunity"
+      ]
+    },
+    {
+      "date": "2025-01-07",
+      "versions": {
+        "skillpkg": "0.5.5",
+        "self-evolving-agent": "3.5.0",
+        "claude-domain-skills": "1.1.0",
+        "claude-software-skills": "1.0.0"
+      },
+      "status": "stable",
+      "notes": "Phase 2 完成"
+    }
+  ],
+
+  "compatibility_matrix": {
+    "description": "組件之間的相容性要求",
+    "rules": [
+      {
+        "if": { "self-evolving-agent": ">=3.5.0" },
+        "requires": { "skillpkg": ">=0.5.3" },
+        "reason": "skill-metrics 需要 recommend-skill 功能"
+      },
+      {
+        "if": { "self-evolving-agent": ">=3.6.0" },
+        "requires": { "skillpkg": ">=0.5.5" },
+        "reason": "knowledge-distillation 需要 create-skill 功能"
+      },
+      {
+        "if": { "claude-domain-skills": ">=1.1.0" },
+        "requires": { "claude-software-skills": ">=1.0.0" },
+        "reason": "domain skills 依賴 software skills"
+      }
+    ]
+  },
+
+  "upgrade_paths": {
+    "from_3.4_to_3.6": {
+      "steps": [
+        "1. 更新 skillpkg 至 0.5.5",
+        "2. 執行 skillpkg sync",
+        "3. 初始化 .claude/memory/skill-metrics/",
+        "4. 初始化 .claude/memory/guards/",
+        "5. 更新 self-evolving-agent 至 3.6.0"
+      ],
+      "estimated_time": "15 分鐘",
+      "breaking_changes": false
+    }
+  },
+
+  "health_check": {
+    "endpoints": {
+      "skillpkg": "npx skillpkg --version",
+      "skills": "npx skillpkg list",
+      "memory": "ls .claude/memory/"
+    },
+    "recommended_interval": "weekly"
+  }
+}

@@ -1,0 +1,84 @@
+# Quant Trading Skill Triggers
+# Domain Skill: finance/quant-trading
+
+---
+name: quant-trading
+version: 1.0.0
+description: 量化交易策略開發與回測
+
+triggers:
+  keywords:
+    # 主要關鍵詞 (權重: 1.0)
+    # 匹配時直接推薦此 skill
+    primary:
+      - 量化
+      - quant
+      - 量化交易
+      - quantitative trading
+      - 回測
+      - backtest
+      - backtesting
+      - 交易策略
+      - trading strategy
+      - 程式交易
+      - algorithmic trading
+      - algo trading
+
+    # 次要關鍵詞 (權重: 0.6)
+    # 匹配時列入候選
+    secondary:
+      - 股票
+      - stock
+      - 期貨
+      - futures
+      - 選擇權
+      - options
+      - 技術分析
+      - technical analysis
+      - 指標
+      - indicator
+      - 均線
+      - moving average
+      - RSI
+      - MACD
+      - 夏普比率
+      - sharpe ratio
+      - 最大回撤
+      - max drawdown
+
+  # 上下文加分 (共現時 +0.2)
+  context_boost:
+    - Python
+    - pandas
+    - numpy
+    - 金融
+    - finance
+    - 資料分析
+    - data analysis
+    - API
+    - 券商
+    - broker
+
+  # 上下文減分 (共現時 -0.3)
+  context_penalty:
+    - 行銷
+    - marketing
+    - 設計
+    - design
+    - 前端
+    - frontend
+    - UI
+    - 遊戲
+    - game
+
+  # 優先級
+  priority: high
+
+# 依賴的 software skills
+dependencies:
+  software-skills:
+    - python
+    - database
+    - api-design
+    - data-engineering
+---

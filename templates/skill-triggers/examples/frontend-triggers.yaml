@@ -1,0 +1,89 @@
+# Frontend Skill Triggers
+# Software Skill: frontend
+
+---
+name: frontend
+version: 1.0.0
+description: 前端開發與 UI 實作
+
+triggers:
+  keywords:
+    # 主要關鍵詞 (權重: 1.0)
+    primary:
+      - 前端
+      - frontend
+      - front-end
+      - React
+      - Vue
+      - Svelte
+      - Next.js
+      - Nuxt
+      - 網頁
+      - web page
+      - 網站
+      - website
+      - UI
+      - 介面
+      - interface
+      - SPA
+      - single page app
+
+    # 次要關鍵詞 (權重: 0.6)
+    secondary:
+      - JavaScript
+      - TypeScript
+      - CSS
+      - HTML
+      - 組件
+      - component
+      - 狀態管理
+      - state management
+      - Redux
+      - Zustand
+      - 路由
+      - routing
+      - 表單
+      - form
+      - 動畫
+      - animation
+      - 響應式
+      - responsive
+      - Tailwind
+      - styled-components
+
+  # 上下文加分 (共現時 +0.2)
+  context_boost:
+    - 使用者體驗
+    - UX
+    - 設計
+    - design
+    - 互動
+    - interactive
+    - 瀏覽器
+    - browser
+    - 手機
+    - mobile
+    - PWA
+
+  # 上下文減分 (共現時 -0.3)
+  context_penalty:
+    - 後端
+    - backend
+    - 資料庫
+    - database
+    - 伺服器
+    - server
+    - DevOps
+    - 機器學習
+    - machine learning
+
+  # 優先級
+  priority: high
+
+# 常見組合
+recommended_with:
+  - ui-ux-design
+  - testing-strategies
+  - performance-optimization
+  - accessibility
+---

@@ -6,15 +6,20 @@
 
 | Field | Value |
 |-------|-------|
-| Last curated | 2025-01-07 |
-| Total entries | 1 |
-| Next review | 2025-02-07 |
+| Last curated | 2025-01-08 |
+| Total entries | 13 |
+| Next review | 2025-02-08 |
 
 ---
 
 ## Recent Learnings
 
 <!-- LEARNINGS_START -->
+- [Phase 4 Complete](learnings/2025-01-08-phase4-complete.md) ⭐⭐⭐ - ecosystem, health-dashboard, version-coordination, knowledge-graph, phase4, COMPLETE
+- [Phase 3 Complete](learnings/2025-01-08-phase3-complete.md) ⭐⭐ - ecosystem, knowledge-distillation, progressive-disclosure, relevance-tracking, failure-immunity, phase3
+- [Phase 2 Complete](learnings/2025-01-08-phase2-complete.md) ⭐ - ecosystem, emergence-tracking, smart-routing, phase2
+- [Phase 1 Complete](learnings/2025-01-08-phase1-complete.md) ⭐ - ecosystem, skill-matching, interfaces, phase1
+- [Ecosystem Intelligence Templates](learnings/2025-01-08-ecosystem-intelligence-templates.md) - ecosystem, skill-matching, templates, triggers
 - [Starter Kit Setup](learnings/2025-01-07-starter-kit-setup.md) - setup, memory, claude-code
 <!-- LEARNINGS_END -->
 
@@ -33,6 +38,9 @@
 ## Reasoning Patterns
 
 <!-- PATTERNS_START -->
+- [Knowledge Distillation](patterns/knowledge-distillation.md) ⭐ - evolution, skill-generation, learnings
+- [Memory Relevance Tracking](patterns/memory-relevance-tracking.md) ⭐ - evolution, forgetting-curve, cleanup
+- [Failure Immunity](patterns/failure-immunity.md) ⭐ - evolution, guards, prevention
 - [Debug Workflow](patterns/debug-workflow.md) - debugging, troubleshooting
 <!-- PATTERNS_END -->
 
@@ -40,7 +48,30 @@
 
 <!-- STRATEGIES_START -->
 - [Feature Development](strategies/feature-development.md) - development, workflow
+- [Ecosystem Evolution Plan](strategies/2025-01-07-ecosystem-evolution-plan.md) ⭐⭐ - roadmap, 4 phases, 76 tasks
 <!-- STRATEGIES_END -->
+
+## Skill Metrics (涌現追蹤)
+
+<!-- SKILL_METRICS_START -->
+追蹤 skill 組合使用情況，發現成功模式。
+
+| Metric | Status |
+|--------|--------|
+| Total combinations | 0 |
+| Success rate | - |
+| Hot patterns | 0 |
+
+詳見：[skill-metrics/README.md](skill-metrics/README.md)
+<!-- SKILL_METRICS_END -->
+
+## Discoveries
+
+<!-- DISCOVERIES_START -->
+- [Ecosystem Synergy Analysis](discoveries/2025-01-07-ecosystem-synergy-analysis.md) ⭐ - ecosystem, synergy, emergence, 7 discoveries
+- [Skill Combination Recipes](discoveries/2025-01-07-skill-combination-recipes.md) ⭐ - recipes, combinations, 15 golden recipes
+- [Non-obvious Improvements](discoveries/2025-01-07-non-obvious-improvements.md) ⭐ - insights, innovation, 10 improvements
+<!-- DISCOVERIES_END -->
 
 ---
 
@@ -49,11 +80,18 @@
 <!-- TAGS_START -->
 | Tag | Entries |
 |-----|---------|
-| setup | 1 |
+| ecosystem | 3 |
+| emergence | 2 |
+| synergy | 1 |
+| recipes | 1 |
+| combinations | 1 |
+| insights | 1 |
+| innovation | 1 |
 | memory | 2 |
 | architecture | 1 |
 | debugging | 1 |
 | development | 1 |
+| setup | 1 |
 <!-- TAGS_END -->
 
 ---

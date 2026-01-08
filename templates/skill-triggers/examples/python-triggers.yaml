@@ -1,0 +1,88 @@
+# Python Skill Triggers
+# Software Skill: python
+
+---
+name: python
+version: 1.0.0
+description: Python 開發最佳實踐
+
+triggers:
+  keywords:
+    # 主要關鍵詞 (權重: 1.0)
+    primary:
+      - Python
+      - python3
+      - py
+      - pip
+      - poetry
+      - pipenv
+      - conda
+      - virtualenv
+      - venv
+      - pytest
+      - unittest
+
+    # 次要關鍵詞 (權重: 0.6)
+    secondary:
+      - 腳本
+      - script
+      - 自動化
+      - automation
+      - 爬蟲
+      - crawler
+      - scraping
+      - pandas
+      - numpy
+      - FastAPI
+      - Flask
+      - Django
+      - requests
+      - asyncio
+      - typing
+      - dataclass
+      - pydantic
+
+  # 上下文加分 (共現時 +0.2)
+  context_boost:
+    - 資料分析
+    - data analysis
+    - 機器學習
+    - machine learning
+    - AI
+    - 科學計算
+    - scientific computing
+    - API
+    - CLI
+    - 後端
+    - backend
+
+  # 上下文減分 (共現時 -0.3)
+  context_penalty:
+    - 前端
+    - frontend
+    - React
+    - Vue
+    - iOS
+    - Android
+    - Swift
+    - Kotlin
+
+  # 優先級
+  priority: high
+
+# 常見組合（依據使用情境）
+recommended_combinations:
+  data_science:
+    - data-engineering
+    - database
+  web_backend:
+    - api-design
+    - database
+    - authentication
+  automation:
+    - devops-cicd
+    - testing-strategies
+  ml_integration:
+    - ml-integration
+    - cloud-architecture
+---
