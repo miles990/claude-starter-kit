@@ -11,13 +11,16 @@
 import { Command } from 'commander';
 import { init } from './commands/init.js';
 import { doctor } from './commands/doctor.js';
+import { smart } from './commands/smart.js';
+import { insights } from './commands/insights.js';
+import { dashboard } from './commands/dashboard.js';
 
 const program = new Command();
 
 program
   .name('claude-starter-kit')
-  .description('One-command Claude Code project setup with multi-domain support')
-  .version('1.0.0');
+  .description('Intelligent Claude Code project setup with smart recommendations')
+  .version('2.0.0');
 
 program
   .command('init', { isDefault: true })
@@ -36,5 +39,28 @@ program
   .option('--fix', 'Automatically fix issues that can be repaired')
   .option('--discover', 'Analyze project and recommend skills based on tech stack')
   .action(doctor);
+
+program
+  .command('smart')
+  .description('Intelligent assistant with context-aware recommendations')
+  .option('-q, --quick', 'Quick mode - show recommendations without interaction')
+  .option('-a, --action <action>', 'Execute a specific action directly')
+  .option('-v, --verbose', 'Show detailed analysis')
+  .action(smart);
+
+program
+  .command('insights')
+  .description('Cross-project insights and pattern analysis')
+  .option('-g, --global', 'Scan all Claude projects in common directories')
+  .option('-e, --export', 'Export insights to file')
+  .option('-f, --format <format>', 'Export format: json or markdown', 'markdown')
+  .action(insights);
+
+program
+  .command('dashboard')
+  .description('Launch web dashboard for project monitoring')
+  .option('-p, --port <port>', 'Port number', '3456')
+  .option('-o, --open', 'Open browser automatically')
+  .action((options) => dashboard({ ...options, port: parseInt(options.port) }));
 
 program.parse();

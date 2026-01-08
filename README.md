@@ -1,10 +1,12 @@
 # Claude Starter Kit
 
-> 一行指令，開始自我進化開發
+> 一行指令，開始智能化自我進化開發
 
 [![npm version](https://badge.fury.io/js/claude-starter-kit.svg)](https://www.npmjs.com/package/claude-starter-kit)
 
 **快速連結**: [QUICKSTART](docs/QUICKSTART.md) | [生態系統教學](docs/ECOSYSTEM_TUTORIAL.md) | [CHEATSHEET](docs/CHEATSHEET.md) | [Personas](personas/README.md)
+
+**v2.0 新功能**: `smart` 智能助手 | `insights` 跨專案洞察 | `dashboard` Web 監控面板
 
 ---
 
@@ -65,7 +67,9 @@ Claude Starter Kit 自動幫你設置：
 | **記憶系統** | Claude 會記住學到的東西，避免重複踩坑 |
 | **自我進化** | 自動分析 → 學習 → 執行 → 改進的 PDCA 循環 |
 | **技能管理** | 66 個專業技能，按需安裝 |
-| **智能診斷** | `doctor` 指令檢查與修復生態系統配置 |
+| **智能助手** | `smart` 指令提供上下文感知的推薦行動 |
+| **跨專案洞察** | `insights` 指令分析模式、發現共同優化機會 |
+| **Web Dashboard** | `dashboard` 指令啟動視覺化監控面板 |
 
 ---
 
@@ -109,6 +113,69 @@ npx claude-starter-kit doctor --discover
 | **Database** | Prisma, MongoDB, PostgreSQL, MySQL, Redis |
 | **Testing** | Jest, Vitest, Playwright, Cypress |
 | **Languages** | TypeScript, Python, Go, Rust, Java, Ruby, PHP |
+
+### 智能助手 (Smart)
+
+```bash
+# 互動式智能助手（分析專案、推薦行動）
+npx claude-starter-kit smart
+
+# 快速模式（只顯示推薦）
+npx claude-starter-kit smart --quick
+
+# 直接執行特定行動
+npx claude-starter-kit smart --action=install-evolve
+```
+
+#### smart 提供的能力
+
+| 功能 | 說明 |
+|------|------|
+| **專案分析** | 自動偵測專案類型、計算健康分數 |
+| **行動推薦** | 根據專案狀態推薦下一步行動 |
+| **問題預警** | 識別潛在問題和改進機會 |
+| **使用追蹤** | 記錄使用模式，提供個人化建議 |
+
+### 跨專案洞察 (Insights)
+
+```bash
+# 分析當前目錄及相鄰專案
+npx claude-starter-kit insights
+
+# 掃描所有 Claude 專案（全域）
+npx claude-starter-kit insights --global
+
+# 匯出報告
+npx claude-starter-kit insights --export --format=markdown
+```
+
+#### insights 提供的能力
+
+| 功能 | 說明 |
+|------|------|
+| **專案總覽** | 所有專案的健康狀態、技能使用 |
+| **模式識別** | 發現跨專案的共同模式（API 開發、錯誤處理等） |
+| **技能熱度** | 最常用的技能排行 |
+| **優化建議** | 跨專案知識轉移機會 |
+
+### Web Dashboard
+
+```bash
+# 啟動監控面板（預設 port 3456）
+npx claude-starter-kit dashboard
+
+# 指定 port 並自動開啟瀏覽器
+npx claude-starter-kit dashboard --port 8080 --open
+```
+
+#### Dashboard 功能
+
+| 功能 | 說明 |
+|------|------|
+| **專案健康** | 視覺化健康分數、設定狀態 |
+| **Memory 瀏覽** | 瀏覽和搜尋所有記憶文件 |
+| **技能管理** | 查看已安裝技能 |
+| **活動追蹤** | 最近的 commit 和 memory 活動 |
 
 ---
 

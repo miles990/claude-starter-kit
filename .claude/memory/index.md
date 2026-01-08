@@ -7,7 +7,7 @@
 | Field | Value |
 |-------|-------|
 | Last curated | 2026-01-08 |
-| Total entries | 22 |
+| Total entries | 23 |
 | Next review | 2026-02-08 |
 
 ---
@@ -15,6 +15,7 @@
 ## Recent Learnings
 
 <!-- LEARNINGS_START -->
+- [CLI v2.0 智能化功能](learnings/2026-01-08-cli-v2-intelligent-features.md) ⭐⭐⭐ - cli, smart, insights, dashboard, v2.0, intelligent-features
 - [Phase 4 Complete](learnings/2025-01-08-phase4-complete.md) ⭐⭐⭐ - ecosystem, health-dashboard, version-coordination, knowledge-graph, phase4, COMPLETE
 - [Phase 3 Complete](learnings/2025-01-08-phase3-complete.md) ⭐⭐ - ecosystem, knowledge-distillation, progressive-disclosure, relevance-tracking, failure-immunity, phase3
 - [Phase 2 Complete](learnings/2025-01-08-phase2-complete.md) ⭐ - ecosystem, emergence-tracking, smart-routing, phase2

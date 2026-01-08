@@ -216,6 +216,48 @@ npx claude-starter-kit doctor --fix
 npx claude-starter-kit doctor --discover
 ```
 
+## Smart 指令（智能助手）v2.0
+
+```bash
+# 互動式智能助手
+npx claude-starter-kit smart
+
+# 快速模式（只顯示推薦）
+npx claude-starter-kit smart --quick
+
+# 直接執行特定行動
+npx claude-starter-kit smart --action=install-evolve
+npx claude-starter-kit smart --action=run-doctor
+npx claude-starter-kit smart --action=discover-skills
+```
+
+## Insights 指令（跨專案洞察）v2.0
+
+```bash
+# 分析當前目錄及相鄰專案
+npx claude-starter-kit insights
+
+# 全域掃描（掃描 ~/Projects, ~/Workspace 等）
+npx claude-starter-kit insights --global
+
+# 匯出報告
+npx claude-starter-kit insights --export
+npx claude-starter-kit insights --export --format=json
+```
+
+## Dashboard 指令（Web 監控）v2.0
+
+```bash
+# 啟動 Dashboard（預設 port 3456）
+npx claude-starter-kit dashboard
+
+# 指定 port
+npx claude-starter-kit dashboard --port 8080
+
+# 自動開啟瀏覽器
+npx claude-starter-kit dashboard --open
+```
+
 ### Doctor 功能說明
 
 | 模式 | 說明 |
