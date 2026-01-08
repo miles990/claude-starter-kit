@@ -7,7 +7,7 @@
 | Field | Value |
 |-------|-------|
 | Last curated | 2026-01-08 |
-| Total entries | 20 |
+| Total entries | 21 |
 | Next review | 2026-02-08 |
 
 ---
@@ -68,6 +68,7 @@
 ## Discoveries
 
 <!-- DISCOVERIES_START -->
+- [Claude Code 2.1.0 Impact](discoveries/2026-01-08-claude-code-2.1.0-impact.md) ⭐⭐⭐ - claude-code, 2.1.0, hooks, hot-reload, context-fork, BREAKING
 - [Evolve Session Summary](discoveries/2026-01-08-evolve-session-summary.md) ⭐⭐⭐ - evolve, emergence, 6-iterations, comprehensive-improvement
 - [Iteration 4 Documentation](discoveries/2026-01-08-iteration4-documentation-completeness.md) ⭐ - documentation, triggers, discoverability, navigation
 - [Automation Gap Analysis](discoveries/2026-01-08-automation-gap-analysis.md) ⭐⭐ - automation, github-actions, hooks, scheduled-maintenance, claude-code-showcase
@@ -87,6 +88,8 @@
 <!-- TAGS_START -->
 | Tag | Entries |
 |-----|---------|
+| claude-code | 2 |
+| 2.1.0 | 1 |
 | ecosystem | 3 |
 | emergence | 2 |
 | synergy | 1 |

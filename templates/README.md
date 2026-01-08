@@ -2,11 +2,29 @@
 
 > 可重用的模板和範例檔案
 
+## Claude Code 2.1.0+ 新模板
+
+**重要更新：** 新增支援 Claude Code 2.1.0 新功能的 Skill 模板！
+
+| 模板 | 說明 |
+|------|------|
+| [skill-template-2.1.md](skill-template-2.1.md) | 支援 hot-reload、hooks、context fork、agent 指定 |
+
+### 2.1.0 新功能一覽
+
+- **Skill Hot-Reload** - 修改立即生效，無需重啟
+- **`context: fork`** - 隔離執行環境
+- **`agent` 欄位** - 指定執行代理類型
+- **Hooks in Skills** - Skill 內聲明 hooks
+- **YAML-style `allowed-tools`** - 更清晰的權限語法
+- **萬用字元權限** - `Bash(npm *)`
+
 ## 目錄結構
 
 ```
 templates/
 ├── README.md              # 本文件
+├── skill-template-2.1.md  # 2.1.0+ Skill 模板 (NEW)
 ├── presets.json           # skillpkg 預設配置
 ├── init-script.sh         # 初始化腳本
 │
