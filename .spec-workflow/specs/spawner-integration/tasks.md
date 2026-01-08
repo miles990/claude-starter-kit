@@ -27,14 +27,14 @@ Start: "Implement task for spec spawner-integration, first run spec-workflow-gui
 ```
 
 ### Task 1.2: 為 5 個 Domain Skills 添加 Sharp Edges
-- [ ] 為高價值 domain skills 添加 sharp edges 區塊
+- [x] 為高價值 domain skills 添加 sharp edges 區塊
 
 **Files**:
-- `claude-domain-skills/finance/quant-trading/SKILL.md`
-- `claude-domain-skills/finance/investment-analysis/SKILL.md`
-- `claude-domain-skills/creative/game-design/SKILL.md`
-- `claude-domain-skills/marketing/growth-hacking/SKILL.md`
-- `claude-domain-skills/education/curriculum-design/SKILL.md`
+- `claude-domain-skills/finance/quant-trading/SKILL.md` ✅
+- `claude-domain-skills/finance/investment-analysis/SKILL.md` ✅
+- `claude-domain-skills/creative/game-design/SKILL.md` ✅
+- `claude-domain-skills/business/marketing/SKILL.md` ✅
+- `claude-domain-skills/business/product-management/SKILL.md` ✅
 
 **Requirements**: US-1
 
@@ -49,14 +49,14 @@ Instructions: 每完成一個 skill 就 commit，完成後標記 [x]
 ```
 
 ### Task 1.3: 為 5 個 Software Skills 添加 Sharp Edges
-- [ ] 為高價值 software skills 添加 sharp edges 區塊
+- [x] 為高價值 software skills 添加 sharp edges 區塊
 
 **Files**:
-- `claude-software-skills/backend/SKILL.md`
-- `claude-software-skills/frontend/SKILL.md`
-- `claude-software-skills/api-design/SKILL.md`
-- `claude-software-skills/error-handling/SKILL.md`
-- `claude-software-skills/testing-strategies/SKILL.md`
+- `claude-software-skills/development-stacks/backend/SKILL.md` ✅
+- `claude-software-skills/development-stacks/frontend/SKILL.md` ✅
+- `claude-software-skills/software-design/api-design/SKILL.md` ✅
+- `claude-software-skills/software-engineering/testing-strategies/SKILL.md` ✅
+- `claude-software-skills/software-engineering/code-quality/SKILL.md` ✅
 
 **Requirements**: US-1
 
@@ -94,14 +94,14 @@ Instructions: 完成後標記 [x]
 ```
 
 ### Task 2.2: 為 5 個 Software Skills 添加 Validations
-- [ ] 為技術 skills 添加可執行的 validations
+- [x] 為技術 skills 添加可執行的 validations
 
 **Files**:
-- `claude-software-skills/backend/SKILL.md`
-- `claude-software-skills/frontend/SKILL.md`
-- `claude-software-skills/api-design/SKILL.md`
-- `claude-software-skills/error-handling/SKILL.md`
-- `claude-software-skills/typescript/SKILL.md`
+- `claude-software-skills/development-stacks/backend/SKILL.md` ✅
+- `claude-software-skills/development-stacks/frontend/SKILL.md` ✅
+- `claude-software-skills/software-design/api-design/SKILL.md` ✅
+- `claude-software-skills/software-engineering/testing-strategies/SKILL.md` ✅
+- `claude-software-skills/software-engineering/code-quality/SKILL.md` ✅
 
 **Requirements**: US-2
 
@@ -139,14 +139,14 @@ Instructions: 完成後標記 [x]
 ```
 
 ### Task 3.2: 定義核心 Skill 協作關係
-- [ ] 為 5 個核心 skills 定義協作關係
+- [x] 為 5 個核心 skills 定義協作關係
 
 **Files**:
-- `claude-software-skills/backend/SKILL.md` (collaboration section)
-- `claude-software-skills/api-design/SKILL.md`
-- `claude-software-skills/database/SKILL.md`
-- `claude-software-skills/error-handling/SKILL.md`
-- `claude-software-skills/testing-strategies/SKILL.md`
+- `claude-software-skills/development-stacks/backend/SKILL.md` ✅
+- `claude-software-skills/development-stacks/database/SKILL.md` ✅
+- `claude-software-skills/development-stacks/frontend/SKILL.md` ✅
+- `claude-software-skills/software-design/api-design/SKILL.md` ✅
+- `claude-software-skills/software-engineering/testing-strategies/SKILL.md` ✅
 
 **Requirements**: US-3
 
@@ -165,7 +165,7 @@ Instructions: 每完成一個 skill 就 commit，完成後標記 [x]
 ## Milestone 4: Self-Evolving Agent 整合
 
 ### Task 4.1: 更新 PDCA Plan 階段
-- [ ] 在 Plan 階段整合 sharp_edges 檢查
+- [x] 在 Plan 階段整合 sharp_edges 檢查
 
 **Files**: `self-evolving-agent/SKILL.md`
 **Requirements**: US-1, US-3
@@ -181,7 +181,7 @@ Instructions: 完成後標記 [x]
 ```
 
 ### Task 4.2: 更新 PDCA Check 階段
-- [ ] 在 Check 階段整合 validations 驗證
+- [x] 在 Check 階段整合 validations 驗證
 
 **Files**: `self-evolving-agent/SKILL.md`
 **Requirements**: US-2
@@ -201,7 +201,7 @@ Instructions: 完成後標記 [x]
 ## Milestone 5: 文件更新
 
 ### Task 5.1: 更新智能生態系統指南
-- [ ] 更新 INTELLIGENT_ECOSYSTEM_GUIDE.md 包含新功能
+- [x] 更新 INTELLIGENT_ECOSYSTEM_GUIDE.md 包含新功能
 
 **Files**: `claude-starter-kit/docs/INTELLIGENT_ECOSYSTEM_GUIDE.md`
 **Requirements**: US-5
@@ -217,12 +217,12 @@ Instructions: 完成後標記 [x]
 ```
 
 ### Task 5.2: 更新 README
-- [ ] 更新各專案 README 提及新功能
+- [x] 更新各專案 README 提及新功能
 
 **Files**:
-- `claude-starter-kit/README.md`
-- `claude-software-skills/README.md`
-- `claude-domain-skills/README.md`
+- `claude-starter-kit/README.md` ✅
+- `claude-software-skills/README.md` ✅
+- `claude-domain-skills/README.md` ✅
 
 **Requirements**: US-5
 
@@ -241,7 +241,7 @@ Instructions: 完成後標記 [x]
 ## Milestone 6: 涌現記錄
 
 ### Task 6.1: 記錄實作過程中的發現
-- [ ] 持續記錄意外發現到 discoveries/
+- [x] 持續記錄意外發現到 discoveries/
 
 **Files**: `claude-starter-kit/.claude/memory/discoveries/`
 **Requirements**: N/A (涌現追蹤)
@@ -261,13 +261,13 @@ Instructions: 發現即記錄，每個發現單獨 commit
 
 | Milestone | Tasks | Status |
 |-----------|-------|--------|
-| 1. Sharp Edges | 3 | 1/3 |
-| 2. Validations | 2 | 1/2 |
-| 3. Collaboration | 2 | 1/2 |
-| 4. Agent Integration | 2 | Pending |
-| 5. Documentation | 2 | Pending |
-| 6. Emergence | 1 | Ongoing |
-| **Total** | **12** | **3/12** |
+| 1. Sharp Edges | 3 | ✅ 3/3 |
+| 2. Validations | 2 | ✅ 2/2 |
+| 3. Collaboration | 2 | ✅ 2/2 |
+| 4. Agent Integration | 2 | ✅ 2/2 |
+| 5. Documentation | 2 | ✅ 2/2 |
+| 6. Emergence | 1 | ✅ 1/1 |
+| **Total** | **12** | **✅ 12/12** |
 
 ---
 

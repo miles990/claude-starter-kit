@@ -6,9 +6,9 @@
 
 | Field | Value |
 |-------|-------|
-| Last curated | 2025-01-08 |
-| Total entries | 15 |
-| Next review | 2025-02-08 |
+| Last curated | 2026-01-08 |
+| Total entries | 16 |
+| Next review | 2026-02-08 |
 
 ---
 
@@ -68,6 +68,7 @@
 ## Discoveries
 
 <!-- DISCOVERIES_START -->
+- [Skill Enhancement Implementation](discoveries/2026-01-08-skill-enhancement-implementation.md) ⭐⭐ - sharp-edges, validations, collaboration, implementation-pattern, PDCA-integration
 - [Spawner Skills Analysis](discoveries/2025-01-08-spawner-skills-analysis.md) ⭐⭐ - spawner-skills, 4-file-system, sharp-edges, validations, collaboration, external-analysis
 - [Ecosystem Intelligence v2](discoveries/2025-01-08-ecosystem-intelligence-v2.md) ⭐⭐ - phase5, research-mode, meta-patterns, heartbeat, knowledge-bridging, 5 new discoveries
 - [Ecosystem Synergy Analysis](discoveries/2025-01-07-ecosystem-synergy-analysis.md) ⭐ - ecosystem, synergy, emergence, 7 discoveries

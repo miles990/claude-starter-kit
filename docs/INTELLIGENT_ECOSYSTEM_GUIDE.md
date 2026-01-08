@@ -531,6 +531,94 @@ phases:
   4. 網路功能: realtime-systems
 ```
 
+### 7.3 Skill 強化功能（v1.1 新增）
+
+Skills 現在支援三個強化功能，讓 AI 更聰明：
+
+#### Sharp Edges（陷阱警告）
+
+每個 skill 可定義該領域的常見陷阱：
+
+```markdown
+## Sharp Edges（常見陷阱）
+
+### SE-1: 空的 Promise rejection 處理
+- **嚴重度**: critical
+- **情境**: 使用 async/await 但沒有處理 rejection
+- **症狀**: 程式靜默失敗、錯誤被吞掉
+- **檢測**: `\.catch\s*\(\s*\)|\\.catch\s*\(\s*\(\s*\)\s*=>`
+- **解法**: 至少 console.error(err) 或 throw err
+```
+
+**作用**：在 PDCA Plan 階段，AI 會搜尋載入的 skills 的 sharp_edges，主動警告可能觸發的陷阱。
+
+#### Validations（代碼驗證）
+
+每個 skill 可定義可執行的驗證規則：
+
+```markdown
+## Validations
+
+### V-1: 禁止空的 catch block
+- **類型**: regex
+- **嚴重度**: critical
+- **模式**: `catch\s*\([^)]*\)\s*\{\s*\}`
+- **訊息**: Empty catch block silently swallows errors
+- **修復建議**: Add error logging: `console.error(err)`
+- **適用**: `*.ts`, `*.js`
+```
+
+**作用**：在 PDCA Check 階段，AI 會用這些 regex/ast 模式掃描變更的程式碼，報告違規並提供修復建議。
+
+#### Collaboration（技能協作）
+
+Skills 現在可以聲明與其他 skills 的協作關係：
+
+```yaml
+# 在 SKILL.md frontmatter 中
+collaboration:
+  prerequisites:
+    - skill: typescript
+      reason: Type-safe development
+  delegation_triggers:
+    - trigger: API endpoint design
+      delegate_to: api-design
+      context: RESTful conventions
+  receives_context_from:
+    - skill: api-design
+      receives:
+        - Endpoint naming conventions
+        - Error response formats
+  provides_context_to:
+    - skill: frontend
+      provides:
+        - API endpoints list
+        - Authentication flow
+```
+
+**作用**：
+1. **Plan 階段**：檢查 delegation_triggers，建議載入相關 skill
+2. **recommend_skills**：考慮 prerequisites，自動包含依賴技能
+3. **上下文傳遞**：技能之間明確定義傳遞什麼資訊
+
+#### 協作圖範例
+
+```
+                    ┌─────────────┐
+                    │ typescript  │
+                    └──────┬──────┘
+                           │ prerequisite
+                           ▼
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│  api-design │────▶│   backend   │────▶│  frontend   │
+└─────────────┘     └──────┬──────┘     └─────────────┘
+      provides              │ delegates
+      context               ▼
+                    ┌─────────────┐
+                    │  database   │
+                    └─────────────┘
+```
+
 ---
 
 ## 8. 進階功能
@@ -749,5 +837,10 @@ npx skillpkg-cli sync
 
 ---
 
-*最後更新：2025-01-08*
-*生態系統版本：1.0.0*
+*最後更新：2026-01-08*
+*生態系統版本：1.1.0*
+
+**v1.1.0 新增功能：**
+- Sharp Edges（陷阱警告）
+- Validations（代碼驗證）
+- Collaboration（技能協作）
