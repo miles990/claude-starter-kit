@@ -7,7 +7,7 @@
 | Field | Value |
 |-------|-------|
 | Last curated | 2026-01-10 |
-| Total entries | 26 |
+| Total entries | 27 |
 | Next review | 2026-02-10 |
 
 ---
@@ -15,6 +15,7 @@
 ## Recent Learnings
 
 <!-- LEARNINGS_START -->
+- [README 放置原則](learnings/2026-01-10-readme-placement-principle.md) ⭐⭐ - documentation, readme, best-practice, anti-pattern
 - [CLI v2.0 智能化功能](learnings/2026-01-08-cli-v2-intelligent-features.md) ⭐⭐⭐ - cli, smart, insights, dashboard, v2.0, intelligent-features
 - [Phase 4 Complete](learnings/2025-01-08-phase4-complete.md) ⭐⭐⭐ - ecosystem, health-dashboard, version-coordination, knowledge-graph, phase4, COMPLETE
 - [Phase 3 Complete](learnings/2025-01-08-phase3-complete.md) ⭐⭐ - ecosystem, knowledge-distillation, progressive-disclosure, relevance-tracking, failure-immunity, phase3
