@@ -6,7 +6,7 @@
 
 **快速連結**: [5分鐘上手](docs/5-MINUTE-GUIDE.md) | [生態系統教學](docs/ECOSYSTEM_TUTORIAL.md) | [CHEATSHEET](docs/CHEATSHEET.md) | [故障排除](docs/TROUBLESHOOTING.md)
 
-**v2.1 新功能**: 🚀 14 個 superpowers 工作流程 | 🧠 25 個職業思維框架 | 📋 新指令 `/brainstorm` `/write-plan` `/execute-plan`
+**v2.1 新功能**: 🏗️ `scaffold` 專案模板 | 🔄 `workflow` 工作流程指南 | 🚀 14 個 superpowers 工作流程 | 🧠 25 個職業思維框架
 
 ---
 
@@ -191,6 +191,68 @@ npx claude-starter-kit dashboard --port 8080 --open
 | **Memory 瀏覽** | 瀏覽和搜尋所有記憶文件 |
 | **技能管理** | 查看已安裝技能 |
 | **活動追蹤** | 最近的 commit 和 memory 活動 |
+
+### 專案腳手架 (Scaffold) ⭐ 新
+
+```bash
+# 列出可用模板
+npx claude-starter-kit scaffold --list
+
+# 創建 Express API 專案
+npx claude-starter-kit scaffold express-api my-api
+
+# 創建 Next.js 專案
+npx claude-starter-kit scaffold nextjs my-app
+
+# 創建 CLI 工具
+npx claude-starter-kit scaffold cli my-tool
+
+# 創建 Monorepo
+npx claude-starter-kit scaffold monorepo my-workspace
+```
+
+#### 內建模板
+
+| 模板 | 說明 | 技術棧 |
+|------|------|--------|
+| **express-api** | 生產就緒的 REST API | Express, TypeScript, Jest, Zod |
+| **nextjs** | 全端 Next.js 應用 | Next.js 14, React, Tailwind |
+| **cli** | Node.js CLI 工具 | Commander, Chalk, Inquirer |
+| **monorepo** | pnpm workspace | Turborepo, pnpm workspaces |
+
+每個模板都自帶：
+- 完整的 Claude Code 配置 (CLAUDE.md, .claude/)
+- Memory 系統初始化
+- MCP Server 配置
+- 建議的 skills 清單
+
+### 工作流程指南 (Workflow) ⭐ 新
+
+```bash
+# 列出所有工作流程
+npx claude-starter-kit workflow
+
+# 查看特定工作流程
+npx claude-starter-kit workflow tdd
+npx claude-starter-kit workflow debug
+npx claude-starter-kit workflow brainstorm
+
+# 互動式選擇
+npx claude-starter-kit workflow -i
+```
+
+#### 內建工作流程
+
+| 工作流程 | 說明 |
+|----------|------|
+| **tdd** | Test-Driven Development: RED → GREEN → REFACTOR |
+| **debug** | 系統化除錯: Hypothesis → Isolate → Verify |
+| **brainstorm** | 創意發想: Diverge → Converge → Actionable |
+| **plan** | 撰寫計畫: Goal → Scope → Breakdown → Risks |
+| **execute** | 執行計畫: Review → Checkpoint → Execute → Validate |
+| **review** | Code Review: Understand → Verify → Quality → Feedback |
+| **verify** | 完成前驗證: Build → Test → Lint → Types → Manual |
+| **think** | 職業思維框架: 25 種專業視角 |
 
 ---
 

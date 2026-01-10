@@ -7,7 +7,7 @@
 | Field | Value |
 |-------|-------|
 | Last curated | 2026-01-10 |
-| Total entries | 24 |
+| Total entries | 25 |
 | Next review | 2026-02-10 |
 
 ---
@@ -69,6 +69,7 @@
 ## Discoveries
 
 <!-- DISCOVERIES_START -->
+- [CLI v2.1 Automation](discoveries/2026-01-10-cli-v2.1-automation.md) ⭐⭐⭐ - cli, v2.1, scaffold, workflow, automation, templates, professional
 - [Superpowers Integration](discoveries/2026-01-10-superpowers-integration.md) ⭐⭐⭐ - superpowers, skillpkg, format-compatibility, ecosystem-openness, 15-new-skills
 - [UX Improvement Session](discoveries/2026-01-08-ux-improvement-session.md) ⭐⭐ - ux, personas, quickstart, cheatsheet, user-friendly
 - [Claude Code 2.1.0 Impact](discoveries/2026-01-08-claude-code-2.1.0-impact.md) ⭐⭐⭐ - claude-code, 2.1.0, hooks, hot-reload, context-fork, BREAKING
@@ -110,6 +111,11 @@
 | debugging | 1 |
 | development | 1 |
 | setup | 1 |
+| scaffold | 1 |
+| workflow | 1 |
+| templates | 1 |
+| automation | 1 |
+| v2.1 | 1 |
 <!-- TAGS_END -->
 
 ---

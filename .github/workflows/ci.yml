@@ -1,0 +1,82 @@
+# ============================================================================
+# CI Pipeline
+# ============================================================================
+# 驗證 CLI 建置和測試
+# ============================================================================
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'cli/**'
+      - 'package.json'
+      - '.github/workflows/ci.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'cli/**'
+      - 'package.json'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Type check
+        run: npm run typecheck --if-present
+        
+      - name: Build
+        run: npm run build
+        
+      - name: Test CLI help
+        run: |
+          node cli/dist/index.js --help
+          node cli/dist/index.js doctor --help
+          node cli/dist/index.js scaffold --list
+
+  test-scaffold:
+    runs-on: ubuntu-latest
+    needs: build
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Build
+        run: npm run build
+        
+      - name: Test scaffold command
+        run: |
+          mkdir -p /tmp/test-projects
+          cd /tmp/test-projects
+          
+          # Test express-api scaffold
+          node $GITHUB_WORKSPACE/cli/dist/index.js scaffold express-api test-api --no-install --no-git -y
+          
+          # Verify files created
+          test -f test-api/CLAUDE.md
+          test -f test-api/package.json
+          test -d test-api/.claude/memory
+          
+          echo "✅ Scaffold test passed"

@@ -14,13 +14,15 @@ import { doctor } from './commands/doctor.js';
 import { smart } from './commands/smart.js';
 import { insights } from './commands/insights.js';
 import { dashboard } from './commands/dashboard.js';
+import { scaffold, listTemplates } from './commands/scaffold.js';
+import { workflow, interactiveWorkflow } from './commands/workflow.js';
 
 const program = new Command();
 
 program
   .name('claude-starter-kit')
   .description('Intelligent Claude Code project setup with smart recommendations')
-  .version('2.0.0');
+  .version('2.1.0');
 
 program
   .command('init', { isDefault: true })
@@ -62,5 +64,32 @@ program
   .option('-p, --port <port>', 'Port number', '3456')
   .option('-o, --open', 'Open browser automatically')
   .action((options) => dashboard({ ...options, port: parseInt(options.port) }));
+
+program
+  .command('scaffold [template] [name]')
+  .description('Create a new project from professional templates')
+  .option('-y, --yes', 'Use defaults without prompts')
+  .option('--no-install', 'Skip dependency installation')
+  .option('--no-git', 'Skip git initialization')
+  .option('-l, --list', 'List available templates')
+  .action((template, name, options) => {
+    if (options.list) {
+      listTemplates();
+    } else {
+      scaffold(template, name, options);
+    }
+  });
+
+program
+  .command('workflow [name]')
+  .description('Learn about professional development workflows')
+  .option('-i, --interactive', 'Interactive workflow selection')
+  .action((name, options) => {
+    if (options.interactive) {
+      interactiveWorkflow();
+    } else {
+      workflow(name);
+    }
+  });
 
 program.parse();

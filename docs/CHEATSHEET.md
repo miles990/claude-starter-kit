@@ -258,6 +258,66 @@ npx claude-starter-kit dashboard --port 8080
 npx claude-starter-kit dashboard --open
 ```
 
+## Scaffold 指令（專案模板）v2.1 ⭐
+
+```bash
+# 列出所有可用模板
+npx claude-starter-kit scaffold --list
+
+# 創建 Express API 專案
+npx claude-starter-kit scaffold express-api my-api
+
+# 創建 Next.js 專案
+npx claude-starter-kit scaffold nextjs my-app
+
+# 創建 CLI 工具
+npx claude-starter-kit scaffold cli my-tool
+
+# 創建 Monorepo
+npx claude-starter-kit scaffold monorepo my-workspace
+
+# 跳過 npm install
+npx claude-starter-kit scaffold express-api my-api --no-install
+```
+
+### 內建模板
+
+| 模板 | 說明 |
+|------|------|
+| `express-api` | Express + TypeScript + Jest + Zod |
+| `nextjs` | Next.js 14 + React + Tailwind |
+| `cli` | Commander + Chalk + Inquirer |
+| `monorepo` | Turborepo + pnpm workspaces |
+
+## Workflow 指令（工作流程指南）v2.1 ⭐
+
+```bash
+# 列出所有工作流程
+npx claude-starter-kit workflow
+
+# 查看特定工作流程詳情
+npx claude-starter-kit workflow tdd
+npx claude-starter-kit workflow debug
+npx claude-starter-kit workflow brainstorm
+npx claude-starter-kit workflow plan
+
+# 互動式選擇
+npx claude-starter-kit workflow -i
+```
+
+### 內建工作流程
+
+| 工作流程 | 說明 |
+|----------|------|
+| `tdd` | RED → GREEN → REFACTOR |
+| `debug` | Hypothesis → Isolate → Verify |
+| `brainstorm` | Diverge → Converge → Actionable |
+| `plan` | Goal → Scope → Breakdown → Risks |
+| `execute` | Review → Checkpoint → Execute → Validate |
+| `review` | Understand → Verify → Quality → Feedback |
+| `verify` | Build → Test → Lint → Types → Manual |
+| `think` | 25 種職業思維框架 |
+
 ### Doctor 功能說明
 
 | 模式 | 說明 |
