@@ -1,0 +1,14 @@
+{
+  "$schema": "skillpkg-state-v1",
+  "skills": {
+    "writing-skills": {
+      "version": "1.0.0",
+      "source": "github:obra/superpowers#skills/writing-skills",
+      "installed_by": "user",
+      "installed_at": "2026-01-10T12:20:21.236Z",
+      "depended_by": []
+    }
+  },
+  "mcp": {},
+  "sync_history": {}
+}

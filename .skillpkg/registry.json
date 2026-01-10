@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "skills": {
+    "writing-skills": {
+      "name": "writing-skills",
+      "version": "1.0.0",
+      "installedAt": "2026-01-10T12:20:21.235Z",
+      "source": "registry",
+      "sourceUrl": "github:obra/superpowers#skills/writing-skills",
+      "syncedPlatforms": []
+    }
+  },
+  "lastUpdated": "2026-01-10T12:20:21.235Z"
+}
