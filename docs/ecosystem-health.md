@@ -163,20 +163,23 @@ recommendations:
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-## CLI 命令（規劃）
+## CLI 命令
 
 ```bash
-# 生成健康報告
-npx claude-starter-kit health
+# 啟動 Web 健康儀表板
+npx claude-starter-kit dashboard
 
-# 輸出 JSON 格式
-npx claude-starter-kit health --format json
+# 指定端口
+npx claude-starter-kit dashboard --port 8080
 
-# 只顯示建議
-npx claude-starter-kit health --recommendations
+# 自動開啟瀏覽器
+npx claude-starter-kit dashboard --open
 
-# 詳細模式
-npx claude-starter-kit health --verbose
+# 快速診斷（命令列）
+npx claude-starter-kit doctor
+
+# 自動修復問題
+npx claude-starter-kit doctor --fix
 ```
 
 ## 報告模板

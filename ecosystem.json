@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.skillpkg.dev/ecosystem.json",
   "ecosystem_version": "1.0.0",
-  "last_verified": "2026-01-10",
+  "last_verified": "2026-01-11",
   "description": "Claude Starter Kit 生態系統版本協調配置",
 
   "components": {
@@ -22,12 +22,13 @@
     "self-evolving-agent": {
       "repository": "github:miles990/self-evolving-agent",
       "min_version": "3.4.0",
-      "recommended": "3.7.1",
+      "recommended": "3.8.0",
       "features_added": {
         "3.4.0": ["mandatory-checkpoints", "memory-lifecycle", "boris-tips"],
         "3.5.0": ["skill-metrics", "emergence-tracking", "success-patterns"],
         "3.6.0": ["knowledge-distillation", "progressive-disclosure", "relevance-tracking", "failure-immunity"],
-        "3.7.1": ["memory-sync-checkpoint", "sharp-edges-integration", "collaboration-awareness"]
+        "3.7.1": ["memory-sync-checkpoint", "sharp-edges-integration", "collaboration-awareness"],
+        "3.8.0": ["unified-planning-layer", "spec-workflow-integration", "plan-command-support"]
       },
       "breaking_changes": {}
     },
@@ -64,20 +65,20 @@
 
   "tested_combinations": [
     {
-      "date": "2026-01-10",
+      "date": "2026-01-11",
       "versions": {
         "skillpkg": "0.5.6",
-        "self-evolving-agent": "3.7.1",
+        "self-evolving-agent": "3.8.0",
         "claude-domain-skills": "1.2.0",
         "claude-software-skills": "1.1.0"
       },
       "status": "stable",
-      "notes": "superpowers 整合完成，14 個工作流程 skills + 25 個職業思維框架",
+      "notes": "Unified Planning Layer 整合完成，self-evolving-agent v3.8.0",
       "features_tested": [
-        "minimal-format-compatibility",
-        "superpowers-workflows",
-        "professional-thinking-frameworks",
-        "new-commands-brainstorm-plan"
+        "unified-planning-layer",
+        "spec-workflow-integration",
+        "plan-command-routing",
+        "superpowers-workflows"
       ]
     },
     {
