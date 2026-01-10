@@ -6,7 +6,7 @@
 
 **快速連結**: [5分鐘上手](docs/5-MINUTE-GUIDE.md) | [生態系統教學](docs/ECOSYSTEM_TUTORIAL.md) | [CHEATSHEET](docs/CHEATSHEET.md) | [故障排除](docs/TROUBLESHOOTING.md)
 
-**v2.1 新功能**: 🏗️ `scaffold` 專案模板 | 🔄 `workflow` 工作流程指南 | 🚀 14 個 superpowers 工作流程 | 🧠 25 個職業思維框架
+**v2.1 新功能**: 🎯 `plan` 統一規劃 | 🏗️ `scaffold` 專案模板 | 🔄 `workflow` 工作流程指南 | 🚀 14 個 superpowers 工作流程
 
 ---
 
@@ -225,6 +225,34 @@ npx claude-starter-kit scaffold monorepo my-workspace
 - Memory 系統初始化
 - MCP Server 配置
 - 建議的 skills 清單
+
+### 統一規劃 (Plan) ⭐ 新
+
+```bash
+# 智能路由 - 自動判斷使用 evolve 或 spec-workflow
+npx claude-starter-kit plan "implement user authentication"
+
+# 強制使用 spec-workflow (正式規劃)
+npx claude-starter-kit plan "add caching" --formal
+
+# 強制使用 evolve PDCA (快速迭代)
+npx claude-starter-kit plan "fix login bug" --quick
+
+# 從已有 spec 繼續執行
+npx claude-starter-kit plan --from-spec auth-system
+
+# 查看規劃狀態
+npx claude-starter-kit plan --status
+```
+
+#### 路由邏輯
+
+| 任務類型 | 路由 |
+|----------|------|
+| 大型功能 (feature, system, architecture) | spec-workflow |
+| 快速改進 (fix, improve, add) | evolve PDCA |
+| 用戶指定 --formal | spec-workflow |
+| 用戶指定 --quick | evolve PDCA |
 
 ### 工作流程指南 (Workflow) ⭐ 新
 

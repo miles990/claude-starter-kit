@@ -258,6 +258,40 @@ npx claude-starter-kit dashboard --port 8080
 npx claude-starter-kit dashboard --open
 ```
 
+## Plan 指令（統一規劃）v2.1 ⭐
+
+```bash
+# 智能路由 - 自動判斷使用 evolve 或 spec-workflow
+npx claude-starter-kit plan "implement user authentication"
+
+# 強制使用 spec-workflow (正式規劃)
+npx claude-starter-kit plan "add feature" --formal
+
+# 強制使用 evolve PDCA (快速迭代)
+npx claude-starter-kit plan "fix bug" --quick
+
+# 從已有 spec 繼續執行
+npx claude-starter-kit plan --from-spec auth-system
+
+# 查看規劃狀態
+npx claude-starter-kit plan --status
+
+# 列出所有 specs
+npx claude-starter-kit plan --list
+
+# 互動式規劃
+npx claude-starter-kit plan -i
+```
+
+### 路由邏輯
+
+| 任務類型 | 路由 |
+|----------|------|
+| 大型功能 (feature, system, architecture) | spec-workflow |
+| 快速改進 (fix, improve, add) | evolve PDCA |
+| `--formal` flag | spec-workflow |
+| `--quick` flag | evolve PDCA |
+
 ## Scaffold 指令（專案模板）v2.1 ⭐
 
 ```bash

@@ -7,7 +7,7 @@
 | Field | Value |
 |-------|-------|
 | Last curated | 2026-01-10 |
-| Total entries | 25 |
+| Total entries | 26 |
 | Next review | 2026-02-10 |
 
 ---
@@ -27,6 +27,7 @@
 ## Important Decisions
 
 <!-- DECISIONS_START -->
+- [002 - Unified Planning Layer](decisions/002-unified-planning-layer.md) ⭐⭐⭐ - architecture, planning, spec-workflow, evolve, integration
 - [001 - Memory Architecture](decisions/001-memory-architecture.md) - architecture, memory
 <!-- DECISIONS_END -->
 

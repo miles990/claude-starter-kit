@@ -16,6 +16,7 @@ import { insights } from './commands/insights.js';
 import { dashboard } from './commands/dashboard.js';
 import { scaffold, listTemplates } from './commands/scaffold.js';
 import { workflow, interactiveWorkflow } from './commands/workflow.js';
+import { plan, interactivePlan } from './commands/plan.js';
 
 const program = new Command();
 
@@ -89,6 +90,23 @@ program
       interactiveWorkflow();
     } else {
       workflow(name);
+    }
+  });
+
+program
+  .command('plan [goal]')
+  .description('Unified planning - smart routing between spec-workflow and evolve')
+  .option('--formal', 'Force spec-workflow (formal documentation)')
+  .option('--quick', 'Force evolve PDCA (lightweight iteration)')
+  .option('--from-spec <name>', 'Execute tasks from existing spec')
+  .option('--status', 'Show planning status')
+  .option('--list', 'List available specs')
+  .option('-i, --interactive', 'Interactive planning mode')
+  .action((goal, options) => {
+    if (options.interactive) {
+      interactivePlan();
+    } else {
+      plan(goal, options);
     }
   });
 
