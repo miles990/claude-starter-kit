@@ -7,10 +7,11 @@
 ### Getting Started
 | Document | Description |
 |----------|-------------|
-| [QUICKSTART.md](QUICKSTART.md) | 5 分鐘快速開始 |
-| [ECOSYSTEM_TUTORIAL.md](ECOSYSTEM_TUTORIAL.md) | 生態系統完整教學 ⭐ |
+| [5-MINUTE-GUIDE.md](5-MINUTE-GUIDE.md) | 5 分鐘上手指南 ⭐ |
+| [CLI-COMMANDS.md](CLI-COMMANDS.md) | CLI 指令詳解 (plan/scaffold/workflow) ⭐ |
+| [ECOSYSTEM_TUTORIAL.md](ECOSYSTEM_TUTORIAL.md) | 生態系統完整教學 |
 | [CHEATSHEET.md](CHEATSHEET.md) | 常用指令速查表 |
-| [USAGE_TUTORIAL.md](USAGE_TUTORIAL.md) | 使用教學與快速開始 |
+| [TROUBLESHOOTING.md](TROUBLESHOOTING.md) | 故障排除指南 |
 | [SKILLPKG_INTEGRATION.md](SKILLPKG_INTEGRATION.md) | skillpkg 整合指南 |
 | [Personas](../personas/README.md) | 專案類型預配置 |
 
@@ -40,10 +41,11 @@
 ```
 docs/
 ├── Getting Started
-│   ├── QUICKSTART.md             # 5 分鐘快速開始
-│   ├── ECOSYSTEM_TUTORIAL.md     # 生態系統完整教學 ⭐
+│   ├── 5-MINUTE-GUIDE.md         # 5 分鐘上手指南 ⭐
+│   ├── CLI-COMMANDS.md           # CLI 指令詳解 ⭐
+│   ├── ECOSYSTEM_TUTORIAL.md     # 生態系統完整教學
 │   ├── CHEATSHEET.md             # 常用指令速查
-│   ├── USAGE_TUTORIAL.md         # 使用教學
+│   ├── TROUBLESHOOTING.md        # 故障排除指南
 │   └── SKILLPKG_INTEGRATION.md   # skillpkg 整合
 │
 ├── Ecosystem Intelligence

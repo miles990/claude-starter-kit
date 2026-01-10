@@ -437,10 +437,11 @@ npx claude-starter-kit doctor --discover
 
 | 文檔 | 說明 |
 |------|------|
-| [5-MINUTE-GUIDE.md](docs/5-MINUTE-GUIDE.md) | 5 分鐘上手指南 ⭐ (新) |
+| [5-MINUTE-GUIDE.md](docs/5-MINUTE-GUIDE.md) | 5 分鐘上手指南 |
+| [CLI-COMMANDS.md](docs/CLI-COMMANDS.md) | CLI 指令詳解 (plan/scaffold/workflow) ⭐ |
 | [ECOSYSTEM_TUTORIAL.md](docs/ECOSYSTEM_TUTORIAL.md) | 生態系統完整教學 |
-| [TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) | 故障排除指南 (新) |
 | [CHEATSHEET.md](docs/CHEATSHEET.md) | 常用指令速查 |
+| [TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) | 故障排除指南 |
 | [Personas](personas/README.md) | 專案類型預配置 |
 | [文檔導覽](docs/README.md) | 所有文檔索引 |
 
