@@ -4,9 +4,9 @@
 
 [![npm version](https://badge.fury.io/js/claude-starter-kit.svg)](https://www.npmjs.com/package/claude-starter-kit)
 
-**快速連結**: [QUICKSTART](docs/QUICKSTART.md) | [生態系統教學](docs/ECOSYSTEM_TUTORIAL.md) | [CHEATSHEET](docs/CHEATSHEET.md) | [Personas](personas/README.md)
+**快速連結**: [5分鐘上手](docs/5-MINUTE-GUIDE.md) | [生態系統教學](docs/ECOSYSTEM_TUTORIAL.md) | [CHEATSHEET](docs/CHEATSHEET.md) | [故障排除](docs/TROUBLESHOOTING.md)
 
-**v2.0 新功能**: `smart` 智能助手 | `insights` 跨專案洞察 | `dashboard` Web 監控面板
+**v2.1 新功能**: 🚀 14 個 superpowers 工作流程 | 🧠 25 個職業思維框架 | 📋 新指令 `/brainstorm` `/write-plan` `/execute-plan`
 
 ---
 
@@ -66,10 +66,25 @@ Claude Starter Kit 自動幫你設置：
 |------|------|
 | **記憶系統** | Claude 會記住學到的東西，避免重複踩坑 |
 | **自我進化** | 自動分析 → 學習 → 執行 → 改進的 PDCA 循環 |
-| **技能管理** | 66 個專業技能，按需安裝 |
+| **工作流程 Skills** | 14 個 superpowers 專業工作流程（TDD、除錯、Code Review...） |
+| **思維框架** | 25 個職業思維框架（投資者、工程師、設計師視角） |
+| **技能管理** | 80+ 專業技能，按需安裝 |
 | **智能助手** | `smart` 指令提供上下文感知的推薦行動 |
 | **跨專案洞察** | `insights` 指令分析模式、發現共同優化機會 |
 | **Web Dashboard** | `dashboard` 指令啟動視覺化監控面板 |
+
+### v2.1 開箱即用的工作流程
+
+| 工作流程 | 用途 |
+|----------|------|
+| `test-driven-development` | TDD 流程：RED → GREEN → REFACTOR |
+| `systematic-debugging` | 系統化除錯：假設 → 隔離 → 驗證 |
+| `brainstorming` | 創意發想：發散 → 收斂 → 可行方案 |
+| `writing-plans` | 撰寫實作計畫 |
+| `executing-plans` | 執行並追蹤計畫 |
+| `code-review` | 程式碼審查（請求與接收） |
+| `verification-before-completion` | 完成前驗證清單 |
+| `professional-thinking-frameworks` | 25 種職業思維框架 |
 
 ---
 
@@ -267,8 +282,9 @@ npx claude-starter-kit doctor --discover
 
 | 文檔 | 說明 |
 |------|------|
-| [QUICKSTART.md](docs/QUICKSTART.md) | 5 分鐘快速開始 |
-| [ECOSYSTEM_TUTORIAL.md](docs/ECOSYSTEM_TUTORIAL.md) | 生態系統完整教學 ⭐ |
+| [5-MINUTE-GUIDE.md](docs/5-MINUTE-GUIDE.md) | 5 分鐘上手指南 ⭐ (新) |
+| [ECOSYSTEM_TUTORIAL.md](docs/ECOSYSTEM_TUTORIAL.md) | 生態系統完整教學 |
+| [TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) | 故障排除指南 (新) |
 | [CHEATSHEET.md](docs/CHEATSHEET.md) | 常用指令速查 |
 | [Personas](personas/README.md) | 專案類型預配置 |
 | [文檔導覽](docs/README.md) | 所有文檔索引 |

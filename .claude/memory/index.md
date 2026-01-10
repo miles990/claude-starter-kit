@@ -6,9 +6,9 @@
 
 | Field | Value |
 |-------|-------|
-| Last curated | 2026-01-08 |
-| Total entries | 23 |
-| Next review | 2026-02-08 |
+| Last curated | 2026-01-10 |
+| Total entries | 24 |
+| Next review | 2026-02-10 |
 
 ---
 
@@ -69,6 +69,7 @@
 ## Discoveries
 
 <!-- DISCOVERIES_START -->
+- [Superpowers Integration](discoveries/2026-01-10-superpowers-integration.md) ⭐⭐⭐ - superpowers, skillpkg, format-compatibility, ecosystem-openness, 15-new-skills
 - [UX Improvement Session](discoveries/2026-01-08-ux-improvement-session.md) ⭐⭐ - ux, personas, quickstart, cheatsheet, user-friendly
 - [Claude Code 2.1.0 Impact](discoveries/2026-01-08-claude-code-2.1.0-impact.md) ⭐⭐⭐ - claude-code, 2.1.0, hooks, hot-reload, context-fork, BREAKING
 - [Evolve Session Summary](discoveries/2026-01-08-evolve-session-summary.md) ⭐⭐⭐ - evolve, emergence, 6-iterations, comprehensive-improvement
