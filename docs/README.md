@@ -8,6 +8,7 @@
 | Document | Description |
 |----------|-------------|
 | [5-MINUTE-GUIDE.md](5-MINUTE-GUIDE.md) | 5 分鐘上手指南 ⭐ |
+| [BEST-PRACTICES.md](BEST-PRACTICES.md) | 最佳實踐指南 ⭐ |
 | [CLI-COMMANDS.md](CLI-COMMANDS.md) | CLI 指令詳解 (plan/scaffold/workflow) ⭐ |
 | [ECOSYSTEM_TUTORIAL.md](ECOSYSTEM_TUTORIAL.md) | 生態系統完整教學 |
 | [CHEATSHEET.md](CHEATSHEET.md) | 常用指令速查表 |
@@ -42,6 +43,7 @@
 docs/
 ├── Getting Started
 │   ├── 5-MINUTE-GUIDE.md         # 5 分鐘上手指南 ⭐
+│   ├── BEST-PRACTICES.md         # 最佳實踐指南 ⭐
 │   ├── CLI-COMMANDS.md           # CLI 指令詳解 ⭐
 │   ├── ECOSYSTEM_TUTORIAL.md     # 生態系統完整教學
 │   ├── CHEATSHEET.md             # 常用指令速查
