@@ -6,24 +6,89 @@
 
 **快速連結**: [5分鐘上手](docs/5-MINUTE-GUIDE.md) | [生態系統教學](docs/ECOSYSTEM_TUTORIAL.md) | [CHEATSHEET](docs/CHEATSHEET.md) | [故障排除](docs/TROUBLESHOOTING.md)
 
-**v2.1 新功能**: 🎯 `plan` 統一規劃 | 🏗️ `scaffold` 專案模板 | 🔄 `workflow` 工作流程指南 | 🚀 14 個 superpowers 工作流程
+---
+
+## 🆕 v2.1 新功能
+
+| 功能 | 說明 | 指令 |
+|------|------|------|
+| 🎯 **統一規劃** | 智能路由到 spec-workflow 或 evolve | `npx claude-starter-kit plan` |
+| 🏗️ **專案模板** | 4 個專業模板一鍵建立 | `npx claude-starter-kit scaffold` |
+| 🔄 **工作流程** | 8 個開發最佳實踐 | `npx claude-starter-kit workflow` |
+| 🚀 **Superpowers** | 14 個專業工作流程 Skills | 開箱即用 |
+
+---
+
+## 安裝
+
+```bash
+# 方式 1: 直接執行（推薦）
+npx claude-starter-kit@latest
+
+# 方式 2: 全域安裝
+npm install -g claude-starter-kit
+claude-starter-kit
+```
 
 ---
 
 ## 30 秒快速開始
 
 ```bash
-# 在你的專案目錄執行
+# 1. 初始化專案配置
 npx claude-starter-kit
 
-# 打開 Claude Code
+# 2. 打開 Claude Code
 claude
 
-# 開始自我進化開發
+# 3. 開始自我進化開發
 /evolve 你想做的事情
 ```
 
 就這樣！Claude 會自動學習需要的技能並完成任務。
+
+---
+
+## v2.1 新功能快速體驗
+
+### 🎯 統一規劃 - 智能選擇工作流
+
+```bash
+# 智能路由：自動判斷用 spec-workflow 還是 evolve
+npx claude-starter-kit plan "implement user authentication"
+
+# 大型功能 → 自動使用 spec-workflow（正式文檔+審批）
+# 快速修復 → 自動使用 evolve PDCA（輕量迭代）
+
+# 強制模式
+npx claude-starter-kit plan "task" --formal  # 正式規劃
+npx claude-starter-kit plan "task" --quick   # 快速迭代
+```
+
+### 🏗️ 專案模板 - 秒建專業專案
+
+```bash
+# 列出可用模板
+npx claude-starter-kit scaffold --list
+
+# 創建專案（自帶完整 Claude Code 配置）
+npx claude-starter-kit scaffold express-api my-api    # REST API
+npx claude-starter-kit scaffold nextjs my-app         # Next.js
+npx claude-starter-kit scaffold cli my-tool           # CLI 工具
+npx claude-starter-kit scaffold monorepo my-workspace # Monorepo
+```
+
+### 🔄 工作流程 - 開發最佳實踐
+
+```bash
+# 列出所有工作流程
+npx claude-starter-kit workflow
+
+# 查看特定工作流程
+npx claude-starter-kit workflow tdd        # Test-Driven Development
+npx claude-starter-kit workflow debug      # 系統化除錯
+npx claude-starter-kit workflow brainstorm # 創意發想
+```
 
 ---
 
