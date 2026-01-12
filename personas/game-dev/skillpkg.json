@@ -1,0 +1,58 @@
+{
+  "$schema": "https://github.com/miles990/skillpkg/schemas/skillpkg.json",
+  "name": "game-dev",
+  "version": "1.0.0",
+  "description": "Game development - fun first, polish later",
+
+  "skills": {
+    "self-evolving-agent": {
+      "source": "github:miles990/self-evolving-agent",
+      "version": "^4.5.0",
+      "required": true
+    },
+    "frontend": {
+      "source": "github:miles990/claude-software-skills#skills/frontend",
+      "version": "latest",
+      "description": "Web-based game UI and rendering"
+    },
+    "testing-strategies": {
+      "source": "github:miles990/claude-software-skills#skills/testing-strategies",
+      "version": "latest",
+      "description": "Playtesting and QA workflows"
+    },
+    "performance-optimization": {
+      "source": "github:miles990/claude-software-skills#skills/performance-optimization",
+      "version": "latest",
+      "description": "Frame rate and memory optimization"
+    },
+    "git-workflows": {
+      "source": "github:miles990/claude-software-skills#skills/git-workflows",
+      "version": "latest"
+    }
+  },
+
+  "sync": {
+    "targets": ["claude-code"],
+    "autoSync": true
+  },
+
+  "settings": {
+    "scope": "local"
+  },
+
+  "persona": {
+    "name": "game-dev",
+    "philosophy": "Fun first, polish later",
+    "priorities": [
+      "Core gameplay loop before features",
+      "Playable prototype over perfect code",
+      "Player feedback drives iteration",
+      "Performance matters for player experience"
+    ],
+    "rules_override": {
+      "testing": "playtest-focused",
+      "documentation": "design-docs",
+      "code_review": "gameplay-impact"
+    }
+  }
+}

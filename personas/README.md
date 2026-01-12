@@ -17,6 +17,7 @@ Persona 是為特定類型專案預先配置好的設定，包含：
 | [enterprise](enterprise/) | 企業專案 | 穩定可靠、完整審計 |
 | [research](research/) | 研究探索 | 深度記錄、實驗追蹤 |
 | [fullstack](fullstack/) | 全端開發 | 前後端整合、API 設計 |
+| [game-dev](game-dev/) | 遊戲開發 | 遊戲循環設計、效能優化 |
 
 ## 如何使用
 
@@ -126,6 +127,27 @@ npx claude-starter-kit switch-persona enterprise
 - Web 應用
 - SaaS 產品
 - 平台開發
+
+---
+
+### game-dev (遊戲開發)
+
+**目標**: 先讓遊戲好玩，再優化細節
+
+**技能集**:
+- frontend (Web 遊戲 UI)
+- testing-strategies (Playtest)
+- performance-optimization
+
+**規則重點**:
+- 核心遊戲循環優先
+- 可玩原型優先於完美代碼
+- 玩家回饋驅動迭代
+
+**適合**:
+- Web 遊戲
+- Unity/Godot 專案
+- 遊戲設計原型
 
 ## 自定義 Persona
 

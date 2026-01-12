@@ -359,6 +359,7 @@ npx claude-starter-kit workflow -i
 | [enterprise](personas/enterprise/) | 企業專案、合規需求 | Stability and security first |
 | [fullstack](personas/fullstack/) | 全端 Web 開發 | API-first, end-to-end integration |
 | [research](personas/research/) | 研究探索、數據分析 | Deep exploration, thorough documentation |
+| [game-dev](personas/game-dev/) | 遊戲開發 | Fun first, polish later |
 
 詳見 [Personas 完整說明](personas/README.md)
 

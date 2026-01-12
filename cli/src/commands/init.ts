@@ -12,7 +12,7 @@ import { DOMAINS, type DomainKey } from '../domains/index.js';
 
 type InstallScope = 'global' | 'local' | 'both';
 
-type PersonaKey = 'startup-mvp' | 'enterprise' | 'fullstack' | 'research';
+type PersonaKey = 'startup-mvp' | 'enterprise' | 'fullstack' | 'research' | 'game-dev';
 
 interface InitOptions {
   yes?: boolean;
@@ -89,6 +89,13 @@ const PERSONAS: Record<PersonaKey, {
     philosophy: 'Deep exploration, thorough documentation',
     skills: ['self-evolving-agent', 'python', 'data-analysis', 'ai-ml-integration', 'documentation', 'git-workflows'],
     rulesOverride: { testing: 'experimental', documentation: 'exhaustive', memory_entries: 'detailed' },
+  },
+  'game-dev': {
+    name: 'Game Dev',
+    description: '遊戲開發 - 先讓遊戲好玩，再優化細節',
+    philosophy: 'Fun first, polish later',
+    skills: ['self-evolving-agent', 'frontend', 'testing-strategies', 'performance-optimization', 'git-workflows'],
+    rulesOverride: { testing: 'playtest-focused', documentation: 'design-docs', code_review: 'gameplay-impact' },
   },
 };
 
@@ -645,6 +652,7 @@ export async function init(options: InitOptions): Promise<void> {
             { name: `${PERSONAS['fullstack'].name} - ${PERSONAS['fullstack'].description}`, value: 'fullstack' },
             { name: `${PERSONAS['enterprise'].name} - ${PERSONAS['enterprise'].description}`, value: 'enterprise' },
             { name: `${PERSONAS['research'].name} - ${PERSONAS['research'].description}`, value: 'research' },
+            { name: `${PERSONAS['game-dev'].name} - ${PERSONAS['game-dev'].description}`, value: 'game-dev' },
           ],
           default: 'startup-mvp',
         },
