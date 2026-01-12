@@ -15,6 +15,7 @@
 ## Recent Learnings
 
 <!-- LEARNINGS_START -->
+- [從痛點到解決方案：Prompt Library 專案建立](learnings/2026-01-11-prompt-library-creation.md) ⭐⭐⭐ - evolve, pain-point, prompt-management, express, typescript
 - [README 放置原則](learnings/2026-01-10-readme-placement-principle.md) ⭐⭐ - documentation, readme, best-practice, anti-pattern
 - [CLI v2.0 智能化功能](learnings/2026-01-08-cli-v2-intelligent-features.md) ⭐⭐⭐ - cli, smart, insights, dashboard, v2.0, intelligent-features
 - [Phase 4 Complete](learnings/2025-01-08-phase4-complete.md) ⭐⭐⭐ - ecosystem, health-dashboard, version-coordination, knowledge-graph, phase4, COMPLETE

@@ -4,7 +4,7 @@
 
 [![npm version](https://badge.fury.io/js/claude-starter-kit.svg)](https://www.npmjs.com/package/claude-starter-kit)
 
-**快速連結**: [5分鐘上手](docs/5-MINUTE-GUIDE.md) | [生態系統教學](docs/ECOSYSTEM_TUTORIAL.md) | [CHEATSHEET](docs/CHEATSHEET.md) | [故障排除](docs/TROUBLESHOOTING.md)
+**快速連結**: [5分鐘上手](docs/5-MINUTE-GUIDE.md) | [CLI 指令](docs/CLI-COMMANDS.md) | [CHEATSHEET](docs/CHEATSHEET.md) | [故障排除](docs/TROUBLESHOOTING.md)
 
 ---
 
@@ -438,12 +438,12 @@ npx claude-starter-kit doctor --discover
 | 文檔 | 說明 |
 |------|------|
 | [5-MINUTE-GUIDE.md](docs/5-MINUTE-GUIDE.md) | 5 分鐘上手指南 |
-| [CLI-COMMANDS.md](docs/CLI-COMMANDS.md) | CLI 指令詳解 (plan/scaffold/workflow) ⭐ |
-| [ECOSYSTEM_TUTORIAL.md](docs/ECOSYSTEM_TUTORIAL.md) | 生態系統完整教學 |
+| [CLI-COMMANDS.md](docs/CLI-COMMANDS.md) | CLI 指令詳解 |
 | [CHEATSHEET.md](docs/CHEATSHEET.md) | 常用指令速查 |
 | [TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) | 故障排除指南 |
 | [Personas](personas/README.md) | 專案類型預配置 |
-| [文檔導覽](docs/README.md) | 所有文檔索引 |
+
+> 更多進階文檔請見 [docs/archive/](docs/archive/)
 
 ---
 

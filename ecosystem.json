@@ -21,16 +21,22 @@
     },
     "self-evolving-agent": {
       "repository": "github:miles990/self-evolving-agent",
-      "min_version": "3.4.0",
-      "recommended": "3.8.0",
+      "min_version": "4.0.0",
+      "recommended": "4.5.0",
       "features_added": {
         "3.4.0": ["mandatory-checkpoints", "memory-lifecycle", "boris-tips"],
         "3.5.0": ["skill-metrics", "emergence-tracking", "success-patterns"],
         "3.6.0": ["knowledge-distillation", "progressive-disclosure", "relevance-tracking", "failure-immunity"],
         "3.7.1": ["memory-sync-checkpoint", "sharp-edges-integration", "collaboration-awareness"],
-        "3.8.0": ["unified-planning-layer", "spec-workflow-integration", "plan-command-support"]
+        "3.8.0": ["unified-planning-layer", "spec-workflow-integration", "plan-command-support"],
+        "4.0.0": ["atomic-architecture", "modular-loading", "token-optimization"],
+        "4.3.0": ["deep-interview-mode", "structured-requirement-discovery"],
+        "4.4.0": ["north-star-system", "cp0-anchoring", "cp3-direction-correction", "cp6-health-check"],
+        "4.5.0": ["token-92-percent-reduction", "on-demand-module-loading"]
       },
-      "breaking_changes": {}
+      "breaking_changes": {
+        "4.0.0": "原子化架構重構，SKILL.md 拆分為模組"
+      }
     },
     "claude-domain-skills": {
       "repository": "github:miles990/claude-domain-skills",
@@ -64,6 +70,23 @@
   },
 
   "tested_combinations": [
+    {
+      "date": "2026-01-12",
+      "versions": {
+        "skillpkg": "0.5.6",
+        "self-evolving-agent": "4.5.0",
+        "claude-domain-skills": "1.2.0",
+        "claude-software-skills": "1.1.0"
+      },
+      "status": "stable",
+      "notes": "Self-Evolving Agent v4.5.0 原子化架構 + 北極星系統",
+      "features_tested": [
+        "atomic-architecture",
+        "north-star-system",
+        "deep-interview-mode",
+        "token-optimization-92-percent"
+      ]
+    },
     {
       "date": "2026-01-11",
       "versions": {
